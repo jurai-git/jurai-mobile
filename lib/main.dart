@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         fontFamily: "MPLUSRounded1c"
       ),
+      debugShowCheckedModeBanner: false,
       home: const Homepage(),
     );
   }
