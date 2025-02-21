@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jurai/login.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
@@ -56,7 +57,7 @@ class Homepage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(100),
                   border: Border.all(color: Color(0xFF387FB9)),
                 ),
-                  child: ElevatedButton(onPressed: (){}, style: ButtonStyle(backgroundColor: WidgetStateColor.transparent, fixedSize: WidgetStateProperty.all(Size.fromWidth(250)), padding: WidgetStateProperty.all(EdgeInsets.all(30))), child: Text("Entrar", style: TextStyle(color: Colors.white),),),
+                  child: ElevatedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const Login()));}, style: ButtonStyle(backgroundColor: WidgetStateColor.transparent, fixedSize: WidgetStateProperty.all(Size.fromWidth(250)), padding: WidgetStateProperty.all(EdgeInsets.all(30))), child: Text("Entrar", style: TextStyle(color: Colors.white),),),
                 ),
                 Container(
                   decoration: BoxDecoration(
