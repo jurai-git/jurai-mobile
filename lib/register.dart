@@ -73,7 +73,7 @@ class Register extends StatelessWidget {
                 ),
                 child: TextField(
                   decoration: InputDecoration(
-                    prefixIcon: Image.asset('img/email.png',),
+                    prefixIcon: Image.asset('img/profile.png',),
                     prefixIconConstraints: BoxConstraints(minWidth: 10, minHeight: 10),
                     fillColor: Colors.transparent,
                     border: InputBorder.none,
@@ -96,7 +96,7 @@ class Register extends StatelessWidget {
                 ),
                 child: TextField(
                   decoration: InputDecoration(
-                    prefixIcon: Image.asset('img/password.png',),
+                    prefixIcon: Image.asset('img/oab.png',),
                     prefixIconConstraints: BoxConstraints(minWidth: 10, minHeight: 10),
                     fillColor: Colors.transparent,
                     border: InputBorder.none,
