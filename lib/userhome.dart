@@ -18,11 +18,12 @@ class UserHome extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Container(
-                    padding: EdgeInsets.only(top: 50, bottom: 10),
+                    margin: EdgeInsets.only(left: 50, top: 50),
                     child: Image.asset('img/jurai-name.png', scale: 4.0),
                   ),
+                  Spacer(),
                   Container(
-                    padding: EdgeInsets.only(top: 50, bottom: 10),
+                    margin: EdgeInsets.only(right: 50, top: 50),
                     child: ElevatedButton(
                       onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const Profile()));},
                       style: ElevatedButton.styleFrom(
