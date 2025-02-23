@@ -7,17 +7,7 @@ class UserHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment(0, 0),
-          end: Alignment(1, 1),
-          transform: GradientRotation(45),
-          colors: [
-            Color.fromRGBO(25, 24, 29, 1),
-            Color.fromRGBO(12, 58, 96, 1),
-          ],
-        ),
-      ),
+      color: Color.fromRGBO(25, 24, 29, 1),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Center(
