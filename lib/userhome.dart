@@ -78,7 +78,45 @@ class UserHome extends StatelessWidget {
             ],
           ),
         ),
+        bottomNavigationBar: CustomBotNavBar()
       ),
+    );
+  }
+}
+
+class CustomBotNavBar extends StatefulWidget {
+  const CustomBotNavBar({Key? key}) : super(key: key);
+
+  @override
+  State<CustomBotNavBar> createState() => CheckState();
+}
+
+class CheckState extends State<CustomBotNavBar> {
+  int selectedIndex=0;
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomNavigationBar(
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
+      backgroundColor: Colors.transparent,
+      type: BottomNavigationBarType.fixed,
+      selectedItemColor: Color(0xFF387FB9),
+      selectedFontSize: 20,
+      unselectedItemColor: Colors.white,
+      currentIndex: selectedIndex,
+      onTap: (value) {
+        setState(() {
+          selectedIndex = value;
+        });
+      },
+      items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(icon: Icon(Icons.home, size: 35,), label: ""),
+            BottomNavigationBarItem(icon: Icon(Icons.person_outline, size: 35,), label: ""),
+            BottomNavigationBarItem(icon: Icon(Icons.description, size: 35,), label: ""),
+            BottomNavigationBarItem(icon: Icon(Icons.search, size: 35,), label: ""),
+            BottomNavigationBarItem(icon: Icon(Icons.code, size: 35,), label: ""),
+          ]
     );
   }
 }
