@@ -19,7 +19,7 @@ class UserHome extends StatelessWidget {
                 children: [
                   Container(
                     margin: EdgeInsets.only(left: 50, top: 50),
-                    child: Image.asset('img/jurai-name.png', scale: 4.0),
+                    child: Image.asset('img/jurai-name.png', scale: 6.5),
                   ),
                   Spacer(),
                   Container(
