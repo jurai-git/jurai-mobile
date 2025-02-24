@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jurai/userhome.dart';
 
 class Profile extends StatelessWidget {
   const Profile({super.key});
@@ -6,41 +7,26 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment(0, 0),
-          end: Alignment(1, 1),
-          transform: GradientRotation(45),
-          colors: [
-            Color.fromRGBO(25, 24, 29, 1),
-            Color.fromRGBO(12, 58, 96, 1),
-          ],
-        ),
-      ),
+      color: Color.fromRGBO(25, 24, 29, 1),
       child: Scaffold(
+        appBar: AppBar(
+          title: Text("Conta"), titleTextStyle: TextStyle(color: Colors.white, fontSize: 25),
+          centerTitle: true,
+          iconTheme: IconThemeData(color: Colors.white),
+          //leading: ElevatedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => UserHome()));}, child: Icon(Icons.navigate_before, color: Colors.white,)),
+          backgroundColor: Colors.transparent,
+        ),
         backgroundColor: Colors.transparent,
         body: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                padding: EdgeInsets.only(top: 50, bottom: 10),
-                child: Image.asset('img/jurai-name.png', scale: 4.0),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    padding: EdgeInsets.fromLTRB(50, 50, 50, 20),
-                    child: Text(
-                      "Seus Dados",
-                      style: TextStyle(color: Colors.white, fontSize: 35),
-                    ),
-                  ),
-                ],
+                padding: EdgeInsets.fromLTRB(0, 10, 0, 30),
+                child: Image.asset('img/jurai-name.png', scale: 5.5),
               ),
               Container(
-                padding: EdgeInsets.all(100),
+                padding: EdgeInsets.all(80),
                 decoration: BoxDecoration(
                   color: Colors.amber,
                   shape: BoxShape.circle,
@@ -48,15 +34,86 @@ class Profile extends StatelessWidget {
                 ),
                 child: Image.asset("img/profile.png", scale: 0.7),
               ),
+              Container(
+                margin: EdgeInsets.only(top: 20),
+                decoration: BoxDecoration(
+                  //border: Border.symmetric(horizontal: BorderSide(color: const Color.fromRGBO(255, 255, 255, 0.5), width: 1))
+                ),
+                child: ElevatedButton(onPressed: (){}, 
+                  style: ElevatedButton.styleFrom(
+                    shadowColor: Colors.transparent,
+                    backgroundColor: Color.fromRGBO(25, 24, 29, 1),
+                    padding: EdgeInsets.all(25),
+                    shape: LinearBorder()
+                  ),
+                  child: Row(
+                    children: [
+                          Icon(Icons.account_circle, color: Colors.white, size: 30,),
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 10),
+                            child: Text("Informações Pessoais", style: TextStyle(color: Colors.white, fontSize: 18),),
+                          ),
+                          Spacer(),
+                          Icon(Icons.navigate_next, color: Colors.white, size: 30),
+                        ],
+                    ),
+                )
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.symmetric(horizontal: BorderSide(color: const Color.fromRGBO(255, 255, 255, 0.5), width: 1))
+                ),
+                child: ElevatedButton(onPressed: (){}, 
+                  style: ElevatedButton.styleFrom(
+                    shadowColor: Colors.transparent,
+                    backgroundColor: Color.fromRGBO(25, 24, 29, 1),
+                    padding: EdgeInsets.all(25),
+                    shape: LinearBorder()
+                  ),
+                  child: Row(
+                    children: [
+                          Icon(Icons.lock, color: Colors.white, size: 30,),
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 10),
+                            child: Text("Privacidade e Segurança", style: TextStyle(color: Colors.white, fontSize: 18),),
+                          ),
+                          Spacer(),
+                          Icon(Icons.navigate_next, color: Colors.white, size: 30),
+                        ],
+                    ),
+                )
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  //border: Border.symmetric(horizontal: BorderSide(color: const Color.fromRGBO(255, 255, 255, 0.5), width: 1))
+                ),
+                child: ElevatedButton(onPressed: (){}, 
+                  style: ElevatedButton.styleFrom(
+                    shadowColor: Colors.transparent,
+                    backgroundColor: Color.fromARGB(255, 25, 24, 29),
+                    padding: EdgeInsets.all(25),
+                    shape: LinearBorder()
+                  ),
+                  child: Row(
+                    children: [
+                          Icon(Icons.logout, color: Colors.red, size: 30,),
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 10),
+                            child: Text("Sair da Conta", style: TextStyle(color: Colors.red, fontSize: 18),),
+                          ),
+                          Spacer(),
+                          Icon(Icons.navigate_next, color: Colors.red, size: 30),
+                        ],
+                    ),
+                )
+              ),
             ],
           ),
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(icon: Icon(Icons.home)),
-            BottomNavigationBarItem(icon: Icon(icon)),
-          ]
-          ),
+        bottomNavigationBar: Container(
+          padding: EdgeInsets.all(10),
+          child: Text("A inteligência que facilita o processo | © 2024 JurAI", style: TextStyle(color: Colors.white, fontSize: 15), textAlign: TextAlign.center,),
+        ),
       ),
     );
   }
