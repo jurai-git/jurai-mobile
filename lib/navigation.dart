@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:jurai/analysis.dart';
+import 'package:jurai/clients.dart';
+import 'package:jurai/devs.dart';
+import 'package:jurai/documents.dart';
 import 'package:jurai/homepage.dart';
 import 'package:jurai/login.dart';
 import 'package:jurai/userhome.dart';
@@ -25,7 +29,7 @@ class CustomBotNavBar extends StatefulWidget {
 class CheckState extends State<CustomBotNavBar> {
   int selectedIndex = 0;
 
-  static const List<Widget> pages = <Widget>[UserHome(), Login(), Homepage()];
+  static const List<Widget> pages = <Widget>[UserHome(), Clients(), Documents(), Analysis(), Devs()];
 
   @override
   Widget build(BuildContext context) {
