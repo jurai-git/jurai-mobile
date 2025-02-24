@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:jurai/homepage.dart';
+import 'package:jurai/login.dart';
 import 'package:jurai/profile.dart';
+import 'package:jurai/register.dart';
 
 class UserHome extends StatelessWidget {
   const UserHome({super.key});
@@ -120,3 +123,9 @@ class CheckState extends State<CustomBotNavBar> {
     );
   }
 }
+
+const List<Widget> pages = <Widget>[
+  Register(),
+  Login(),
+  Homepage()
+];
