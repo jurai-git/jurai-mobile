@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:jurai/navigation.dart';
+import 'package:jurai/userhome.dart';
 
 class Register extends StatelessWidget {
   const Register({super.key});
@@ -193,7 +195,7 @@ class Register extends StatelessWidget {
                     ],
                   ),
                 ),
-                  child: ElevatedButton(onPressed: (){}, style: ButtonStyle(backgroundColor: WidgetStateColor.transparent, fixedSize: WidgetStateProperty.all(Size.fromWidth(250)), padding: WidgetStateProperty.all(EdgeInsets.all(30))), child: Text("Criar Conta", style: TextStyle(color: Colors.white),),),
+                  child: ElevatedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const Navigation()));}, style: ButtonStyle(backgroundColor: WidgetStateColor.transparent, fixedSize: WidgetStateProperty.all(Size.fromWidth(250)), padding: WidgetStateProperty.all(EdgeInsets.all(30))), child: Text("Criar Conta", style: TextStyle(color: Colors.white),),),
                 ),
             ]
           )
