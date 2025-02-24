@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jurai/login.dart';
+import 'package:jurai/register.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
@@ -73,7 +74,7 @@ class Homepage extends StatelessWidget {
                     ],
                   ),
                 ),
-                  child: ElevatedButton(onPressed: (){}, style: ButtonStyle(backgroundColor: WidgetStateColor.transparent, fixedSize: WidgetStateProperty.all(Size.fromWidth(250)), padding: WidgetStateProperty.all(EdgeInsets.all(30))), child: Text("Criar Conta", style: TextStyle(color: Colors.white),),),
+                  child: ElevatedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const Register()));}, style: ButtonStyle(backgroundColor: WidgetStateColor.transparent, fixedSize: WidgetStateProperty.all(Size.fromWidth(250)), padding: WidgetStateProperty.all(EdgeInsets.all(30))), child: Text("Criar Conta", style: TextStyle(color: Colors.white),),),
                 ),
             ],
             
