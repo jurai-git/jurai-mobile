@@ -42,7 +42,7 @@ class Analysis extends StatelessWidget {
                   Container(
                     padding: EdgeInsets.fromLTRB(50, 50, 50, 20),
                     child: Text(
-                      "Seus Documentos",
+                      "Consulta Rápida",
                       style: TextStyle(color: Colors.white, fontSize: 35),
                     ),
                   ),
