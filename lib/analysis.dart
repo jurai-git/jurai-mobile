@@ -49,7 +49,11 @@ class Analysis extends StatelessWidget {
                   ),
                 ],
               ),
-              SingleChoice(),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 60),
+                width: MediaQuery.of(context).size.width,
+              child:SingleChoice(),
+              ),
             ]
           )
         )
@@ -73,7 +77,8 @@ class _SingleChoiceState extends State<SingleChoice> {
   @override
   Widget build(BuildContext context) {
     return SegmentedButton<Options>(
-      //style: SegmentedButton.styleFrom(fixedSize: Size(MediaQuery.of(context).size.width, 20)),
+      showSelectedIcon: false,
+      style: SegmentedButton.styleFrom(backgroundColor: Color.fromRGBO(120, 120, 128, 0.120), foregroundColor: Color(0x77808080),selectedForegroundColor: Colors.black, side: BorderSide(color: Colors.transparent, width: 0), textStyle: TextStyle(fontWeight: FontWeight.w400)),
       segments: const <ButtonSegment<Options>>[
         ButtonSegment<Options>(
           value: Options.pdf,
