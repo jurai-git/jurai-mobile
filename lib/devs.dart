@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:jurai/profile.dart';
 
 
 class Devs extends StatelessWidget {
@@ -28,7 +29,7 @@ class Devs extends StatelessWidget {
                   Container(
                     margin: EdgeInsets.only(right: 50, top: 50),
                     child: ElevatedButton(
-                      onPressed: (){},
+                      onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const Profile()));},
                       style: ElevatedButton.styleFrom(
                         shape: CircleBorder(),
                         padding: EdgeInsets.all(20),
