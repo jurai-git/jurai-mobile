@@ -45,13 +45,54 @@ class Analysis extends StatelessWidget {
                       "Consulta Rápida",
                       style: TextStyle(color: Colors.white, fontSize: 35),
                     ),
+
                   ),
                 ],
               ),
+              SingleChoice(),
             ]
           )
         )
       )
+    );
+  }
+}
+
+enum Options {pdf, ementa}
+
+class SingleChoice extends StatefulWidget {
+  const SingleChoice({super.key});
+
+  @override
+  State<SingleChoice> createState() => _SingleChoiceState();
+}
+
+class _SingleChoiceState extends State<SingleChoice> {
+  Options options = Options.pdf;
+
+  @override
+  Widget build(BuildContext context) {
+    return SegmentedButton<Options>(
+      //style: SegmentedButton.styleFrom(fixedSize: Size(MediaQuery.of(context).size.width, 20)),
+      segments: const <ButtonSegment<Options>>[
+        ButtonSegment<Options>(
+          value: Options.pdf,
+          label: Text('PDF'),
+        ),
+        ButtonSegment<Options>(
+          value: Options.ementa,
+          label: Text('Ementa'),
+        ),
+      ],
+      selected: <Options>{options},
+      onSelectionChanged: (Set<Options> newSelection) {
+        setState(() {
+          // By default there is only a single segment that can be
+          // selected at one time, so its value is always the first
+          // item in the selected set.
+          options = newSelection.first;
+        });
+      },
     );
   }
 }
