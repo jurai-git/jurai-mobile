@@ -179,6 +179,7 @@ class Register extends StatelessWidget {
                   obscureText: true,
                 ),
               ),
+              Spacer(),
               Container(
                   margin: EdgeInsets.symmetric(vertical: 20),
                   decoration: BoxDecoration(
