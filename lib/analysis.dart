@@ -1,7 +1,10 @@
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:jurai/profile.dart';
 
 int buttonIndex = 0;
@@ -151,9 +154,34 @@ class _RenderPdfState extends State<RenderPdf> {
             borderRadius: BorderRadius.circular(50),
           ),
           child: ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.transparent, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.transparent,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50),
+              ),
+              shadowColor: Colors.transparent
+            ),
             onPressed: () async {
+              FilePickerResult? result = await FilePicker.platform.pickFiles();
 
+              if (result != null) {
+                setState(() {
+                  _fileName = result.files.single.name;
+                });
+                if (kIsWeb) {
+                  setState(() {
+                    _fileBytes =
+                        result
+                            .files
+                            .single
+                            .bytes;
+                  });
+                } else {
+                  setState(() {
+                    _file = File(result.files.single.path!);
+                  });
+                }
+              }
             },
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -193,7 +221,36 @@ class _RenderPdfState extends State<RenderPdf> {
             ),
           ),
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () async {
+              if (_file == null && _fileBytes == null) return;
+
+              var request = http.MultipartRequest(
+                'POST',
+                Uri.parse('YOUR_API_ENDPOINT'),
+              );
+
+              if (_file != null) {
+                request.files.add(
+                  await http.MultipartFile.fromPath('file', _file!.path),
+                );
+              } else if (_fileBytes != null) {
+                request.files.add(
+                  http.MultipartFile.fromBytes(
+                    'file',
+                    _fileBytes!,
+                    //filename: _fileName ?? 'uploaded_file',
+                  ),
+                );
+              }
+
+              var response = await request.send();
+
+              if (response.statusCode == 200) {
+                print('File uploaded successfully');
+              } else {
+                print('File upload failed');
+              }
+            },
             style: ButtonStyle(
               backgroundColor: WidgetStateColor.transparent,
               fixedSize: WidgetStateProperty.all(Size.fromWidth(250)),
