@@ -32,7 +32,8 @@ class Register extends StatelessWidget {
                   children: [
                     Image.asset('img/jurailogo.png', scale: 1.3),
                     Image.asset('img/jurai-name_resized.png', scale: 2.0),
-                ],)
+                  ],
+                ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -40,10 +41,23 @@ class Register extends StatelessWidget {
                 children: [
                   Container(
                     padding: EdgeInsets.fromLTRB(0, 35, 0, 20),
-                    child: Text(
-                      "Olá, seja bem-vindo(a)",
-                      style: TextStyle(fontSize: 30, color: Colors.white),
-                      textAlign: TextAlign.center,
+                    child: Row(
+                      children: [
+                        Text(
+                          "Olá, seja  ",
+                          style: TextStyle(fontSize: 30, color: Colors.white),
+                          textAlign: TextAlign.center,
+                        ),
+                        Text(
+                          "bem-vindo(a)",
+                          style: TextStyle(
+                            fontSize: 30,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -75,8 +89,11 @@ class Register extends StatelessWidget {
                 ),
                 child: TextField(
                   decoration: InputDecoration(
-                    prefixIcon: Image.asset('img/profile.png',),
-                    prefixIconConstraints: BoxConstraints(minWidth: 10, minHeight: 10),
+                    prefixIcon: Image.asset('img/profile.png'),
+                    prefixIconConstraints: BoxConstraints(
+                      minWidth: 10,
+                      minHeight: 10,
+                    ),
                     fillColor: Colors.transparent,
                     border: InputBorder.none,
                     hintText: "Nome Completo",
@@ -98,8 +115,11 @@ class Register extends StatelessWidget {
                 ),
                 child: TextField(
                   decoration: InputDecoration(
-                    prefixIcon: Image.asset('img/oab.png',),
-                    prefixIconConstraints: BoxConstraints(minWidth: 10, minHeight: 10),
+                    prefixIcon: Image.asset('img/oab.png'),
+                    prefixIconConstraints: BoxConstraints(
+                      minWidth: 10,
+                      minHeight: 10,
+                    ),
                     fillColor: Colors.transparent,
                     border: InputBorder.none,
                     hintText: "Nº OAB",
@@ -121,8 +141,11 @@ class Register extends StatelessWidget {
                 ),
                 child: TextField(
                   decoration: InputDecoration(
-                    prefixIcon: Image.asset('img/email.png',),
-                    prefixIconConstraints: BoxConstraints(minWidth: 10, minHeight: 10),
+                    prefixIcon: Image.asset('img/email.png'),
+                    prefixIconConstraints: BoxConstraints(
+                      minWidth: 10,
+                      minHeight: 10,
+                    ),
                     fillColor: Colors.transparent,
                     border: InputBorder.none,
                     hintText: "E-mail",
@@ -144,8 +167,11 @@ class Register extends StatelessWidget {
                 ),
                 child: TextField(
                   decoration: InputDecoration(
-                    prefixIcon: Image.asset('img/password.png',),
-                    prefixIconConstraints: BoxConstraints(minWidth: 10, minHeight: 10),
+                    prefixIcon: Image.asset('img/password.png'),
+                    prefixIconConstraints: BoxConstraints(
+                      minWidth: 10,
+                      minHeight: 10,
+                    ),
                     fillColor: Colors.transparent,
                     border: InputBorder.none,
                     hintText: "Senha",
@@ -168,8 +194,11 @@ class Register extends StatelessWidget {
                 ),
                 child: TextField(
                   decoration: InputDecoration(
-                    prefixIcon: Image.asset('img/password.png',),
-                    prefixIconConstraints: BoxConstraints(minWidth: 10, minHeight: 10),
+                    prefixIcon: Image.asset('img/password.png'),
+                    prefixIconConstraints: BoxConstraints(
+                      minWidth: 10,
+                      minHeight: 10,
+                    ),
                     fillColor: Colors.transparent,
                     border: InputBorder.none,
                     hintText: "Confirmar Senha",
@@ -181,8 +210,8 @@ class Register extends StatelessWidget {
               ),
               Spacer(),
               Container(
-                  margin: EdgeInsets.symmetric(vertical: 20),
-                  decoration: BoxDecoration(
+                margin: EdgeInsets.symmetric(vertical: 20),
+                decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100),
                   gradient: LinearGradient(
                     begin: AlignmentDirectional.topCenter,
@@ -195,12 +224,30 @@ class Register extends StatelessWidget {
                     ],
                   ),
                 ),
-                  child: ElevatedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const Navigation()));}, style: ButtonStyle(backgroundColor: WidgetStateColor.transparent, fixedSize: WidgetStateProperty.all(Size.fromWidth(250)), padding: WidgetStateProperty.all(EdgeInsets.all(30))), child: Text("Criar Conta", style: TextStyle(color: Colors.white),),),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const Navigation(),
+                      ),
+                    );
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStateColor.transparent,
+                    fixedSize: WidgetStateProperty.all(Size.fromWidth(250)),
+                    padding: WidgetStateProperty.all(EdgeInsets.all(30)),
+                  ),
+                  child: Text(
+                    "Criar Conta",
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
-            ]
-          )
-        )
-      )
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

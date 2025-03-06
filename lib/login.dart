@@ -38,10 +38,23 @@ class Login extends StatelessWidget {
                 children: [
                   Container(
                     padding: EdgeInsets.fromLTRB(0, 35, 0, 20),
-                    child: Text(
-                      "Bem-Vindo(a) de volta",
-                      style: TextStyle(fontSize: 30, color: Colors.white),
-                      textAlign: TextAlign.center,
+                    child: Row(
+                      children: [
+                        Text(
+                          "Bem-Vindo(a)  ",
+                          style: TextStyle(fontSize: 30, color: Colors.white),
+                          textAlign: TextAlign.center,
+                        ),
+                        Text(
+                          "de volta",
+                          style: TextStyle(
+                            fontSize: 30,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
                     ),
                   ),
                 ],
