@@ -106,7 +106,6 @@ class Register extends StatelessWidget {
                     hintStyle: TextStyle(color: Colors.grey),
                   ),
                   style: TextStyle(color: Colors.white),
-                  obscureText: true,
                 ),
               ),
               Container(
