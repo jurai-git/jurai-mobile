@@ -45,9 +45,21 @@ class Devs extends StatelessWidget {
                 children: [
                   Container(
                     padding: EdgeInsets.fromLTRB(50, 50, 50, 20),
-                    child: Text(
-                      "Sobre Nós",
-                      style: TextStyle(color: Colors.white, fontSize: 35),
+                    child: Row(
+                      children: [
+                        Text(
+                          "Sobre ",
+                          style: TextStyle(color: Colors.white, fontSize: 32),
+                        ),
+                        Text(
+                          "Nós",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],

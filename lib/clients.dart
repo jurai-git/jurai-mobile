@@ -41,9 +41,21 @@ class Clients extends StatelessWidget {
                 children: [
                   Container(
                     padding: EdgeInsets.fromLTRB(50, 50, 50, 20),
-                    child: Text(
-                      "Seus Requerentes",
-                      style: TextStyle(color: Colors.white, fontSize: 35),
+                    child: Row(
+                      children: [
+                        Text(
+                          "Seus ",
+                          style: TextStyle(color: Colors.white, fontSize: 32),
+                        ),
+                        Text(
+                          "Requerentes",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],

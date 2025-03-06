@@ -25,7 +25,14 @@ class UserHome extends StatelessWidget {
                   Container(
                     margin: EdgeInsets.only(right: 50, top: 50),
                     child: ElevatedButton(
-                      onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const Profile()));},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Profile(),
+                          ),
+                        );
+                      },
                       style: ElevatedButton.styleFrom(
                         shape: CircleBorder(),
                         padding: EdgeInsets.all(20),
@@ -37,40 +44,72 @@ class UserHome extends StatelessWidget {
                 ],
               ),
               Row(
-                
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
                     padding: EdgeInsets.fromLTRB(50, 50, 50, 20),
-                    child: Text(
-                      "Olá, {advogado.username}",
-                      style: TextStyle(color: Colors.white, fontSize: 35),
+                    child: Row(
+                      children: [
+                        Text(
+                          "Olá, ",
+                          style: TextStyle(color: Colors.white, fontSize: 32),
+                        ),
+                        Text(
+                          "{advogado.username}",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
               ),
               Row(
-                
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 50),
-                    child: Text(
-                      "O que deseja fazer hoje?",
-                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    child: Row(
+                      children: [
+                        Text(
+                          "O que deseja fazer ",
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        ),
+                        Text(
+                          "hoje?",
+                          style: TextStyle(
+                            color: Color(0xFF387FB9),
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
               ),
               Row(
-                
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 50, vertical: 35),
-                    child: Text(
-                      "Acessos Recentes",
-                      style: TextStyle(color: Colors.white, fontSize: 35),
+                    child: Row(
+                      children: [
+                        Text(
+                          "Acessos ",
+                          style: TextStyle(color: Colors.white, fontSize: 32),
+                        ),
+                        Text(
+                          "Recentes",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],

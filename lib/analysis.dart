@@ -61,9 +61,21 @@ class _AnalysisState extends State<Analysis> {
                 children: [
                   Container(
                     padding: EdgeInsets.fromLTRB(50, 50, 50, 20),
-                    child: Text(
-                      "Consulta Rápida",
-                      style: TextStyle(color: Colors.white, fontSize: 35),
+                    child: Row(
+                      children: [
+                        Text(
+                          "Consulta ",
+                          style: TextStyle(color: Colors.white, fontSize: 32),
+                        ),
+                        Text(
+                          "Rápida",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],

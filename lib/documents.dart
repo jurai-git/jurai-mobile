@@ -41,9 +41,21 @@ class Documents extends StatelessWidget {
                 children: [
                   Container(
                     padding: EdgeInsets.fromLTRB(50, 50, 50, 20),
-                    child: Text(
-                      "Seus Documentos",
-                      style: TextStyle(color: Colors.white, fontSize: 35),
+                    child: Row(
+                      children: [
+                        Text(
+                          "Seus ",
+                          style: TextStyle(color: Colors.white, fontSize: 32),
+                        ),
+                        Text(
+                          "Documentos",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
