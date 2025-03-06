@@ -130,7 +130,10 @@ class RenderPdf extends StatefulWidget {
 class _RenderPdfState extends State<RenderPdf> {
   File? _file;
   Uint8List? _fileBytes;
-  String _fileName = "Clique aqui para fazer o upload do documento";
+  Text _fileName = Text("Clique aqui para fazer o upload do documento", style: TextStyle(color: Color.fromRGBO(255, 255, 255, 0.250)), textAlign: TextAlign.center,);
+  Icon uploadIcon = Icon(Icons.upload, size: 60, color: Color.fromRGBO(255, 255, 255, 0.250));
+  ButtonStyle btnStyle = ButtonStyle(backgroundColor: WidgetStatePropertyAll(Colors.transparent), shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))), shadowColor: WidgetStatePropertyAll(Colors.transparent));
+  late ElevatedButton uploadButton;
 
   @override
   Widget build(BuildContext context) {
@@ -154,19 +157,14 @@ class _RenderPdfState extends State<RenderPdf> {
             borderRadius: BorderRadius.circular(50),
           ),
           child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.transparent,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(50),
-              ),
-              shadowColor: Colors.transparent
-            ),
+            style: btnStyle,
             onPressed: () async {
               FilePickerResult? result = await FilePicker.platform.pickFiles();
 
               if (result != null) {
                 setState(() {
-                  _fileName = result.files.single.name;
+                  _fileName = Text(result.files.single.name, style: TextStyle(color: Colors.white), textAlign: TextAlign.center,);
+                  uploadIcon = Icon(Icons.document_scanner, size: 60, color: Colors.white);
                 });
                 if (kIsWeb) {
                   setState(() {
@@ -190,22 +188,12 @@ class _RenderPdfState extends State<RenderPdf> {
               children: [
                 Container(
                   padding: EdgeInsets.symmetric(vertical: 10),
-                  child: Text(
-                    _fileName,
-                    style: TextStyle(
-                      color: Color.fromRGBO(255, 255, 255, 0.250),
-                    ),
-                    textAlign: TextAlign.center,
+                  child: _fileName
                   ),
-                ),
                 Container(
                   padding: EdgeInsets.symmetric(vertical: 10),
-                  child: Icon(
-                    Icons.upload,
-                    size: 60,
-                    color: Color.fromRGBO(255, 255, 255, 0.250),
+                  child: uploadIcon,
                   ),
-                ),
               ],
             ),
           ),
