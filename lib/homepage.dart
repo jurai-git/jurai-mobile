@@ -25,43 +25,106 @@ class Homepage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-                Container(
-                  padding: EdgeInsets.only(top: 50, bottom: 10),
-                  child: Image.asset('img/jurailogo.png', scale: 0.7,),
-                ),
+              Container(
+                padding: EdgeInsets.only(top: 50, bottom: 10),
+                child: Image.asset('img/jurailogo.png', scale: 0.7),
+              ),
 
-                Image.asset('img/jurai-name_resized.png', scale: 1.7,),
+              Image.asset('img/jurai-name_resized.png', scale: 2),
 
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  spacing: 20,
-                  children: [
-                    Container(
-                      padding: EdgeInsets.all(20),
-                      child: Text("Otimize seu tempo\nde trabalho", style: TextStyle(fontSize: 30, color: Colors.white, fontWeight: FontWeight.bold), textAlign: TextAlign.center,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                spacing: 20,
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(20),
+                    child: Text(
+                      "Otimize seu tempo\nde trabalho",
+                      style: TextStyle(
+                        fontSize: 30,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
                     ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  spacing: 20,
-                  children: [
-                Container(
-                      padding: EdgeInsets.only(left: 20, right: 20),
-                      child: Text("Faça consultas, altere informações,\nanalise documentos, tudo na\npalma da sua mão", style: TextStyle(fontSize: 20, color: Colors.white), textAlign: TextAlign.center,),
-                    )
-                  ]
-                ),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 0, vertical: 20),
-                  decoration: BoxDecoration(
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                spacing: 20,
+                children: [
+                  Container(
+                    padding: EdgeInsets.only(left: 20, right: 20),
+
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Faça consultas, altere informações,",
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "analise documentos, tudo na ",
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              "palma da sua mão",
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 0, vertical: 20),
+                decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100),
                   border: Border.all(color: Color(0xFF387FB9)),
                 ),
-                  child: ElevatedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const Login()));}, style: ButtonStyle(backgroundColor: WidgetStateColor.transparent, fixedSize: WidgetStateProperty.all(Size.fromWidth(250)), padding: WidgetStateProperty.all(EdgeInsets.all(30))), child: Text("Entrar", style: TextStyle(color: Colors.white),),),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Login()),
+                    );
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStateColor.transparent,
+                    fixedSize: WidgetStateProperty.all(Size.fromWidth(250)),
+                    padding: WidgetStateProperty.all(EdgeInsets.all(30)),
+                  ),
+                  child: Text("Entrar", style: TextStyle(color: Colors.white)),
                 ),
-                Container(
-                  decoration: BoxDecoration(
+              ),
+              Container(
+                decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100),
                   gradient: LinearGradient(
                     begin: AlignmentDirectional.topCenter,
@@ -74,14 +137,28 @@ class Homepage extends StatelessWidget {
                     ],
                   ),
                 ),
-                  child: ElevatedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const Register()));}, style: ButtonStyle(backgroundColor: WidgetStateColor.transparent, fixedSize: WidgetStateProperty.all(Size.fromWidth(250)), padding: WidgetStateProperty.all(EdgeInsets.all(30))), child: Text("Criar Conta", style: TextStyle(color: Colors.white),),),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Register()),
+                    );
+                  },
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStateColor.transparent,
+                    fixedSize: WidgetStateProperty.all(Size.fromWidth(250)),
+                    padding: WidgetStateProperty.all(EdgeInsets.all(30)),
+                  ),
+                  child: Text(
+                    "Criar Conta",
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
+              ),
             ],
-            
-          )
+          ),
         ),
       ),
     );
   }
 }
-
