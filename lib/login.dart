@@ -30,7 +30,7 @@ class Login extends StatelessWidget {
                 child: Image.asset('img/jurailogo.png', scale: 1.0),
               ),
 
-              Image.asset('img/jurai-name_resized.png', scale: 2.0),
+              Image.asset('img/jurai-name_resized.png', scale: 3.0),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -131,8 +131,9 @@ class Login extends StatelessWidget {
                   ),
                 ],
               ),
+              Spacer(),
               Container(
-                  margin: EdgeInsets.symmetric(vertical: 20),
+                  margin: EdgeInsets.only(bottom: 40),
                   decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100),
                   gradient: LinearGradient(
