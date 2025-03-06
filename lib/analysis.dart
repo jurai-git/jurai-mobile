@@ -1,3 +1,6 @@
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:jurai/profile.dart';
 
@@ -114,8 +117,17 @@ class SingleChoice extends StatelessWidget {
   }
 }
 
-class RenderPdf extends StatelessWidget {
+class RenderPdf extends StatefulWidget {
   const RenderPdf({super.key});
+
+  @override
+  _RenderPdfState createState() => _RenderPdfState();
+}
+
+class _RenderPdfState extends State<RenderPdf> {
+  File? _file;
+  Uint8List? _fileBytes;
+  String _fileName = "Clique aqui para fazer o upload do documento";
 
   @override
   Widget build(BuildContext context) {
@@ -128,6 +140,66 @@ class RenderPdf extends StatelessWidget {
             "Selecione o arquivo PDF da sua demanda para realizar a análise  da mesma",
             style: TextStyle(color: Colors.white, fontSize: 20),
             textAlign: TextAlign.center,
+          ),
+        ),
+        Container(
+          height: MediaQuery.of(context).size.height - 600,
+          margin: EdgeInsets.symmetric(horizontal: 40),
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            color: Color(0x772B2932),
+            borderRadius: BorderRadius.circular(50),
+          ),
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.transparent, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))),
+            onPressed: () async {
+
+            },
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: 10),
+                  child: Text(
+                    _fileName,
+                    style: TextStyle(
+                      color: Color.fromRGBO(255, 255, 255, 0.250),
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: 10),
+                  child: Icon(
+                    Icons.upload,
+                    size: 60,
+                    color: Color.fromRGBO(255, 255, 255, 0.250),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Container(
+          margin: EdgeInsets.only(top: 60),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(100),
+            gradient: LinearGradient(
+              begin: AlignmentDirectional.topCenter,
+              end: AlignmentDirectional.bottomCenter,
+              colors: [Color(0xFF2B2932), Color(0xFF1E1E1E)],
+            ),
+          ),
+          child: ElevatedButton(
+            onPressed: () {},
+            style: ButtonStyle(
+              backgroundColor: WidgetStateColor.transparent,
+              fixedSize: WidgetStateProperty.all(Size.fromWidth(250)),
+              padding: WidgetStateProperty.all(EdgeInsets.all(30)),
+            ),
+            child: Text("Analisar", style: TextStyle(color: Colors.white)),
           ),
         ),
       ],
@@ -169,7 +241,6 @@ class RenderEment extends StatelessWidget {
               border: InputBorder.none,
             ),
           ),
-          
         ),
         Container(
           margin: EdgeInsets.only(top: 60),
@@ -178,10 +249,7 @@ class RenderEment extends StatelessWidget {
             gradient: LinearGradient(
               begin: AlignmentDirectional.topCenter,
               end: AlignmentDirectional.bottomCenter,
-              colors: [
-                Color(0xFF2B2932),
-                Color(0xFF1E1E1E),
-              ],
+              colors: [Color(0xFF2B2932), Color(0xFF1E1E1E)],
             ),
           ),
           child: ElevatedButton(
