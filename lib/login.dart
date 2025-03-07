@@ -266,7 +266,7 @@ class MyCustomFormState extends State<LoginForm> {
                 fixedSize: WidgetStateProperty.all(Size.fromWidth(250)),
                 padding: WidgetStateProperty.all(EdgeInsets.all(30)),
               ),
-              child: Text("Criar Conta", style: TextStyle(color: Colors.white)),
+              child: Text("Entrar", style: TextStyle(color: Colors.white)),
             ),
           ),
         ],
