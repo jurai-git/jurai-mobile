@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:jurai/navigation.dart';
 import 'package:jurai/userhome.dart';
 
+final _formKey = GlobalKey<FormState>();
+
 class Login extends StatelessWidget {
   const Login({super.key});
 
@@ -74,6 +76,39 @@ class Login extends StatelessWidget {
                 ],
               ),
               LoginForm(),
+              Spacer(),
+              Container(
+            margin: EdgeInsets.only(bottom: 40),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(100),
+              gradient: LinearGradient(
+                begin: AlignmentDirectional.topCenter,
+                end: AlignmentDirectional.bottomCenter,
+                colors: [
+                  Color(0xFF387FB9),
+                  Color(0xFF387FB9),
+                  Color(0xFF387FB9),
+                  Color(0x3E1E1E1E),
+                ],
+              ),
+            ),
+            child: ElevatedButton(
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Navigation()),
+                  );
+                }
+              },
+              style: ButtonStyle(
+                backgroundColor: WidgetStateColor.transparent,
+                fixedSize: WidgetStateProperty.all(Size.fromWidth(250)),
+                padding: WidgetStateProperty.all(EdgeInsets.all(30)),
+              ),
+              child: Text("Entrar", style: TextStyle(color: Colors.white)),
+            ),
+          ),
             ],
           ),
         ),
@@ -116,7 +151,7 @@ class LoginForm extends StatefulWidget {
 }
 
 class MyCustomFormState extends State<LoginForm> {
-  final _formKey = GlobalKey<FormState>();
+  
 
   @override
   Widget build(BuildContext context) {
@@ -227,39 +262,6 @@ class MyCustomFormState extends State<LoginForm> {
                 ),
               ),
             ],
-          ),
-
-          Container(
-            margin: EdgeInsets.only(bottom: 40),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(100),
-              gradient: LinearGradient(
-                begin: AlignmentDirectional.topCenter,
-                end: AlignmentDirectional.bottomCenter,
-                colors: [
-                  Color(0xFF387FB9),
-                  Color(0xFF387FB9),
-                  Color(0xFF387FB9),
-                  Color(0x3E1E1E1E),
-                ],
-              ),
-            ),
-            child: ElevatedButton(
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Navigation()),
-                  );
-                }
-              },
-              style: ButtonStyle(
-                backgroundColor: WidgetStateColor.transparent,
-                fixedSize: WidgetStateProperty.all(Size.fromWidth(250)),
-                padding: WidgetStateProperty.all(EdgeInsets.all(30)),
-              ),
-              child: Text("Entrar", style: TextStyle(color: Colors.white)),
-            ),
           ),
         ],
       ),
