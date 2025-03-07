@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jurai/homepage.dart';
 import 'package:jurai/userhome.dart';
 
 class Profile extends StatelessWidget {
@@ -87,7 +88,42 @@ class Profile extends StatelessWidget {
                 decoration: BoxDecoration(
                   //border: Border.symmetric(horizontal: BorderSide(color: const Color.fromRGBO(255, 255, 255, 0.5), width: 1))
                 ),
-                child: ElevatedButton(onPressed: (){}, 
+                child: ElevatedButton(onPressed: (){
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(backgroundColor: Colors.transparent,  duration: Duration(days: 1), content: Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("Você tem certeza que deseja sair da conta?")
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            ElevatedButton(
+                              onPressed: (){ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => Homepage()));
+                            },
+                              style: ElevatedButton.styleFrom(
+                                fixedSize: Size(MediaQuery.of(context).size.width/3, 100)
+                              ),
+                              child: Text("Sair")
+                            ),
+                            ElevatedButton(onPressed: (){
+                              ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                              }, 
+                              style: ElevatedButton.styleFrom(
+                                fixedSize: Size(MediaQuery.of(context).size.width/3, 100)
+                              ),
+                              child: Text("Ficar")),                            
+                          ],
+                        )
+                      ],
+                    ),
+                  )));
+                }, 
                   style: ElevatedButton.styleFrom(
                     shadowColor: Colors.transparent,
                     backgroundColor: Color.fromARGB(255, 25, 24, 29),
