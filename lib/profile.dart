@@ -12,19 +12,24 @@ class Profile extends StatelessWidget {
     return Container(
       color: Color.fromRGBO(25, 24, 29, 1),
       child: Scaffold(
-        appBar: AppBar(
-          title: Text("Conta"),
-          titleTextStyle: TextStyle(color: Colors.white, fontSize: 25),
-          centerTitle: true,
-          iconTheme: IconThemeData(color: Colors.white),
+        //appBar: AppBar(
+          //title: Text("Conta"),
+          //titleTextStyle: TextStyle(color: Colors.white, fontSize: 25),
+          //centerTitle: true,
+          //iconTheme: IconThemeData(color: Colors.white),
           //leading: ElevatedButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => UserHome()));}, child: Icon(Icons.navigate_before, color: Colors.white,)),
-          backgroundColor: Colors.transparent,
-        ),
+          //backgroundColor: Colors.transparent,
+        //),
         backgroundColor: Colors.transparent,
         body: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Container(
+                width: MediaQuery.of(context).size.width,
+                padding: EdgeInsets.all(10),
+                child: Text("Conta", style: TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.w300), textAlign: TextAlign.center,),
+              ),
               Container(
                 padding: EdgeInsets.fromLTRB(0, 10, 0, 30),
                 child: Image.asset('img/jurai-name.png', scale: 5.5),
@@ -132,17 +137,21 @@ class Profile extends StatelessWidget {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text(
+                                    Container(
+                                    margin: EdgeInsets.symmetric(vertical: 10),
+                                    child: Text(
                                       "Você tem certeza que deseja sair da conta?",
-                                      style: TextStyle(color: Colors.white),
+                                      style: TextStyle(color: Colors.white, fontSize: 20),
                                     ),
+                                    )
                                   ],
                                 ),
                                 Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    ElevatedButton(
+                                    Container(
+                                    margin: EdgeInsets.symmetric(vertical: 10),
+                                    child: ElevatedButton(
                                       onPressed: () {
                                         ScaffoldMessenger.of(
                                           context,
@@ -155,28 +164,40 @@ class Profile extends StatelessWidget {
                                         );
                                       },
                                       style: ElevatedButton.styleFrom(
-                                        //background
+                                        backgroundColor: Colors.red,
                                         fixedSize: Size(
-                                          MediaQuery.of(context).size.width / 3,
-                                          100,
+                                          MediaQuery.of(context).size.width - 50,
+                                          50,
+                                        
                                         ),
+                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
                                       ),
-                                      child: Text("Sair"),
+                                      child: Text("Sair", style: TextStyle(color: Color.fromRGBO(25, 24, 29, 1),),),
                                     ),
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                      style: ElevatedButton.styleFrom(
-                                        fixedSize: Size(
-                                          MediaQuery.of(context).size.width / 3,
-                                          100,
-                                        ),
-                                      ),
-                                      child: Text("Ficar"),
                                     ),
                                   ],
                                 ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                    margin: EdgeInsets.symmetric(vertical: 10),
+                                    child: OutlinedButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      style: OutlinedButton.styleFrom(
+                                        fixedSize: Size(
+                                          MediaQuery.of(context).size.width - 50,
+                                          50,
+                                        ),
+                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
+                                      ),
+                                      child: Text("Ficar", style: TextStyle(color: Colors.white),),
+                                    ),
+                                    ),
+                                  ],
+                                )
                               ],
                             ),
                           ),
