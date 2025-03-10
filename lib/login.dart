@@ -217,7 +217,7 @@ class MyCustomFormState extends State<LoginForm> {
             child: TextFormField(
               validator: (value){
                 if(value == null || value.isEmpty){
-                  return "O campo e-mail é de preenchimento obrigatório!";
+                  return "O campo senha é de preenchimento obrigatório!";
                 }
                 return null;
               },
