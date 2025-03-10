@@ -131,6 +131,7 @@ class CheckState extends State<Check> {
   Widget build(BuildContext context) {
     return Checkbox(
       value: isChecked,
+      side: BorderSide(color: Colors.white),
       activeColor: Color(0xFF387FB9),
       onChanged: (newBool) {
         setState(() {
