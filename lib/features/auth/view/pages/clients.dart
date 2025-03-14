@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:jurai/profile.dart';
+import 'package:jurai/features/auth/view/pages/profile.dart';
 
-class Documents extends StatelessWidget {
-  const Documents({super.key});
+class Clients extends StatelessWidget {
+  const Clients({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +48,7 @@ class Documents extends StatelessWidget {
                           style: TextStyle(color: Colors.white, fontSize: 32),
                         ),
                         Text(
-                          "Documentos",
+                          "Requerentes",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 32,

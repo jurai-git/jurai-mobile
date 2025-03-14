@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jurai/login.dart';
-import 'package:jurai/register.dart';
+import 'package:jurai/features/home/view/pages/login.dart';
+import 'package:jurai/features/home/view/pages/register.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({super.key});

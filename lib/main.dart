@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jurai/homepage.dart';
+import 'package:jurai/features/home/view/pages/homepage.dart';
 
 void main() {
   runApp(const MyApp());

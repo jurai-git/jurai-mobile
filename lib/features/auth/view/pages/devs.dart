@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:jurai/profile.dart';
+import 'package:jurai/features/auth/view/pages/profile.dart';
 
 
 class Devs extends StatelessWidget {

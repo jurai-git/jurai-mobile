@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:jurai/analysis.dart';
-import 'package:jurai/clients.dart';
-import 'package:jurai/devs.dart';
-import 'package:jurai/documents.dart';
-import 'package:jurai/homepage.dart';
-import 'package:jurai/login.dart';
-import 'package:jurai/userhome.dart';
+import 'package:jurai/features/auth/view/pages/analysis.dart';
+import 'package:jurai/features/auth/view/pages/clients.dart';
+import 'package:jurai/features/auth/view/pages/devs.dart';
+import 'package:jurai/features/auth/view/pages/documents.dart';
+import 'package:jurai/features/home/view/pages/homepage.dart';
+import 'package:jurai/features/home/view/pages/login.dart';
+import 'package:jurai/features/auth/view/pages/userhome.dart';
 
 class Navigation extends StatelessWidget {
   const Navigation({super.key});

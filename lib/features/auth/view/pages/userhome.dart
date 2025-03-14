@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jurai/profile.dart';
+import 'package:jurai/features/auth/view/pages/profile.dart';
 
 class UserHome extends StatelessWidget {
   const UserHome({super.key});
