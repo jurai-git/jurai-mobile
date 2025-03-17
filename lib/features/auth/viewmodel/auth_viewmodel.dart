@@ -57,4 +57,6 @@ class AuthViewModel extends _$AuthViewModel{
     };
     print(val);
   }
+
+  
 }
