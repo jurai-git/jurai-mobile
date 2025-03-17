@@ -8,16 +8,25 @@ import 'package:jurai/features/auth/models/advogado.dart';
 import 'package:jurai/features/auth/repositories/auth_remote_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-class UserState{
-  final Advogado adv;
-  final bool isLoading;
-  final String? errorMessage;
+part 'auth_viewmodel.g.dart';
 
-  UserState({required this.adv, required this.isLoading, this.errorMessage})
-}
+//class UserState{
+//  final Advogado adv;
+//  final bool isLoading;
+//  final String? errorMessage;
+
+//  UserState({required this.adv, required this.isLoading, this.errorMessage});
+//}
 
 @riverpod
-class AuthViewModel extends StateNotifier<Advogado>{
+class AuthViewModel extends _$AuthViewModel{
   late AuthRemoteRepository authRemoteRepository;
 
+  @override
+  AsyncValue<Advogado>? build(){
+    authRemoteRepository = ref.watch(authRemoteRepositoryProvider);
+    return null;
+  }
+
+  
 }
