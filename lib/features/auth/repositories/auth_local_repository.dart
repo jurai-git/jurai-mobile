@@ -5,8 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 part 'auth_local_repository.g.dart';
 
 @Riverpod(keepAlive: true)
-AuthLocalRepository authLocalRepository(AuthLocalRepository ref){
-  return authLocalRepository();
+AuthLocalRepository authLocalRepository(AuthLocalRepositoryRef ref){
+  return AuthLocalRepository();
 }
 
 class AuthLocalRepository {
