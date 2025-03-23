@@ -79,19 +79,11 @@ class Login extends StatelessWidget {
               Spacer(),
               Container(
             margin: EdgeInsets.only(bottom: 40),
+            width: MediaQuery.of(context).size.width - 200,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(100),
-              gradient: LinearGradient(
-                begin: AlignmentDirectional.topCenter,
-                end: AlignmentDirectional.bottomCenter,
-                colors: [
-                  Color(0xFF387FB9),
-                  Color(0xFF387FB9),
-                  Color(0xFF387FB9),
-                  Color(0x3E1E1E1E),
-                ],
-              ),
-            ),
+                  borderRadius: BorderRadius.circular(12),
+                  color: Color.fromRGBO(56, 127, 185, 0.750),
+                ),
             child: ElevatedButton(
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
@@ -101,12 +93,14 @@ class Login extends StatelessWidget {
                   );
                 }
               },
-              style: ButtonStyle(
-                backgroundColor: WidgetStateColor.transparent,
-                fixedSize: WidgetStateProperty.all(Size.fromWidth(250)),
-                padding: WidgetStateProperty.all(EdgeInsets.all(30)),
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(),
+                shadowColor: Colors.transparent,
+                backgroundColor: Colors.transparent,
+                fixedSize: Size.fromWidth(250),
+                padding: EdgeInsets.all(25),
               ),
-              child: Text("Entrar", style: TextStyle(color: Colors.white)),
+              child: Text("Entrar", style: TextStyle(color: Colors.white, fontSize: 16)),
             ),
           ),
             ],

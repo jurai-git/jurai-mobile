@@ -103,9 +103,10 @@ class Homepage extends StatelessWidget {
                 ],
               ),
               Container(
+                width: MediaQuery.of(context).size.width - 200,
                 margin: EdgeInsets.symmetric(horizontal: 0, vertical: 20),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100),
+                  borderRadius: BorderRadius.circular(12),
                   border: Border.all(color: Color(0xFF387FB9)),
                 ),
                 child: ElevatedButton(
@@ -115,27 +116,21 @@ class Homepage extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => const Login()),
                     );
                   },
-                  style: ButtonStyle(
-                    backgroundColor: WidgetStateColor.transparent,
-                    fixedSize: WidgetStateProperty.all(Size.fromWidth(250)),
-                    padding: WidgetStateProperty.all(EdgeInsets.all(30)),
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(),
+                    shadowColor: Colors.transparent,
+                    backgroundColor: Colors.transparent,
+                    fixedSize: Size.fromWidth(250),
+                    padding: EdgeInsets.all(25),
                   ),
-                  child: Text("Entrar", style: TextStyle(color: Colors.white)),
+                  child: Text("Entrar", style: TextStyle(color: Colors.white, fontSize: 16)),
                 ),
               ),
               Container(
+                width: MediaQuery.of(context).size.width - 200,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100),
-                  gradient: LinearGradient(
-                    begin: AlignmentDirectional.topCenter,
-                    end: AlignmentDirectional.bottomCenter,
-                    colors: [
-                      Color(0xFF387FB9),
-                      Color(0xFF387FB9),
-                      Color(0xFF387FB9),
-                      Color(0x3E1E1E1E),
-                    ],
-                  ),
+                  borderRadius: BorderRadius.circular(12),
+                  color: Color.fromRGBO(56, 127, 185, 0.750),
                 ),
                 child: ElevatedButton(
                   onPressed: () {
@@ -144,14 +139,16 @@ class Homepage extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => const Register()),
                     );
                   },
-                  style: ButtonStyle(
-                    backgroundColor: WidgetStateColor.transparent,
-                    fixedSize: WidgetStateProperty.all(Size.fromWidth(250)),
-                    padding: WidgetStateProperty.all(EdgeInsets.all(30)),
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(),
+                    shadowColor: Colors.transparent,
+                    backgroundColor: Colors.transparent,
+                    fixedSize: Size.fromWidth(250),
+                    padding: EdgeInsets.all(25),
                   ),
                   child: Text(
                     "Criar Conta",
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.white, fontSize: 16),
                   ),
                 ),
               ),
