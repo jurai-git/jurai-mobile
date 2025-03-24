@@ -94,10 +94,93 @@ class Devs extends StatelessWidget {
 
 class CarouselWithSnap extends StatelessWidget {
   final List<Column> imgList = [
-    Column(crossAxisAlignment: CrossAxisAlignment.center, children: [Image.network("https://avatars.githubusercontent.com/u/132313694?v=4", fit: BoxFit.cover, width: 300,), Text("Wendel Frota", style: TextStyle(color: Colors.white, fontSize: 30),), Text("17 Anos", style: TextStyle(color: Colors.white, fontSize: 20),)],),
-    Column(crossAxisAlignment: CrossAxisAlignment.center, children: [Image.network("https://avatars.githubusercontent.com/u/143561347?v=4", fit: BoxFit.cover, width: 300,), Text("Mateus Daroz", style: TextStyle(color: Colors.white, fontSize: 30),), Text("18 Anos", style: TextStyle(color: Colors.white, fontSize: 20),)],),
-    Column(crossAxisAlignment: CrossAxisAlignment.center, children: [Image.network("https://avatars.githubusercontent.com/u/132313694?v=4", fit: BoxFit.cover, width: 300,), Text("Wendel Frota", style: TextStyle(color: Colors.white, fontSize: 30),), Text("17 Anos", style: TextStyle(color: Colors.white, fontSize: 20),)],),
-    Column(crossAxisAlignment: CrossAxisAlignment.center, children: [Image.network("https://avatars.githubusercontent.com/u/143561347?v=4", fit: BoxFit.cover, width: 300,), Text("Mateus Daroz", style: TextStyle(color: Colors.white, fontSize: 30),), Text("18 Anos", style: TextStyle(color: Colors.white, fontSize: 20),)],),
+    Column(
+      crossAxisAlignment: CrossAxisAlignment.center, 
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: Color.fromARGB(255, 32, 31, 36), width: 5),
+            shape: BoxShape.circle
+          ),
+          margin: EdgeInsets.only(top: 20),
+          child: CircleAvatar(
+            radius: 100,
+            backgroundImage: NetworkImage("https://avatars.githubusercontent.com/u/132313694?v=4",),
+            backgroundColor: Colors.transparent,
+          ),
+        ),
+        Text("Wendel Frota", style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),),
+        Text("17 Anos", style: TextStyle(color: Colors.white, fontSize: 20),)
+      ],
+    ),
+   Column(
+      crossAxisAlignment: CrossAxisAlignment.center, 
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: Color.fromARGB(255, 32, 31, 36), width: 5),
+            shape: BoxShape.circle
+          ),
+          margin: EdgeInsets.only(top: 20),
+          child: CircleAvatar(
+            radius: 100,
+            backgroundImage: NetworkImage("https://avatars.githubusercontent.com/u/143561347?v=4",),
+            backgroundColor: Colors.transparent,
+        ),
+        ),
+        Text("Mateus Daroz", style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),),
+        Text("18 Anos", style: TextStyle(color: Colors.white, fontSize: 20),)
+      ],
+    ),
+    Column(
+      crossAxisAlignment: CrossAxisAlignment.center, 
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: Color.fromARGB(255, 32, 31, 36), width: 5),
+            shape: BoxShape.circle
+          ),
+          margin: EdgeInsets.only(top: 20),
+          child: CircleAvatar(
+            radius: 100,
+            backgroundImage: NetworkImage("https://avatars.githubusercontent.com/u/132313694?v=4",),
+            backgroundColor: Colors.transparent,
+        ),),
+        Text("Wendel Frota", style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),),
+        Text("17 Anos", style: TextStyle(color: Colors.white, fontSize: 20),)
+      ],
+    ),
+       Column(
+      crossAxisAlignment: CrossAxisAlignment.center, 
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: Color.fromARGB(255, 32, 31, 36), width: 5),
+            shape: BoxShape.circle
+          ),
+          margin: EdgeInsets.only(top: 20),
+          child: CircleAvatar(
+            radius: 100,
+            backgroundImage: NetworkImage("https://avatars.githubusercontent.com/u/143561347?v=4",),
+            backgroundColor: Colors.transparent,
+          ),
+        ),
+        Text("Mateus Daroz", style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),),
+        Text("18 Anos", style: TextStyle(color: Colors.white, fontSize: 20),),
+        Spacer(),
+        Container(
+          margin: EdgeInsets.only(bottom: 20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Image.asset("img/icons8-github-30.png"),
+            Image.asset("img/icons8-linkedin-30.png",),
+            Image.asset("img/icons8-instagram-30.png",)
+          ],
+        )
+        )
+      ],
+    ),
   ];
 
   @override
@@ -113,19 +196,39 @@ class CarouselWithSnap extends StatelessWidget {
             autoPlayCurve: Curves.fastOutSlowIn,
             scrollDirection: Axis.horizontal,
             viewportFraction: 0.7,
-            enlargeFactor: 0.2,
+            enlargeFactor: 0,
             aspectRatio: 1/1,
             initialPage: 0,
             pageSnapping: true,
           ),
-          items: imgList.map((item) => Container(
-            margin: EdgeInsets.symmetric(horizontal: 20),
-            padding: EdgeInsets.only(top: 28),            
-            color: Color(0xFF2B2932),
-            child: Center(
-              child: item
-            ),
-          )).toList(),
+          items: imgList.map((item) => Stack(
+            children: [
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 20),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(bottomLeft: Radius.circular(12), bottomRight: Radius.circular(12)),
+                    color: Color.fromARGB(255, 32, 31, 36),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: Container(
+                    height: 125,
+                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(topLeft: Radius.circular(12), topRight: Radius.circular(12),),
+                      color: Color(0xFF387FB9),
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.topCenter,
+                    child: item,
+                  ),
+                  
+              ]
+              )
+              ).toList(),
         );
   }
 }
