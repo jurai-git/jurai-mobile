@@ -142,8 +142,8 @@ class RenderPdf extends StatefulWidget {
 class _RenderPdfState extends State<RenderPdf> {
   File? _file;
   Uint8List? _fileBytes;
-  Text _fileName = Text("Clique aqui para fazer o upload do documento", style: TextStyle(color: Color.fromRGBO(255, 255, 255, 0.250)), textAlign: TextAlign.center,);
-  Icon uploadIcon = Icon(Icons.upload, size: 60, color: Color.fromRGBO(255, 255, 255, 0.250));
+  Text _fileName = Text("Clique aqui para fazer o upload do documento", style: TextStyle(color: Color.fromRGBO(255, 255, 255, 0.250), fontSize: 16), textAlign: TextAlign.center);
+  Icon uploadIcon = Icon(Icons.upload, size: 70, color: Color.fromRGBO(255, 255, 255, 0.250));
   ButtonStyle btnStyle = ButtonStyle(backgroundColor: WidgetStatePropertyAll(Colors.transparent), shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))), shadowColor: WidgetStatePropertyAll(Colors.transparent));
   late ElevatedButton uploadButton;
 
@@ -175,7 +175,7 @@ class _RenderPdfState extends State<RenderPdf> {
 
               if (result != null) {
                 setState(() {
-                  _fileName = Text(result.files.single.name, style: TextStyle(color: Colors.white), textAlign: TextAlign.center,);
+                  _fileName = Text(result.files.single.name, style: TextStyle(color: Colors.white,), textAlign: TextAlign.center,);
                   uploadIcon = Icon(Icons.document_scanner, size: 60, color: Colors.white);
                 });
                 if (kIsWeb) {
@@ -211,14 +211,11 @@ class _RenderPdfState extends State<RenderPdf> {
           ),
         ),
         Container(
+          width: MediaQuery.of(context).size.width - 200,
           margin: EdgeInsets.only(top: 60),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(100),
-            gradient: LinearGradient(
-              begin: AlignmentDirectional.topCenter,
-              end: AlignmentDirectional.bottomCenter,
-              colors: [Color(0xFF2B2932), Color(0xFF1E1E1E)],
-            ),
+            borderRadius: BorderRadius.circular(12),
+            color: Color.fromARGB(255, 29, 28, 34),
           ),
           child: ElevatedButton(
             onPressed: () async {
@@ -251,12 +248,14 @@ class _RenderPdfState extends State<RenderPdf> {
                 print('File upload failed');
               }
             },
-            style: ButtonStyle(
-              backgroundColor: WidgetStateColor.transparent,
-              fixedSize: WidgetStateProperty.all(Size.fromWidth(250)),
-              padding: WidgetStateProperty.all(EdgeInsets.all(30)),
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              shadowColor: Colors.transparent,
+              backgroundColor: Colors.transparent,
+              fixedSize: Size.fromWidth(250),
+              padding: EdgeInsets.all(25),
             ),
-            child: Text("Analisar", style: TextStyle(color: Colors.white)),
+            child: Text("Analisar", style: TextStyle(color: Colors.white, fontSize: 16)),
           ),
         ),
       ],
@@ -300,23 +299,22 @@ class RenderEment extends StatelessWidget {
           ),
         ),
         Container(
+          width: MediaQuery.of(context).size.width - 200,
           margin: EdgeInsets.only(top: 60),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(100),
-            gradient: LinearGradient(
-              begin: AlignmentDirectional.topCenter,
-              end: AlignmentDirectional.bottomCenter,
-              colors: [Color(0xFF2B2932), Color(0xFF1E1E1E)],
-            ),
+            borderRadius: BorderRadius.circular(12),
+            color: Color.fromARGB(255, 29, 28, 34),
           ),
           child: ElevatedButton(
             onPressed: () {},
-            style: ButtonStyle(
-              backgroundColor: WidgetStateColor.transparent,
-              fixedSize: WidgetStateProperty.all(Size.fromWidth(250)),
-              padding: WidgetStateProperty.all(EdgeInsets.all(30)),
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              shadowColor: Colors.transparent,
+              backgroundColor: Colors.transparent,
+              fixedSize: Size.fromWidth(250),
+              padding: EdgeInsets.all(25),
             ),
-            child: Text("Analisar", style: TextStyle(color: Colors.white)),
+            child: Text("Analisar", style: TextStyle(color: Colors.white, fontSize: 16)),
           ),
         ),
       ],
