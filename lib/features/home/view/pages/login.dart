@@ -147,6 +147,7 @@ class LoginForm extends StatefulWidget {
 
 class MyCustomFormState extends State<LoginForm> {
   
+  bool isHidden = true;
 
   @override
   Widget build(BuildContext context) {
@@ -209,6 +210,7 @@ class MyCustomFormState extends State<LoginForm> {
               ),
             ),
             child: TextFormField(
+              textAlignVertical: TextAlignVertical(y: -.5),
               validator: (value){
                 if(value == null || value.isEmpty){
                   return "O campo senha é de preenchimento obrigatório!";
@@ -229,9 +231,19 @@ class MyCustomFormState extends State<LoginForm> {
                 border: InputBorder.none,
                 hintText: "Senha",
                 hintStyle: TextStyle(color: Colors.grey),
+                suffixIcon: IconButton(
+                    icon: Image.asset(isHidden ? "img/invisiblePassword.png" : "img/visiblePassword.png"),
+                    color: Colors.white,
+                    onPressed: (){
+                      isHidden = !isHidden;
+                      setState(() {
+                        
+                      });
+                  }, 
+                ),
               ),
               style: TextStyle(color: Colors.white),
-              obscureText: true,
+              obscureText: isHidden,
             ),
           ),
           Row(

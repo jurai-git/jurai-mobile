@@ -128,6 +128,9 @@ class RegisterForm extends StatefulWidget {
 }
 
 class MyCustomFormState extends State<RegisterForm> {
+
+  bool isHidden = true, isConfirmHidden = true;
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -271,6 +274,7 @@ class MyCustomFormState extends State<RegisterForm> {
 
                 return null;
               },
+              textAlignVertical: TextAlignVertical(y: -.5),
               decoration: InputDecoration(
                 errorStyle: TextStyle(
                   color: Color(0xFFD32F2F),
@@ -285,9 +289,19 @@ class MyCustomFormState extends State<RegisterForm> {
                 border: InputBorder.none,
                 hintText: "Senha",
                 hintStyle: TextStyle(color: Colors.grey),
+                suffixIcon: IconButton(
+                    icon: Image.asset(isHidden ? "img/invisiblePassword.png" : "img/visiblePassword.png"),
+                    color: Colors.white,
+                    onPressed: (){
+                      isHidden = !isHidden;
+                      setState(() {
+                        
+                      });
+                  }, 
+                ),
               ),
               style: TextStyle(color: Colors.white),
-              obscureText: true,
+              obscureText: isHidden,
             ),
           ),
           Container(
@@ -308,6 +322,7 @@ class MyCustomFormState extends State<RegisterForm> {
                 }
                 return null;
               },
+              textAlignVertical: TextAlignVertical(y: -.5),
               decoration: InputDecoration(
                 errorStyle: TextStyle(
                   color: Color(0xFFD32F2F),
@@ -322,9 +337,19 @@ class MyCustomFormState extends State<RegisterForm> {
                 border: InputBorder.none,
                 hintText: "Confirmar Senha",
                 hintStyle: TextStyle(color: Colors.grey),
+                suffixIcon: IconButton(
+                    icon: Image.asset(isConfirmHidden ? "img/invisiblePassword.png" : "img/visiblePassword.png"),
+                    color: Colors.white,
+                    onPressed: (){
+                      isConfirmHidden = !isConfirmHidden;
+                      setState(() {
+                        
+                      });
+                  }, 
+                ),
               ),
               style: TextStyle(color: Colors.white),
-              obscureText: true,
+              obscureText: isConfirmHidden,
             ),
           ),
         ],
