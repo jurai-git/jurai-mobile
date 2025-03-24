@@ -110,7 +110,19 @@ class CarouselWithSnap extends StatelessWidget {
           ),
         ),
         Text("Wendel Frota", style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),),
-        Text("17 Anos", style: TextStyle(color: Colors.white, fontSize: 20),)
+        Text("17 Anos", style: TextStyle(color: Colors.white, fontSize: 20),),
+        Spacer(),
+        Container(
+          margin: EdgeInsets.only(bottom: 40),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Image.asset("img/icons8-github-30.png", scale: .75),
+              Image.asset("img/icons8-linkedin-30.png", scale: .8),
+              Image.asset("img/icons8-instagram-30.png", scale: .8)
+          ],
+        )
+        )
       ],
     ),
    Column(
@@ -129,7 +141,19 @@ class CarouselWithSnap extends StatelessWidget {
         ),
         ),
         Text("Mateus Daroz", style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),),
-        Text("18 Anos", style: TextStyle(color: Colors.white, fontSize: 20),)
+        Text("18 Anos", style: TextStyle(color: Colors.white, fontSize: 20),),
+        Spacer(),
+        Container(
+          margin: EdgeInsets.only(bottom: 40),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Image.asset("img/icons8-github-30.png", scale: .75),
+              Image.asset("img/icons8-linkedin-30.png", scale: .8),
+              Image.asset("img/icons8-instagram-30.png", scale: .8)
+          ],
+        )
+        )
       ],
     ),
     Column(
@@ -147,7 +171,19 @@ class CarouselWithSnap extends StatelessWidget {
             backgroundColor: Colors.transparent,
         ),),
         Text("Wendel Frota", style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),),
-        Text("17 Anos", style: TextStyle(color: Colors.white, fontSize: 20),)
+        Text("17 Anos", style: TextStyle(color: Colors.white, fontSize: 20),),
+        Spacer(),
+        Container(
+          margin: EdgeInsets.only(bottom: 40),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Image.asset("img/icons8-github-30.png", scale: .75),
+              Image.asset("img/icons8-linkedin-30.png", scale: .8),
+              Image.asset("img/icons8-instagram-30.png", scale: .8)
+          ],
+        )
+        )
       ],
     ),
        Column(
@@ -169,13 +205,13 @@ class CarouselWithSnap extends StatelessWidget {
         Text("18 Anos", style: TextStyle(color: Colors.white, fontSize: 20),),
         Spacer(),
         Container(
-          margin: EdgeInsets.only(bottom: 20),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Image.asset("img/icons8-github-30.png"),
-            Image.asset("img/icons8-linkedin-30.png",),
-            Image.asset("img/icons8-instagram-30.png",)
+          margin: EdgeInsets.only(bottom: 40),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Image.asset("img/icons8-github-30.png", scale: .75),
+              Image.asset("img/icons8-linkedin-30.png", scale: .8),
+              Image.asset("img/icons8-instagram-30.png", scale: .8)
           ],
         )
         )
