@@ -16,17 +16,17 @@ AuthRemoteRepository authRemoteRepository(AuthRemoteRepositoryRef ref){
 
 class AuthRemoteRepository {
   Future<Either<FlutterError, Advogado>> signup({
-    required String nome,
+    required String username,
     required String email,
     required String oab,
     required String password,
   }) async{
     try{
       final response = await http.post(
-        Uri.parse("https://cors-anywhere.herokuapp.com/https://jurai-server-production.up.railway.app/advogado/new"),
+        Uri.parse("/advogado/new"),
         headers: {'Content-Type': 'application/json',},
         body: jsonEncode({
-          'nome': nome,
+          'username': username,
           'email': email,
           'oab': oab,
           'password': password
@@ -45,17 +45,16 @@ class AuthRemoteRepository {
   }
 
   Future<Either<FlutterError, Advogado>> login({
-    required String email,
+    required String username,
     required String password,
   }) async{
     try{
       final response = await http.post(
-        Uri.parse("https://cors-anywhere.herokuapp.com/https://jurai-server-production.up.railway.app/advogado/get"),
+        Uri.parse("https://jurai-server.onrender.com/advogado/get"),
         headers: {'Content-Type': 'application/json',},
         body: jsonEncode({
-          'email': email,
+          'username': username,
           'password': password
-
         },
         ),
       );

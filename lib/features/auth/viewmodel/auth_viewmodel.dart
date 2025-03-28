@@ -29,13 +29,13 @@ class AuthViewModel extends _$AuthViewModel{
   }
 
   Future<void> signUpUser({
-    required String nome,
+    required String username,
     required String email,
     required String oab,
     required String password,
   }) async{
     state = const AsyncValue.loading();
-    final res = await authRemoteRepository.signup(nome: nome, email: email, oab: oab, password: password);
+    final res = await authRemoteRepository.signup(username: username, email: email, oab: oab, password: password);
 
     final val = switch(res){
       Left(value: final l) => state = AsyncValue.error(l.message, StackTrace.current),
@@ -45,11 +45,11 @@ class AuthViewModel extends _$AuthViewModel{
   }
 
   Future<void> loginUser({
-    required String email,
+    required String username,
     required String password,
   }) async{
     state = const AsyncValue.loading();
-    final res = await authRemoteRepository.login(email: email, password: password);
+    final res = await authRemoteRepository.login(username: username, password: password);
 
     final val = switch(res){
       Left(value: final l) => state = AsyncValue.error(l.message, StackTrace.current),
