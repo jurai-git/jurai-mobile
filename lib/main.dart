@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:jurai/features/home/view/pages/homepage.dart';
+import 'package:jurai/features/auth/view/pages/homepage.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));

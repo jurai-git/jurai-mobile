@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jurai/features/auth/view/pages/navigation.dart';
-import 'package:jurai/features/auth/view/pages/userhome.dart';
+import 'package:jurai/features/home/view/pages/navigation.dart';
+import 'package:jurai/features/home/view/pages/userhome.dart';
 
 final _formKey = GlobalKey<FormState>();
 
