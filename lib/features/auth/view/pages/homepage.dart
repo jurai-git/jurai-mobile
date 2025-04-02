@@ -23,6 +23,7 @@ class Homepage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         body: Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
