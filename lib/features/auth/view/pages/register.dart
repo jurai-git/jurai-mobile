@@ -4,9 +4,14 @@ import 'package:jurai/features/home/view/pages/userhome.dart';
 
 final _formKey = GlobalKey<FormState>();
 
-class Register extends StatelessWidget {
+class Register extends ConsumerStatefulWidget {
   const Register({super.key});
 
+  @override
+  ConsumerState<Register> createState() => RegisterState();
+}
+
+class RegisterState extends ConsumerState<Register>{
   @override
   Widget build(BuildContext context) {
     return Container(
