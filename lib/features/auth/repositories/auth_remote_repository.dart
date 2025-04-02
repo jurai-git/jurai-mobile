@@ -23,7 +23,7 @@ class AuthRemoteRepository {
   }) async{
     try{
       final response = await http.post(
-        Uri.parse("/advogado/new"),
+        Uri.parse("https://jurai-server.onrender.com/advogado/new"),
         headers: {'Content-Type': 'application/json',},
         body: jsonEncode({
           'username': username,
