@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:jurai/features/auth/view/pages/homepage.dart';
+import 'package:jurai/features/auth/view/pages/login.dart';
+import 'package:jurai/features/auth/viewmodel/auth_viewmodel.dart';
 import 'package:jurai/features/home/view/pages/navigation.dart';
 import 'package:jurai/features/home/view/pages/userhome.dart';
 
@@ -19,7 +23,36 @@ class RegisterState extends ConsumerState<Register>{
   bool isHidden = true, isConfirmHidden = true;
 
   @override
+  void dispose() {
+    usernameController.dispose();
+    oabController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final isLoading = ref.watch(authViewModelProvider.select((val) => val?.isLoading == true));
+
+    ref.listen(
+      authViewModelProvider,
+      (_, next) {
+        next?.when(
+          data: (data) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Conta criada com sucesso! Faça login para entrar"))
+            );
+            Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
+          },
+          error: (error, st) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.toString())));
+          },
+          loading: () {},
+        );
+      },
+    );
+
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -32,7 +65,7 @@ class RegisterState extends ConsumerState<Register>{
           ],
         ),
       ),
-      child: Scaffold(
+      child: isLoading? Center(child: CircularProgressIndicator.adaptive(),) : Scaffold(
         backgroundColor: Colors.transparent,
         body: Center(
           child: Column(
@@ -106,6 +139,7 @@ class RegisterState extends ConsumerState<Register>{
                       ),
                     ),
                     child: TextFormField(
+                      controller: usernameController,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return "O campo nome é de preenchimento obrigatório!";
@@ -143,10 +177,11 @@ class RegisterState extends ConsumerState<Register>{
                       ),
                     ),
                     child: TextFormField(
+                      controller: oabController,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return "O campo Nº OAB é de preenchimento obrigatório!";
-                        } else if (!new RegExp("^[0-9]*\$").hasMatch(value)) {
+                        } else if (!RegExp("^[0-9]*\$").hasMatch(value)) {
                           return "O campo Nº OAB é composto apenas por números!";
                         }
                         return null;
@@ -181,10 +216,11 @@ class RegisterState extends ConsumerState<Register>{
                       ),
                     ),
                     child: TextFormField(
+                      controller: emailController,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return "O campo e-mail é de preenchimento obrigatório!";
-                        } else if (!new RegExp(
+                        } else if (!RegExp(
                           "(?:[a-z0-9!#\$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#\$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x20\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])",
                         ).hasMatch(value)) {
                           return "O campo e-mail está inválido";
@@ -222,6 +258,7 @@ class RegisterState extends ConsumerState<Register>{
                       ),
                     ),
                     child: TextFormField(
+                      controller: passwordController,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return "O campo senha é de preenchimento obrigatório!";
@@ -271,6 +308,7 @@ class RegisterState extends ConsumerState<Register>{
                       ),
                     ),
                     child: TextFormField(
+                      controller: confirmPasswordController,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return "O campo confirmar senha é de preenchimento obrigatório!";
@@ -319,14 +357,16 @@ class RegisterState extends ConsumerState<Register>{
                   color: Color.fromRGBO(56, 127, 185, 0.750),
                 ),
                 child: ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const Navigation(),
-                        ),
-                      );
+                      await ref
+                        .read(authViewModelProvider.notifier)
+                          .signUpUser(
+                            username: usernameController.text, 
+                            email: emailController.text, 
+                            oab: oabController.text, 
+                            password: passwordController.text
+                            );
                     }
                   },
                   style: ElevatedButton.styleFrom(
