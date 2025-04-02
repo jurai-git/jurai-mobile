@@ -6,7 +6,7 @@ import 'package:jurai/features/home/view/pages/navigation.dart';
 import 'package:jurai/features/home/view/pages/userhome.dart';
 
 class Login extends ConsumerStatefulWidget {
-  const Login({Key? key}) : super(key: key);
+  const Login({super.key});
 
   @override
   ConsumerState<Login> createState() => LoginState();
