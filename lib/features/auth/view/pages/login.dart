@@ -275,9 +275,6 @@ class LoginState extends ConsumerState<Login> {
                         .read(authViewModelProvider.notifier)
                           .loginUser(username: usernameController.text, password: passwordController.text);
                     }
-                    else{
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Há campos inválidos!")));
-                    }
                   },
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(),
