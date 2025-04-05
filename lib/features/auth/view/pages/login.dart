@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jurai/features/auth/view/pages/homepage.dart';
+import 'package:jurai/features/auth/view/widgets/customcheckbox.dart';
 import 'package:jurai/features/auth/view/widgets/customtextfield.dart';
 import 'package:jurai/features/auth/viewmodel/auth_viewmodel.dart';
 import 'package:jurai/features/home/view/pages/navigation.dart';
@@ -145,11 +146,9 @@ class LoginState extends ConsumerState<Login> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Checkbox(
+                              CustomCheckBox(
                                 value: isChecked,
-                                side: BorderSide(color: Colors.white),
-                                activeColor: Color(0xFF387FB9),
-                                onChanged: (newBool) {
+                                onTapCheck: (newBool) {
                                   setState(() {
                                     isChecked = newBool;
                                   });
