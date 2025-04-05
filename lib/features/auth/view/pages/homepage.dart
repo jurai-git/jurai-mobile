@@ -27,7 +27,7 @@ class Homepage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                padding: EdgeInsets.only(top: 50, bottom: 10),
+                padding: EdgeInsets.only(top: 10, bottom: 10),
                 child: Image.asset('img/jurailogo.png', scale: 0.7),
               ),
 
