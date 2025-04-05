@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jurai/features/auth/view/pages/homepage.dart';
+import 'package:jurai/features/auth/view/widgets/customtextfield.dart';
 import 'package:jurai/features/auth/viewmodel/auth_viewmodel.dart';
 import 'package:jurai/features/home/view/pages/navigation.dart';
 import 'package:jurai/features/home/view/pages/userhome.dart';
@@ -122,107 +123,20 @@ class LoginState extends ConsumerState<Login> {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    // Add TextFormFields and ElevatedButton here.
-                    Container(
-                      margin: EdgeInsets.symmetric(
-                        horizontal: 50,
-                        vertical: 10,
-                      ),
-                      padding: EdgeInsets.symmetric(
-                        vertical: 8,
-                        horizontal: 16,
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        gradient: LinearGradient(
-                          begin: Alignment(0, 0),
-                          end: Alignment(1, 1),
-                          colors: [Color(0x3E387FB9), Color(0x3E2B2932)],
-                        ),
-                      ),
-                      child: TextFormField(
-                        controller: usernameController,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return "O campo do nome de usuário é de preenchimento obrigatório!";
-                          }
-
-                          return null;
-                        },
-                        decoration: InputDecoration(
-                          errorStyle: TextStyle(
-                            color: Color(0xFFD32F2F),
-                            fontWeight: FontWeight.bold,
-                          ),
-                          prefixIcon: Image.asset('img/profile.png'),
-                          prefixIconConstraints: BoxConstraints(
-                            minWidth: 10,
-                            minHeight: 10,
-                          ),
-                          fillColor: Colors.transparent,
-                          border: InputBorder.none,
-                          hintText: "Nome de usuário",
-                          hintStyle: TextStyle(color: Colors.grey),
-                        ),
-                        style: TextStyle(color: Colors.white),
-                      ),
+                    CustomTextField(
+                      textController: usernameController, 
+                      type: "username"
                     ),
-                    Container(
-                      margin: EdgeInsets.symmetric(
-                        horizontal: 50,
-                        vertical: 10,
-                      ),
-                      padding: EdgeInsets.symmetric(
-                        vertical: 8,
-                        horizontal: 16,
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        gradient: LinearGradient(
-                          begin: Alignment(0, 0),
-                          end: Alignment(1, 1),
-                          colors: [Color(0x3E387FB9), Color(0x3E2B2932)],
-                        ),
-                      ),
-                      child: TextFormField(
-                        controller: passwordController,
-                        textAlignVertical: TextAlignVertical(y: -.5),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return "O campo senha é de preenchimento obrigatório!";
-                          }
-                          return null;
-                        },
-                        decoration: InputDecoration(
-                          errorStyle: TextStyle(
-                            color: Color(0xFFD32F2F),
-                            fontWeight: FontWeight.bold,
-                          ),
-                          prefixIcon: Image.asset('img/password.png'),
-                          prefixIconConstraints: BoxConstraints(
-                            minWidth: 10,
-                            minHeight: 10,
-                          ),
-                          fillColor: Colors.transparent,
-                          border: InputBorder.none,
-                          hintText: "Senha",
-                          hintStyle: TextStyle(color: Colors.grey),
-                          suffixIcon: IconButton(
-                            icon: Image.asset(
-                              isHidden
-                                  ? "img/invisiblePassword.png"
-                                  : "img/visiblePassword.png",
-                            ),
-                            color: Colors.white,
-                            onPressed: () {
-                              isHidden = !isHidden;
-                              setState(() {});
-                            },
-                          ),
-                        ),
-                        style: TextStyle(color: Colors.white),
-                        obscureText: isHidden,
-                      ),
+                    CustomTextField(
+                      textController: passwordController,
+                      type: "password",
+                      obscureText: isHidden,
+                      showSuffix: true,
+                      onSuffixTap: () {
+                        setState(() {
+                          isHidden = !isHidden;
+                        });
+                      },
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
