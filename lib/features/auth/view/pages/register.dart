@@ -127,7 +127,6 @@ class RegisterState extends ConsumerState<Register>{
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // Add TextFormFields and ElevatedButton here.
                   CustomTextField(
                     textController: usernameController,
                     type: "username",
