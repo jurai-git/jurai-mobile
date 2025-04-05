@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jurai/features/auth/view/pages/login.dart';
 import 'package:jurai/features/auth/view/widgets/customtextfield.dart';
+import 'package:jurai/features/auth/view/widgets/gradientbg.dart';
+import 'package:jurai/features/auth/view/widgets/loading_circle.dart';
 import 'package:jurai/features/auth/viewmodel/auth_viewmodel.dart';
 
 class Register extends ConsumerStatefulWidget {
@@ -53,17 +55,9 @@ class RegisterState extends ConsumerState<Register>{
 
     return Container(
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment(0, 0),
-          end: Alignment(1, 1),
-          transform: GradientRotation(45),
-          colors: [
-            Color.fromRGBO(25, 24, 29, 1),
-            Color.fromRGBO(12, 58, 96, 1),
-          ],
-        ),
+        gradient: GradientBg(),
       ),
-      child: isLoading? Center(child: CircularProgressIndicator.adaptive(),) : Scaffold(
+      child: isLoading? Center(child: LoadingCircle(),) : Scaffold(
         backgroundColor: Colors.transparent,
         body: Center(
           child: Column(
