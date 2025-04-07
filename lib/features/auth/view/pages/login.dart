@@ -5,7 +5,7 @@ import 'package:jurai/features/auth/view/widgets/customtextfield.dart';
 import 'package:jurai/features/auth/view/widgets/gradientbg.dart';
 import 'package:jurai/features/auth/view/widgets/loading_circle.dart';
 import 'package:jurai/features/auth/viewmodel/auth_viewmodel.dart';
-import 'package:jurai/features/home/view/pages/userhome.dart';
+import 'package:jurai/features/home/view/pages/navigation.dart';
 
 class Login extends ConsumerStatefulWidget {
   const Login({super.key});
@@ -40,7 +40,7 @@ class LoginState extends ConsumerState<Login> {
             Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
-                builder: (context) => const UserHome(),
+                builder: (context) => const Navigation(),
               ),
               (_) => false,
             );
