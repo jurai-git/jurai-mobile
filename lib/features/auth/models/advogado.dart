@@ -1,26 +1,36 @@
 import 'dart:convert';
 
 class Advogado{
-  final int? id;
-  final String nome;
+  final String id;
+  final String username;
   final String email;
   final String oab;
   final String accessToken;
 
-  Advogado({required this.id, required this.nome, required this.email, required this.oab, required this.accessToken});
+  Advogado({required this.id, required this.username, required this.email, required this.oab, required this.accessToken});
 
   Map<String, dynamic> toMap(){
     return <String, dynamic>{
       'id': id,
-      'nome': nome,
+      'username': username,
       'email': email,
       'oab': oab,
       'accessToken': accessToken
     };
   }
 
+  Advogado copyWith({
+    String? id,
+    String? username,
+    String? email,
+    String? oab,
+    String? accessToken,
+  }){
+    return Advogado(id: id ?? this.id, username: username ?? this.username, email: email ?? this.email, oab: oab ?? this.oab, accessToken: accessToken ?? this.accessToken);
+  }
+
   factory Advogado.fromMap(Map<String, dynamic> map){
-    return Advogado(id: map['id'], nome: map['nome'], email: map['email'], oab: map['oab'], accessToken: map['accessToken']);
+    return Advogado(id: map['id'] ?? '', username: map['username'] ?? '', email: map['email'] ?? '', oab: map['oab'] ?? '', accessToken: map['accessToken'] ?? '');
   }
 
   String toJson() => json.encode(toMap());
@@ -30,6 +40,6 @@ class Advogado{
   
   @override
   String toString(){
-    return 'Advogado(id: $id, nome: $nome, email: $email, oab: $oab, accessToken: $accessToken)';
+    return 'Advogado(id: $id, username: $username, email: $email, oab: $oab, accessToken: $accessToken)';
   }
 }
