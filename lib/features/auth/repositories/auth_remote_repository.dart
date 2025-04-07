@@ -59,7 +59,7 @@ class AuthRemoteRepository {
         ),
       );
       final resBodyMap = jsonDecode(response.body) as Map<String, dynamic>;
-      if(response.statusCode != 201){
+      if(response.statusCode / 100 != 2){
         return Left(FlutterError(resBodyMap['detail']));
       }
       return Right(Advogado.fromMap(resBodyMap));
