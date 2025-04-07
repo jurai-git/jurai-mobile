@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jurai/features/auth/view/pages/login.dart';
 import 'package:jurai/features/auth/view/pages/register.dart';
+import 'package:jurai/features/auth/view/widgets/gradientbg.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
@@ -9,15 +10,7 @@ class Homepage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment(0, 0),
-          end: Alignment(1, 1),
-          transform: GradientRotation(45),
-          colors: [
-            Color.fromRGBO(25, 24, 29, 1),
-            Color.fromRGBO(12, 58, 96, 1),
-          ],
-        ),
+        gradient: GradientBg()
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -27,7 +20,7 @@ class Homepage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                padding: EdgeInsets.only(top: 10, bottom: 10),
+                padding: EdgeInsets.only(bottom: 10),
                 child: Image.asset('img/jurailogo.png', scale: 0.7),
               ),
 
@@ -56,7 +49,7 @@ class Homepage extends StatelessWidget {
                 spacing: 20,
                 children: [
                   Container(
-                    padding: EdgeInsets.only(left: 20, right: 20),
+                    padding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
 
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
