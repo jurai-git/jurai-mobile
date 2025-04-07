@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 class Advogado{
-  final int id;
+  final int? id;
   final String nome;
   final String email;
   final String oab;
