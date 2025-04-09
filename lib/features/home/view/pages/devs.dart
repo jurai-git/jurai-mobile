@@ -218,6 +218,8 @@ class CarouselWithSnap extends StatelessWidget {
     ),
   ];
 
+  const CarouselWithSnap({super.key});
+
   @override
   Widget build(BuildContext context) {
     return CarouselSlider(
