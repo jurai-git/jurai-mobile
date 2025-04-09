@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:jurai/features/home/view/pages/profile.dart';
+import 'package:jurai/features/home/view/widgets/profile_card.dart';
 
 
 class Devs extends StatelessWidget {
@@ -92,133 +93,12 @@ class Devs extends StatelessWidget {
 }
 
 class CarouselWithSnap extends StatelessWidget {
-  final List<Column> imgList = [
-    Column(
-      crossAxisAlignment: CrossAxisAlignment.center, 
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            border: Border.all(color: Color.fromARGB(255, 32, 31, 36), width: 5),
-            shape: BoxShape.circle
-          ),
-          margin: EdgeInsets.only(top: 20),
-          child: CircleAvatar(
-            radius: 100,
-            backgroundImage: NetworkImage("https://avatars.githubusercontent.com/u/132313694?v=4",),
-            backgroundColor: Colors.transparent,
-          ),
-        ),
-        Text("Wendel Frota", style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),),
-        Text("17 Anos", style: TextStyle(color: Colors.white, fontSize: 20),),
-        Spacer(),
-        Container(
-          margin: EdgeInsets.only(bottom: 40),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Image.asset("img/icons8-github-30.png", scale: .75),
-              Image.asset("img/icons8-linkedin-30.png", scale: .8),
-              Image.asset("img/icons8-instagram-30.png", scale: .8)
-          ],
-        )
-        )
-      ],
-    ),
-   Column(
-      crossAxisAlignment: CrossAxisAlignment.center, 
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            border: Border.all(color: Color.fromARGB(255, 32, 31, 36), width: 5),
-            shape: BoxShape.circle
-          ),
-          margin: EdgeInsets.only(top: 20),
-          child: CircleAvatar(
-            radius: 100,
-            backgroundImage: NetworkImage("https://avatars.githubusercontent.com/u/143561347?v=4",),
-            backgroundColor: Colors.transparent,
-        ),
-        ),
-        Text("Mateus Daroz", style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),),
-        Text("18 Anos", style: TextStyle(color: Colors.white, fontSize: 20),),
-        Spacer(),
-        Container(
-          margin: EdgeInsets.only(bottom: 40),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Image.asset("img/icons8-github-30.png", scale: .75),
-              Image.asset("img/icons8-linkedin-30.png", scale: .8),
-              Image.asset("img/icons8-instagram-30.png", scale: .8)
-          ],
-        )
-        )
-      ],
-    ),
-    Column(
-      crossAxisAlignment: CrossAxisAlignment.center, 
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            border: Border.all(color: Color.fromARGB(255, 32, 31, 36), width: 5),
-            shape: BoxShape.circle
-          ),
-          margin: EdgeInsets.only(top: 20),
-          child: CircleAvatar(
-            radius: 100,
-            backgroundImage: NetworkImage("https://avatars.githubusercontent.com/u/132313694?v=4",),
-            backgroundColor: Colors.transparent,
-        ),),
-        Text("Wendel Frota", style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),),
-        Text("17 Anos", style: TextStyle(color: Colors.white, fontSize: 20),),
-        Spacer(),
-        Container(
-          margin: EdgeInsets.only(bottom: 40),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Image.asset("img/icons8-github-30.png", scale: .75),
-              Image.asset("img/icons8-linkedin-30.png", scale: .8),
-              Image.asset("img/icons8-instagram-30.png", scale: .8)
-          ],
-        )
-        )
-      ],
-    ),
-       Column(
-      crossAxisAlignment: CrossAxisAlignment.center, 
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            border: Border.all(color: Color.fromARGB(255, 32, 31, 36), width: 5),
-            shape: BoxShape.circle
-          ),
-          margin: EdgeInsets.only(top: 20),
-          child: CircleAvatar(
-            radius: 100,
-            backgroundImage: NetworkImage("https://avatars.githubusercontent.com/u/143561347?v=4",),
-            backgroundColor: Colors.transparent,
-          ),
-        ),
-        Text("Mateus Daroz", style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),),
-        Text("18 Anos", style: TextStyle(color: Colors.white, fontSize: 20),),
-        Spacer(),
-        Container(
-          margin: EdgeInsets.only(bottom: 40),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Image.asset("img/icons8-github-30.png", scale: .75),
-              Image.asset("img/icons8-linkedin-30.png", scale: .8),
-              Image.asset("img/icons8-instagram-30.png", scale: .8)
-          ],
-        )
-        )
-      ],
-    ),
+  CarouselWithSnap({super.key});
+  
+  final List<ProfileCard> imgList = [
+    ProfileCard(profileName: "Wendel Frota", profilePictureUrl: "https://avatars.githubusercontent.com/u/132313694?v=4", profileAge: "17"),
+    ProfileCard(profileName: "Mateus Daroz", profilePictureUrl: "https://avatars.githubusercontent.com/u/143561347?v=4", profileAge: "18"),
   ];
-
-  const CarouselWithSnap({super.key});
 
   @override
   Widget build(BuildContext context) {
