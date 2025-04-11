@@ -5,6 +5,7 @@ import 'package:either_dart/either.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:jurai/features/auth/models/advogado.dart';
+import 'package:jurai/features/auth/service/token_storage_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'auth_remote_repository.g.dart';
@@ -62,6 +63,9 @@ class AuthRemoteRepository {
       if(response.statusCode / 100 != 2){
         return Left(FlutterError(resBodyMap['detail']));
       }
+      final tokenService = TokenStorageService();
+      await tokenService.saveToken(resBodyMap['access_token']);
+
       return Right(Advogado.fromMap(resBodyMap));
     } catch (e){
       return Left(FlutterError(e.toString()));
