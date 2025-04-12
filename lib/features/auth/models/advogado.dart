@@ -30,7 +30,7 @@ class Advogado{
   }
 
   factory Advogado.fromMap(Map<String, dynamic> map){
-    return Advogado(id: map['id'] ?? '', username: map['username'] ?? '', email: map['email'] ?? '', oab: map['oab'] ?? '', accessToken: map['accessToken'] ?? '');
+    return Advogado(id: map['id'].toString(), username: map['username'] ?? '', email: map['email'] ?? '', oab: map['oab'] ?? '', accessToken: map['accessToken'] ?? '');
   }
 
   String toJson() => json.encode(toMap());
