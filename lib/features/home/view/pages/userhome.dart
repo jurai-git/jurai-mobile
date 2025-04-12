@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:jurai/features/home/providers/advogado_provider.dart';
 import 'package:jurai/features/home/repositories/home_remote_repository.dart';
 import 'package:jurai/features/home/view/pages/profile.dart';
 import 'package:jurai/features/home/viewmodel/home_viewmodel.dart';
 
-class UserHome extends StatefulWidget {
+class UserHome extends ConsumerStatefulWidget {
   const UserHome({super.key});
 
   @override
-  _UserHomeState createState() => _UserHomeState();
+  ConsumerState<UserHome> createState() => _UserHomeState();
 }
 
-class _UserHomeState extends State<UserHome>{
+class _UserHomeState extends ConsumerState<UserHome>{
 
   @override
   void initState(){
@@ -19,6 +21,8 @@ class _UserHomeState extends State<UserHome>{
 
   @override
   Widget build(BuildContext context) {
+
+    final currentAdvogado = ref.watch(advogadoProvider);
     return Container(
       color: Color.fromRGBO(25, 24, 29, 1),
       child: Scaffold(
@@ -68,7 +72,7 @@ class _UserHomeState extends State<UserHome>{
                           style: TextStyle(color: Colors.white, fontSize: 32),
                         ),
                         Text(
-                          "{advogado.username}",
+                          currentAdvogado?.username ?? "",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 32,
