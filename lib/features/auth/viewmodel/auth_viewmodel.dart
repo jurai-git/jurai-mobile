@@ -1,6 +1,7 @@
 import 'package:either_dart/either.dart';
 import 'package:jurai/features/auth/models/advogado.dart';
 import 'package:jurai/features/auth/repositories/auth_remote_repository.dart';
+import 'package:jurai/features/home/providers/advogado_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'auth_viewmodel.g.dart';
@@ -48,7 +49,7 @@ class AuthViewModel extends _$AuthViewModel{
 
     final val = switch(res){
       Left(value: final l) => state = AsyncValue.error(l.message, StackTrace.current),
-      Right(value: final r) => state = AsyncValue.data(r)
+      Right(value: final r) => [ref.read(advogadoProvider.notifier).setAdvogado(r), state = AsyncValue.data(r),],
     };
     print(val);
   }
