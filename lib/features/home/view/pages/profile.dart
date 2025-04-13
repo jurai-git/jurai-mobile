@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jurai/features/auth/view/pages/homepage.dart';
+import 'package:jurai/features/home/view/widgets/profile_options_button.dart';
 
 class Profile extends StatelessWidget {
   const Profile({super.key});
@@ -38,70 +39,12 @@ class Profile extends StatelessWidget {
                   shape: BoxShape.circle,
                   border: Border.all(color: Colors.white, width: 3),
                 ),
+                margin: EdgeInsets.only(bottom: 20),
                 child: Image.asset("img/profile.png", scale: 0.7),
               ),
-              Container(
-                margin: EdgeInsets.only(top: 20),
-                decoration: BoxDecoration(
-                  //border: Border.symmetric(horizontal: BorderSide(color: const Color.fromRGBO(255, 255, 255, 0.5), width: 1))
-                ),
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    shadowColor: Colors.transparent,
-                    backgroundColor: Color.fromRGBO(25, 24, 29, 1),
-                    padding: EdgeInsets.all(25),
-                    shape: LinearBorder(),
-                  ),
-                  child: Row(
-                    children: [
-                      Icon(Icons.account_circle, color: Colors.white, size: 30),
-                      Container(
-                        margin: EdgeInsets.symmetric(horizontal: 10),
-                        child: Text(
-                          "Informações Pessoais",
-                          style: TextStyle(color: Colors.white, fontSize: 18),
-                        ),
-                      ),
-                      Spacer(),
-                      Icon(Icons.navigate_next, color: Colors.white, size: 30),
-                    ],
-                  ),
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.symmetric(
-                    horizontal: BorderSide(
-                      color: const Color.fromRGBO(255, 255, 255, 0.5),
-                      width: 1,
-                    ),
-                  ),
-                ),
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    shadowColor: Colors.transparent,
-                    backgroundColor: Color.fromRGBO(25, 24, 29, 1),
-                    padding: EdgeInsets.all(25),
-                    shape: LinearBorder(),
-                  ),
-                  child: Row(
-                    children: [
-                      Icon(Icons.lock, color: Colors.white, size: 30),
-                      Container(
-                        margin: EdgeInsets.symmetric(horizontal: 10),
-                        child: Text(
-                          "Privacidade e Segurança",
-                          style: TextStyle(color: Colors.white, fontSize: 18),
-                        ),
-                      ),
-                      Spacer(),
-                      Icon(Icons.navigate_next, color: Colors.white, size: 30),
-                    ],
-                  ),
-                ),
-              ),
+              ProfileOptionsButton(text: "Informações Pessoais", preffixIcon: Icons.account_circle),
+              ProfileOptionsButton(text: "Privacidade e Segurança", preffixIcon: Icons.lock),
+              ProfileOptionsButton(text: "Sair", preffixIcon: Icons.logout, quit: true, isLast: true,),
               Container(
                 decoration: BoxDecoration(
                   //border: Border.symmetric(horizontal: BorderSide(color: const Color.fromRGBO(255, 255, 255, 0.5), width: 1))
