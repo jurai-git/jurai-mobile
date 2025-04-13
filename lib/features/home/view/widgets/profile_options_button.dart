@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 class ProfileOptionsButton extends StatefulWidget {
   final String text;
   final IconData preffixIcon;
-  final IconData suffixIcon;
   final bool quit;
+  final bool isLast;
 
   const ProfileOptionsButton({
     super.key,
     required this.text,
     required this.preffixIcon,
-    required this.suffixIcon,
-    this.quit = false
+    this.quit = false,
+    this.isLast = false
   });
 
   @override
@@ -22,9 +22,8 @@ class _ProfileOptionsButtonState extends State<ProfileOptionsButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 20),
       decoration: BoxDecoration(
-        //border: Border.symmetric(horizontal: BorderSide(color: const Color.fromRGBO(255, 255, 255, 0.5), width: 1))
+        border: Border(bottom: !widget.isLast ? BorderSide(color: const Color.fromRGBO(255, 255, 255, 0.5), width: 1) : BorderSide.none),
       ),
       child: ElevatedButton(
         onPressed: () {},
@@ -45,7 +44,7 @@ class _ProfileOptionsButtonState extends State<ProfileOptionsButton> {
               ),
             ),
             Spacer(),
-            Icon(widget.suffixIcon, color: widget.quit ? Colors.red : Colors.white, size: 30),
+            Icon(Icons.navigate_next, color: widget.quit ? Colors.red : Colors.white, size: 30),
           ],
         ),
       ),
