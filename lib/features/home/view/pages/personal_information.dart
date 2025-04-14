@@ -36,7 +36,7 @@ class _PersonalInformationState extends ConsumerState<PersonalInformation> {
                 children: [
                   Text(
                     "Informações Básicas",
-                    style: TextStyle(color: Colors.white, fontSize: 17),
+                    style: TextStyle(color: Colors.white, fontSize: 17, height: 2.5),
                   ),
                 ],
               ),
@@ -65,6 +65,41 @@ class _PersonalInformationState extends ConsumerState<PersonalInformation> {
                     _currentAdvogado?.email ?? '',
                     style: TextStyle(color: Colors.white),
                   ),
+                ],
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    color: const Color.fromRGBO(255, 255, 255, 0.5),
+                    width: 1,
+                  ),
+                ),
+              ),
+              margin: EdgeInsets.symmetric(horizontal: 15),
+              child: Row(
+                children: [
+                  Text(
+                    "Tipo de Documento",
+                    style: TextStyle(color: Colors.white, fontSize: 17, height: 2.5),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              alignment: Alignment.centerLeft,
+              padding: EdgeInsets.all(15),
+              margin: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+              decoration: BoxDecoration(
+                border: Border.all(color: const Color.fromRGBO(255, 255, 255, 0.5), width: 1),
+                borderRadius: BorderRadius.circular(7.5),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Nº OAB", style: TextStyle(color: Colors.grey)),
+                  Text(_currentAdvogado?.oab ?? '',style: TextStyle(color: Colors.white),),
                 ],
               ),
             ),
