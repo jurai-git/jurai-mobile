@@ -64,7 +64,7 @@ class AuthRemoteRepository {
         return Left(FlutterError(resBodyMap['detail']));
       }
       final tokenService = TokenStorageService();
-      await tokenService.saveToken((resBodyMap['advogado'] as Map<String, dynamic>)['access_token'] as String);
+      await tokenService.saveToken((resBodyMap['advogado'] as Map<String, dynamic>)['access_token']);
       return Right(Advogado.fromMap(resBodyMap['advogado']));
     } catch (e){
       return Left(FlutterError(e.toString()));
