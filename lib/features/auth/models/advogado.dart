@@ -5,9 +5,9 @@ class Advogado{
   final String username;
   final String email;
   final String oab;
-  final String accessToken;
+  final String access_token;
 
-  Advogado({required this.id, required this.username, required this.email, required this.oab, required this.accessToken});
+  Advogado({required this.id, required this.username, required this.email, required this.oab, required this.access_token});
 
   Map<String, dynamic> toMap(){
     return <String, dynamic>{
@@ -15,7 +15,7 @@ class Advogado{
       'username': username,
       'email': email,
       'oab': oab,
-      'accessToken': accessToken
+      'access_token': access_token
     };
   }
 
@@ -24,13 +24,13 @@ class Advogado{
     String? username,
     String? email,
     String? oab,
-    String? accessToken,
+    String? access_token,
   }){
-    return Advogado(id: id ?? this.id, username: username ?? this.username, email: email ?? this.email, oab: oab ?? this.oab, accessToken: accessToken ?? this.accessToken);
+    return Advogado(id: id ?? this.id, username: username ?? this.username, email: email ?? this.email, oab: oab ?? this.oab, access_token: access_token ?? this.access_token);
   }
 
   factory Advogado.fromMap(Map<String, dynamic> map){
-    return Advogado(id: map['id'].toString(), username: map['username'] ?? '', email: map['email'] ?? '', oab: map['oab'] ?? '', accessToken: map['accessToken'] ?? '');
+    return Advogado(id: map['id'].toString(), username: map['username'] ?? '', email: map['email'] ?? '', oab: map['oab'] ?? '', access_token: map['access_token'] ?? '');
   }
 
   String toJson() => json.encode(toMap());
@@ -40,6 +40,6 @@ class Advogado{
   
   @override
   String toString(){
-    return 'Advogado(id: $id, username: $username, email: $email, oab: $oab, accessToken: $accessToken)';
+    return 'Advogado(id: $id, username: $username, email: $email, oab: $oab, access_token: $access_token)';
   }
 }
