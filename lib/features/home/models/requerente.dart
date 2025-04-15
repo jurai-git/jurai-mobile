@@ -6,7 +6,7 @@ class Requerente {
   final String email;
   final String genero;
   final String cpf_cnpj;
-  final int idoso;
+  final bool idoso;
   final String rg;
   final String orgaoEmissor;
   final String estadoCivil;
@@ -28,7 +28,7 @@ class Requerente {
     String? email,
     String? genero,
     String? cpf_cnpj,
-    int? idoso,
+    bool? idoso,
     String? rg,
     String? orgaoEmissor,
     String? estadoCivil,
