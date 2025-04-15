@@ -18,25 +18,28 @@ HomeRemoteRepository homeRemoteRepository(HomeRemoteRepositoryRef ref){
 class HomeRemoteRepository {
   final TokenStorageService tokenService = TokenStorageService();
   Future<Either<FlutterError, List<Requerente>>> getAllRequerentes() async {
-    final token = tokenService.getToken();
     try{
+      String? token = await tokenService.getToken();
+      
       final res = await http
-        .get(Uri.parse("https://jurai-server.onrender.com/advogado/requerentes"), headers: {
+        .post(Uri.parse("https://jurai-server.onrender.com/advogado/requerentes"), headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer $token'
+          'Authorization': token != null ? 'Bearer $token' : ''
         });
         var resBodyMap = jsonDecode(res.body);
-        if(res.statusCode != 200){
+        if(res.statusCode != 201){
           return Left(FlutterError(resBodyMap['detail']));
         }
 
-        resBodyMap = resBodyMap as List;
+        resBodyMap = resBodyMap['requerentes_list'] as List;
 
         List<Requerente> requerentes = [];
 
         for(final map in resBodyMap){
+          print("debug");
           requerentes.add(Requerente.fromMap(map));
         }
+        print(requerentes);
 
         return Right(requerentes);
     } catch (e) {
