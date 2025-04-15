@@ -1,8 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:jurai/features/home/models/requerente.dart';
+import 'package:jurai/features/home/providers/requerentes_provider.dart';
+import 'package:jurai/features/home/repositories/home_remote_repository.dart';
 import 'package:jurai/features/home/view/pages/profile.dart';
+import 'package:jurai/features/home/view/widgets/requerentes_view_button.dart';
+import 'package:jurai/features/home/viewmodel/home_viewmodel.dart';
 
-class Clients extends StatelessWidget {
+class Clients extends ConsumerStatefulWidget {
   const Clients({super.key});
+
+  @override
+  ConsumerState<Clients> createState() => _ClientsState();
+}
+
+late final requerentesList;
+
+class _ClientsState extends ConsumerState<Clients> {
+  
+  @override
+  void initState() {
+    super.initState();
+    requerentesList =
+        ref.read(homeViewModelProvider.notifier).getAllRequerentes();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +46,14 @@ class Clients extends StatelessWidget {
                   Container(
                     margin: EdgeInsets.only(right: 50, top: 50),
                     child: ElevatedButton(
-                      onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const Profile()));},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Profile(),
+                          ),
+                        );
+                      },
                       style: ElevatedButton.styleFrom(
                         shape: CircleBorder(),
                         padding: EdgeInsets.all(20),
@@ -60,10 +88,28 @@ class Clients extends StatelessWidget {
                   ),
                 ],
               ),
-            ]
-          )
-        )
-      )
+              SingleChildScrollView(
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 50),
+                  child: Column(children: [
+                      loadRequerentes()
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
+}
+
+RequerentesViewButton loadRequerentes() {
+  for (Requerente r in requerentesList) {
+    RequerentesViewButton(
+      name: (r.nome),
+    );
+  }
+  return RequerentesViewButton(name: '');
 }
