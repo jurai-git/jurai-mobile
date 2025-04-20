@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:jurai/features/auth/view/widgets/loading_circle.dart';
 import 'package:jurai/features/home/models/requerente.dart';
-import 'package:jurai/features/home/providers/requerentes_provider.dart';
 import 'package:jurai/features/home/repositories/home_remote_repository.dart';
 import 'package:jurai/features/home/view/pages/profile.dart';
 import 'package:jurai/features/home/view/widgets/requerentes_view_button.dart';
@@ -14,15 +14,15 @@ class Clients extends ConsumerStatefulWidget {
   ConsumerState<Clients> createState() => _ClientsState();
 }
 
-late final requerentesList;
+late var requerentesList;
+late var finalList;
 
 class _ClientsState extends ConsumerState<Clients> {
   
   @override
   void initState() {
     super.initState();
-    requerentesList =
-        ref.read(homeViewModelProvider.notifier).getAllRequerentes();
+    finalList = loadRequerentes(context, ref);
   }
 
   @override
@@ -88,13 +88,24 @@ class _ClientsState extends ConsumerState<Clients> {
                   ),
                 ],
               ),
-              SingleChildScrollView(
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 50),
-                  child: Column(children: [
-                      loadRequerentes()
-                    ],
-                  ),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 50),
+                child: FutureBuilder<List<Widget>>(
+                  future: finalList,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Padding(padding: EdgeInsets.only(top: MediaQuery.of(context).size.height/4-100), child: LoadingCircle());
+                    } else if (snapshot.hasError) {
+                      return Text('Error: ${snapshot.error}', style: TextStyle(color: Colors.white),);
+                    } else if (snapshot.hasData) {
+                      return Column(
+                        spacing: 15,
+                        children: snapshot.data!,
+                      );
+                    } else {
+                      return Text('Você não possui requerentes cadastrados!', style: TextStyle(color: Colors.white),);
+                    }
+                  },
                 ),
               ),
             ],
@@ -105,11 +116,15 @@ class _ClientsState extends ConsumerState<Clients> {
   }
 }
 
-RequerentesViewButton loadRequerentes() {
+Future<List<Widget>> loadRequerentes(BuildContext context, WidgetRef ref) async{
+  var lista = <Widget>[];
+
+  requerentesList = await ref.read(homeViewModelProvider.notifier).getAllRequerentes();
+
   for (Requerente r in requerentesList) {
-    RequerentesViewButton(
-      name: (r.nome),
-    );
+    lista.add(RequerentesViewButton(name: r.nome));
   }
-  return RequerentesViewButton(name: '');
+  print(lista);
+  
+  return lista;
 }
