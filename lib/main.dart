@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jurai/features/auth/view/pages/homepage.dart';
+import 'package:jurai/features/home/view/pages/clients.dart';
+import 'package:jurai/features/home/view/pages/navigation.dart';
+import 'package:jurai/features/home/view/pages/personal_information.dart';
+import 'package:jurai/features/home/view/pages/profile.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -15,7 +19,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),        fontFamily: "MPLUSRounded1c"
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        fontFamily: "MPLUSRounded1c"
       ),
       debugShowCheckedModeBanner: false,
       home: const Homepage(),
