@@ -31,98 +31,84 @@ class _ProfileOptionsButtonState extends State<ProfileOptionsButton> {
         onPressed: () {
           !widget.quit ? Navigator.push(context, MaterialPageRoute(builder: (context) => widget.destiny))
           :
-                    Scaffold.of(context).showBottomSheet(
-                      (context) => Stack(
-                        alignment: Alignment.bottomCenter,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
-                            child: Container(
-                              width: double.infinity,
-                              height: double.infinity,
-                              color: Color.fromRGBO(0, 0, 0, 0.5),
-                            )
-                          ),
-                          Container(
-                            width: double.infinity,
-                            height: 200,
-                            //color: Colors.transparent,
-                            color: Color.fromRGBO(25, 24, 29, 1),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                    margin: EdgeInsets.symmetric(vertical: 10),
-                                    child: Text(
-                                      "Você tem certeza que deseja sair da conta?",
-                                      style: TextStyle(color: Colors.white, fontSize: 20),
-                                    ),
-                                    )
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                    margin: EdgeInsets.symmetric(vertical: 10),
-                                    child: ElevatedButton(
-                                      onPressed: () {
-                                        ScaffoldMessenger.of(
-                                          context,
-                                        ).hideCurrentSnackBar();
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => widget.destiny,
-                                          ),
-                                        );
-                                      },
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.red,
-                                        fixedSize: Size(
-                                          MediaQuery.of(context).size.width - 50,
-                                          50,
-                                        
-                                        ),
-                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
-                                      ),
-                                      child: Text("Sair", style: TextStyle(color: Color.fromRGBO(25, 24, 29, 1),),),
-                                    ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                    margin: EdgeInsets.symmetric(vertical: 10),
-                                    child: OutlinedButton(
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                      style: OutlinedButton.styleFrom(
-                                        fixedSize: Size(
-                                          MediaQuery.of(context).size.width - 50,
-                                          50,
-                                        ),
-                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
-                                      ),
-                                      child: Text("Ficar", style: TextStyle(color: Colors.white),),
-                                    ),
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                        ],
+          showModalBottomSheet<void>(
+            constraints: BoxConstraints.expand(height: 200),
+            context: context,
+            builder: (BuildContext context){
+            return Container(
+              color: Color.fromRGBO(25, 24, 29, 1),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                      margin: EdgeInsets.symmetric(vertical: 10),
+                      child: Text(
+                        "Você tem certeza que deseja sair da conta?",
+                        style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
-                    backgroundColor: Colors.transparent);
+                      )
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                      margin: EdgeInsets.symmetric(vertical: 10),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          ScaffoldMessenger.of(
+                            context,
+                          ).hideCurrentSnackBar();
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => widget.destiny,
+                            ),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.red,
+                          fixedSize: Size(
+                            MediaQuery.of(context).size.width - 50,
+                            50,
+                          
+                          ),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
+                        ),
+                        child: Text("Sair", style: TextStyle(color: Color.fromRGBO(25, 24, 29, 1),),),
+                      ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                      margin: EdgeInsets.symmetric(vertical: 10),
+                      child: OutlinedButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                          },
+                        style: OutlinedButton.styleFrom(
+                          fixedSize: Size(
+                            MediaQuery.of(context).size.width - 50,
+                            50,
+                          ),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
+                          ),
+                          child: Text("Ficar", style: TextStyle(color: Colors.white),),
+                          ),
+                        ),
+                      ],
+                    )
+                  ]
+                ),
+              );          
+            }
+          ); 
         },
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.transparent,
