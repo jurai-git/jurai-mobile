@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:jurai/features/home/models/requerente.dart';
+import 'package:jurai/features/home/providers/requerente_provider.dart';
 
 class RequerentesViewButton extends StatefulWidget {
-  final String name;
+  final Requerente requerente;
+  final WidgetRef ref;
 
-  const RequerentesViewButton({super.key, required this.name});
+  const RequerentesViewButton({super.key, required this.requerente, required this.ref});
 
   @override
   State<RequerentesViewButton> createState() => _RequerentesViewButtonState();
@@ -14,7 +18,11 @@ class _RequerentesViewButtonState extends State<RequerentesViewButton> {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: () {
+        setState(() {
+          widget.ref.watch(requerenteProvider.notifier).setRequerente(widget.requerente);
+        });
+      },
       style: ElevatedButton.styleFrom(
         backgroundColor: Color.fromRGBO(43, 41, 50, 50),
         shape: RoundedRectangleBorder(
@@ -38,7 +46,7 @@ class _RequerentesViewButtonState extends State<RequerentesViewButton> {
             child: Image.asset("img/profile.png", scale: .7),
           ),
 
-          Text(widget.name, style: TextStyle(color: Colors.white, fontSize: 25)),
+          Text(widget.requerente.nome, style: TextStyle(color: Colors.white, fontSize: 25)),
         ],
       ),
     );
