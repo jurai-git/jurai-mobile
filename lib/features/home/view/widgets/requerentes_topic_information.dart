@@ -24,7 +24,7 @@ class RequerentesTopicInformation extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(topicName, style: TextStyle(color: Colors.white, fontSize: 12), textAlign: TextAlign.left,),
+            Text(topicName, style: TextStyle(color: const Color.fromRGBO(255, 255, 255, .5), fontSize: 12), textAlign: TextAlign.left,),
             Text(topicData, style: TextStyle(color: Colors.white, fontSize: 18), textAlign: TextAlign.left,),
           ]
         )
