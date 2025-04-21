@@ -1,5 +1,6 @@
 import 'package:either_dart/either.dart';
 import 'package:jurai/features/home/models/requerente.dart';
+import 'package:jurai/features/home/providers/requerente_provider.dart';
 import 'package:jurai/features/home/repositories/home_remote_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -11,16 +12,18 @@ class HomeViewModel extends _$HomeViewModel{
 
 
   @override
-  AsyncValue<Requerente>? build(){
+  AsyncValue<List<Requerente>>? build(){
     homeRemoteRepository = ref.watch(homeRemoteRepositoryProvider);
     return null;
   }
-  Future<List<Requerente>> getAllRequerentes() async{
+  
+  Future<void> getAllRequerentes() async{
+    state = const AsyncValue.loading();
     final res = await homeRemoteRepository.getAllRequerentes();
 
-    return switch(res){
-      Left(value: final l) => throw l.message,
-      Right(value: final r) => r,
+    final val = switch(res){
+      Left(value: final l) => state = AsyncValue.error(l.message, StackTrace.current),
+      Right(value: final r) => [ref.read(requerenteListProvider.notifier).setRequerenteList(r), state = AsyncValue.data(r)],
     };
   }
 }
