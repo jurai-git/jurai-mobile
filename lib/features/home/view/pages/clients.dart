@@ -5,6 +5,7 @@ import 'package:jurai/features/home/models/requerente.dart';
 import 'package:jurai/features/home/providers/requerente_provider.dart';
 import 'package:jurai/features/home/repositories/home_remote_repository.dart';
 import 'package:jurai/features/home/view/pages/profile.dart';
+import 'package:jurai/features/home/view/widgets/requerentes_topic_information.dart';
 import 'package:jurai/features/home/view/widgets/requerentes_view_button.dart';
 import 'package:jurai/features/home/viewmodel/home_viewmodel.dart';
 
@@ -109,15 +110,40 @@ class _ClientsState extends ConsumerState<Clients> {
                     }
                   },
                 ),
-              ) : Column(children: [Text(currentRequerente.nome, style: TextStyle(color: Colors.white, fontSize: 20),),
-              ElevatedButton(onPressed: (){setState((){ref.watch(requerenteProvider.notifier).clear();});}, child: Text("Voltar", style: TextStyle(color: Colors.white),),)]),
-              
-              
+              ) :
+              Padding( 
+              padding: EdgeInsets.symmetric(horizontal: 50),
+              child: Column(
+                spacing: 30,
+                children: [
+                  Row(
+                    spacing: 15,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.blue,
+                          borderRadius: BorderRadius.all(Radius.circular(100)),
+                        ),
+                        padding: EdgeInsets.all(20),
+                        child: Image.asset("img/profile.png", scale: .7),
+                      ),
+                      Text(currentRequerente.nome, style: TextStyle(color: Colors.white, fontSize: 20)),
+                      //ElevatedButton(onPressed: (){setState((){ref.watch(requerenteProvider.notifier).clear();});}, child: Text("Voltar", style: TextStyle(color: Colors.white),),),
+                    ]
+                    
+                ),
+                RequerentesTopicInformation(topicName: "Nome Social", topicData: currentRequerente.nomeSocial!= '' ? currentRequerente.nomeSocial : "Não possui", topicImage: "img/profile.png",),
+                  RequerentesTopicInformation(topicName: "Email", topicData: currentRequerente.email, topicImage: "img/email.png",),
+                  RequerentesTopicInformation(topicName: "Gênero", topicData: currentRequerente.genero, topicImage: "img/profile.png",),
+                ]
+              ),
+              )
             ],
           ),
+              ),
+            
         ),
-      ),
-    );
+      );
   }
 }
 
