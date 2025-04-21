@@ -74,6 +74,7 @@ class _ClientsState extends ConsumerState<Clients> {
                     padding: EdgeInsets.fromLTRB(50, 50, 50, 20),
                     child: Row(
                       children: [
+                        currentRequerente != null ? IconButton(onPressed: (){setState((){ref.watch(requerenteProvider.notifier).clear();});}, icon: Icon(Icons.keyboard_return, color: Colors.white, size: 40,)) : Text(''),
                         Text(
                           "Seus ",
                           style: TextStyle(color: Colors.white, fontSize: 32),
@@ -128,13 +129,12 @@ class _ClientsState extends ConsumerState<Clients> {
                         child: Image.asset("img/profile.png", scale: .7),
                       ),
                       Text(currentRequerente.nome, style: TextStyle(color: Colors.white, fontSize: 20)),
-                      //ElevatedButton(onPressed: (){setState((){ref.watch(requerenteProvider.notifier).clear();});}, child: Text("Voltar", style: TextStyle(color: Colors.white),),),
                     ]
                     
                 ),
                 RequerentesTopicInformation(topicName: "Nome Social", topicData: currentRequerente.nomeSocial!= '' ? currentRequerente.nomeSocial : "Não possui", topicImage: "img/profile.png",),
-                  RequerentesTopicInformation(topicName: "Email", topicData: currentRequerente.email, topicImage: "img/email.png",),
-                  RequerentesTopicInformation(topicName: "Gênero", topicData: currentRequerente.genero, topicImage: "img/profile.png",),
+                RequerentesTopicInformation(topicName: "Email", topicData: currentRequerente.email, topicImage: "img/email.png",),
+                RequerentesTopicInformation(topicName: "Gênero", topicData: currentRequerente.genero, topicImage: "img/profile.png",),
                 ]
               ),
               )
