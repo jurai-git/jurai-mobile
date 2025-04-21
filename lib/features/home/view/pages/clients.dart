@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jurai/features/auth/view/widgets/loading_circle.dart';
 import 'package:jurai/features/home/models/requerente.dart';
+import 'package:jurai/features/home/providers/requerente_provider.dart';
 import 'package:jurai/features/home/repositories/home_remote_repository.dart';
 import 'package:jurai/features/home/view/pages/profile.dart';
 import 'package:jurai/features/home/view/widgets/requerentes_view_button.dart';
@@ -16,17 +17,18 @@ class Clients extends ConsumerStatefulWidget {
 
 late var requerentesList;
 late var finalList;
-
+late var currentRequerente;
 class _ClientsState extends ConsumerState<Clients> {
   
   @override
   void initState() {
     super.initState();
-    finalList = loadRequerentes(context, ref);
+    finalList = loadRequerentes(context, ref);  
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { 
+    currentRequerente = ref.watch(requerenteProvider);
     return Container(
       color: Color.fromRGBO(25, 24, 29, 1),
       child: Scaffold(
@@ -88,7 +90,7 @@ class _ClientsState extends ConsumerState<Clients> {
                   ),
                 ],
               ),
-              Container(
+              currentRequerente == null ? Container(
                 padding: EdgeInsets.symmetric(horizontal: 50),
                 child: FutureBuilder<List<Widget>>(
                   future: finalList,
@@ -107,7 +109,10 @@ class _ClientsState extends ConsumerState<Clients> {
                     }
                   },
                 ),
-              ),
+              ) : Column(children: [Text(currentRequerente.nome, style: TextStyle(color: Colors.white, fontSize: 20),),
+              ElevatedButton(onPressed: (){setState((){ref.watch(requerenteProvider.notifier).clear();});}, child: Text("Voltar", style: TextStyle(color: Colors.white),),)]),
+              
+              
             ],
           ),
         ),
@@ -119,10 +124,10 @@ class _ClientsState extends ConsumerState<Clients> {
 Future<List<Widget>> loadRequerentes(BuildContext context, WidgetRef ref) async{
   var lista = <Widget>[];
 
-  requerentesList = await ref.read(homeViewModelProvider.notifier).getAllRequerentes();
+  requerentesList = ref.read(requerenteListProvider);
 
   for (Requerente r in requerentesList) {
-    lista.add(RequerentesViewButton(name: r.nome));
+    lista.add(RequerentesViewButton(requerente: r, ref: ref));
   }
   print(lista);
   
