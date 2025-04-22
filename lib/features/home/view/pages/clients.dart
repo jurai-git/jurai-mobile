@@ -18,6 +18,9 @@ class Clients extends ConsumerStatefulWidget {
 late var requerentesList;
 late var finalList;
 late var currentRequerente;
+int buttonIndex = 0;
+enum Options { personal, general, adress }
+
 class _ClientsState extends ConsumerState<Clients> {
   
   @override
@@ -73,7 +76,7 @@ class _ClientsState extends ConsumerState<Clients> {
                     padding: EdgeInsets.fromLTRB(50, 50, 50, 20),
                     child: Row(
                       children: [
-                        currentRequerente != null ? IconButton(onPressed: (){setState((){ref.watch(requerenteProvider.notifier).clear();});}, icon: Icon(Icons.keyboard_return, color: Colors.white, size: 40,)) : Text(''),
+                        currentRequerente != null ? IconButton(onPressed: (){setState((){ref.watch(requerenteProvider.notifier).clear(); buttonIndex=0;});}, icon: Icon(Icons.keyboard_return, color: Colors.white, size: 40,)) : Text(''),
                         Text(
                           "Seus ",
                           style: TextStyle(color: Colors.white, fontSize: 32),
@@ -110,39 +113,62 @@ class _ClientsState extends ConsumerState<Clients> {
                     }
                   },
                 ),
-              ) :
-              Padding( 
-              padding: EdgeInsets.symmetric(horizontal: 50),
-              child: Column(
+              )
+              :
+              Column(
                 spacing: 30,
                 children: [
-                  Row(
-                    spacing: 15,
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.blue,
-                          borderRadius: BorderRadius.all(Radius.circular(100)),
-                        ),
-                        padding: EdgeInsets.all(20),
-                        child: SvgPicture.asset("img/profile.svg"),
+                  Container(
+                    decoration: BoxDecoration(
+                      border: Border(top: BorderSide(color: const Color.fromRGBO(255, 255, 255, .1)), bottom: BorderSide(color: const Color.fromRGBO(255, 255, 255, .1))),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                      child: Row(
+                        spacing: 15,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Colors.blue,
+                              borderRadius: BorderRadius.all(Radius.circular(100)),
+                            ),
+                            padding: EdgeInsets.all(20),
+                            child: SvgPicture.asset("img/profile.svg"),
+                          ),
+                          Text(currentRequerente.nome, style: TextStyle(color: Colors.white, fontSize: 20)),
+                        ]
                       ),
-                      Text(currentRequerente.nome, style: TextStyle(color: Colors.white, fontSize: 20)),
-                    ]
-                    
-                ),
-                RequerentesTopicInformation(topicName: "Nome Social", topicData: currentRequerente.nomeSocial!= '' ? currentRequerente.nomeSocial : "Não possui", topicImage: "img/profile.svg",),
-                RequerentesTopicInformation(topicName: "Email", topicData: currentRequerente.email, topicImage: "img/email.svg",),
-                RequerentesTopicInformation(topicName: "Gênero", topicData: currentRequerente.genero, topicImage: "img/profile.svg",),
-                ]
-              ),
+                    )
+                  ),
+                  Padding( 
+                    padding: EdgeInsets.symmetric(horizontal: 50),
+                    child: Column(
+                      spacing: 30,
+                      children: [
+                        if (buttonIndex == 0) PersonalInformation(),
+                        if (buttonIndex == 1) GeneralInformation(),
+                        if (buttonIndex == 2) AdressInformation(),
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 60),
+                          width: MediaQuery.of(context).size.width,
+                          child: SingleChoice(
+                            onSelectionChanged: (value) {
+                              setState(() {
+                                buttonIndex = value - 1;
+                              });
+                            },
+                          ),
+                        ),
+                      ]
+                    ),
+                  )
+                ],
               )
             ],
           ),
-              ),
-            
         ),
-      );
+      ),
+    );
   }
 }
 
@@ -157,4 +183,93 @@ Future<List<Widget>> loadRequerentes(BuildContext context, WidgetRef ref) async{
   print(lista);
   
   return lista;
+}
+
+class SingleChoice extends StatelessWidget {
+  final Function(int) onSelectionChanged;
+  const SingleChoice({super.key, required this.onSelectionChanged});
+
+  @override
+  Widget build(BuildContext context) {
+    return SegmentedButton<Options>(
+      showSelectedIcon: false,
+      style: SegmentedButton.styleFrom(
+        backgroundColor: Color.fromRGBO(120, 120, 128, 0.120),
+        foregroundColor: Color(0x77808080),
+        selectedForegroundColor: Colors.black,
+        side: BorderSide(color: Colors.transparent, width: 0),
+        textStyle: TextStyle(fontWeight: FontWeight.w400),
+      ),
+      segments: const <ButtonSegment<Options>>[
+        ButtonSegment<Options>(value: Options.personal, label: Text('Pessoais')),
+        ButtonSegment<Options>(value: Options.general, label: Text('Gerais')),
+        ButtonSegment<Options>(value: Options.adress, label: Text('Endereço')),
+      ],
+      selected: <Options>{Options.values[buttonIndex]},
+      onSelectionChanged: (Set<Options> newSelection) {
+        Options selectedOption = newSelection.first;
+        int selectedValue;
+        if(selectedOption == Options.personal)
+          selectedValue = 1;
+        else if (selectedOption == Options.general)
+          selectedValue = 2;
+        else
+          selectedValue = 3;
+        onSelectionChanged(selectedValue);
+      },
+    );
+  }
+}
+
+class PersonalInformation extends StatelessWidget {
+  const PersonalInformation({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      spacing: 30,
+      children: [
+        RequerentesTopicInformation(topicName: "Nome Social", topicData: currentRequerente.nomeSocial!= '' ? currentRequerente.nomeSocial : "Não possui", topicImage: "img/profile.svg",),
+        RequerentesTopicInformation(topicName: "Email", topicData: currentRequerente.email, topicImage: "img/email.svg",),
+        RequerentesTopicInformation(topicName: "Gênero", topicData: currentRequerente.genero, topicImage: "img/profile.svg",),
+      ],
+    );
+  }
+}
+
+class GeneralInformation extends StatelessWidget {
+  const GeneralInformation({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      spacing: 30,
+      children: [
+        RequerentesTopicInformation(topicName: "CPF/CNPJ", topicData: currentRequerente.cpf_cnpj, topicImage: "img/oab.svg",),
+        RequerentesTopicInformation(topicName: "RG", topicData: currentRequerente.rg, topicImage: "img/rg.svg",),
+        RequerentesTopicInformation(topicName: "Profissão", topicData: currentRequerente.profissao, topicImage: "img/job.svg",),
+        RequerentesTopicInformation(topicName: "Nacionalidade", topicData: currentRequerente.nacionalidade, topicImage: "img/nationality.svg",),
+        RequerentesTopicInformation(topicName: "Estado Civil", topicData: currentRequerente.estadoCivil, topicImage: "img/civil.svg",),
+      ],
+    );
+  }
+}
+
+class AdressInformation extends StatelessWidget {
+  const AdressInformation({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      spacing: 30,
+      children: [
+        RequerentesTopicInformation(topicName: "CEP", topicData: currentRequerente.cep, topicImage: "img/cep.svg",),
+        RequerentesTopicInformation(topicName: "Cidade", topicData: currentRequerente.cidade, topicImage: "img/city.svg",),
+        RequerentesTopicInformation(topicName: "Bairro", topicData: currentRequerente.bairro, topicImage: "img/bairro.svg",),
+        RequerentesTopicInformation(topicName: "Logradouro", topicData: currentRequerente.logradouro, topicImage: "img/nationality.svg",),
+        RequerentesTopicInformation(topicName: "Nº", topicData: currentRequerente.estadoCivil, topicImage: "img/number.svg",),
+        RequerentesTopicInformation(topicName: "Complemento", topicData: currentRequerente.complemento!= '' ? currentRequerente.complemento : 'Não possui', topicImage: "img/complement.svg",),
+      ],
+    );
+  }
 }
