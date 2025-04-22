@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:either_dart/either.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
-import 'package:jurai/features/auth/models/advogado.dart';
 import 'package:jurai/features/auth/service/token_storage_service.dart';
 import 'package:jurai/features/home/models/requerente.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';

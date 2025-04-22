@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:jurai/features/home/providers/advogado_provider.dart';
-import 'package:jurai/features/home/repositories/home_remote_repository.dart';
 import 'package:jurai/features/home/view/pages/profile.dart';
-import 'package:jurai/features/home/viewmodel/home_viewmodel.dart';
 
 class UserHome extends ConsumerStatefulWidget {
   const UserHome({super.key});
