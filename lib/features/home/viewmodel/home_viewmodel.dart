@@ -25,5 +25,6 @@ class HomeViewModel extends _$HomeViewModel{
       Left(value: final l) => state = AsyncValue.error(l.message, StackTrace.current),
       Right(value: final r) => [ref.read(requerenteListProvider.notifier).setRequerenteList(r), state = AsyncValue.data(r)],
     };
+    print(val);
   }
 }
