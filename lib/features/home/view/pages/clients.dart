@@ -4,11 +4,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:jurai/features/auth/view/widgets/loading_circle.dart';
 import 'package:jurai/features/home/models/requerente.dart';
 import 'package:jurai/features/home/providers/requerente_provider.dart';
-import 'package:jurai/features/home/repositories/home_remote_repository.dart';
 import 'package:jurai/features/home/view/pages/profile.dart';
 import 'package:jurai/features/home/view/widgets/requerentes_topic_information.dart';
 import 'package:jurai/features/home/view/widgets/requerentes_view_button.dart';
-import 'package:jurai/features/home/viewmodel/home_viewmodel.dart';
 
 class Clients extends ConsumerStatefulWidget {
   const Clients({super.key});
@@ -134,7 +132,7 @@ class _ClientsState extends ConsumerState<Clients> {
                     
                 ),
                 RequerentesTopicInformation(topicName: "Nome Social", topicData: currentRequerente.nomeSocial!= '' ? currentRequerente.nomeSocial : "Não possui", topicImage: "img/profile.svg",),
-                //RequerentesTopicInformation(topicName: "Email", topicData: currentRequerente.email, topicImage: "img/email.png",),
+                RequerentesTopicInformation(topicName: "Email", topicData: currentRequerente.email, topicImage: "img/email.svg",),
                 RequerentesTopicInformation(topicName: "Gênero", topicData: currentRequerente.genero, topicImage: "img/profile.svg",),
                 ]
               ),
