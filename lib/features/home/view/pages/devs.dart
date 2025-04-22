@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:jurai/features/home/view/pages/profile.dart';
 import 'package:jurai/features/home/view/widgets/profile_card.dart';
 
@@ -35,7 +36,7 @@ class Devs extends StatelessWidget {
                         padding: EdgeInsets.all(20),
                         backgroundColor: Colors.amber,
                       ),
-                      child: Image.asset("img/profile.png"),
+                      child: SvgPicture.asset("img/profile.svg"),
                     ),
                   ),
                 ],

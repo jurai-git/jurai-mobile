@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:jurai/features/home/models/requerente.dart';
 import 'package:jurai/features/home/providers/requerente_provider.dart';
 
@@ -43,7 +44,7 @@ class _RequerentesViewButtonState extends State<RequerentesViewButton> {
               borderRadius: BorderRadius.all(Radius.circular(100)),
             ),
             padding: EdgeInsets.all(20),
-            child: Image.asset("img/profile.png", scale: .7),
+            child: SvgPicture.asset("img/profile.svg"),
           ),
 
           Text(widget.requerente.nome, style: TextStyle(color: Colors.white, fontSize: 25)),

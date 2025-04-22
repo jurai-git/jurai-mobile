@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:jurai/features/auth/view/widgets/loading_circle.dart';
 import 'package:jurai/features/home/models/requerente.dart';
 import 'package:jurai/features/home/providers/requerente_provider.dart';
@@ -62,7 +63,7 @@ class _ClientsState extends ConsumerState<Clients> {
                         padding: EdgeInsets.all(20),
                         backgroundColor: Colors.amber,
                       ),
-                      child: Image.asset("img/profile.png"),
+                      child: SvgPicture.asset("img/profile.svg"),
                     ),
                   ),
                 ],
@@ -126,15 +127,15 @@ class _ClientsState extends ConsumerState<Clients> {
                           borderRadius: BorderRadius.all(Radius.circular(100)),
                         ),
                         padding: EdgeInsets.all(20),
-                        child: Image.asset("img/profile.png", scale: .7),
+                        child: SvgPicture.asset("img/profile.svg"),
                       ),
                       Text(currentRequerente.nome, style: TextStyle(color: Colors.white, fontSize: 20)),
                     ]
                     
                 ),
-                RequerentesTopicInformation(topicName: "Nome Social", topicData: currentRequerente.nomeSocial!= '' ? currentRequerente.nomeSocial : "Não possui", topicImage: "img/profile.png",),
-                RequerentesTopicInformation(topicName: "Email", topicData: currentRequerente.email, topicImage: "img/email.png",),
-                RequerentesTopicInformation(topicName: "Gênero", topicData: currentRequerente.genero, topicImage: "img/profile.png",),
+                RequerentesTopicInformation(topicName: "Nome Social", topicData: currentRequerente.nomeSocial!= '' ? currentRequerente.nomeSocial : "Não possui", topicImage: "img/profile.svg",),
+                //RequerentesTopicInformation(topicName: "Email", topicData: currentRequerente.email, topicImage: "img/email.png",),
+                RequerentesTopicInformation(topicName: "Gênero", topicData: currentRequerente.genero, topicImage: "img/profile.svg",),
                 ]
               ),
               )

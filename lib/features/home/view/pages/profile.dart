@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:jurai/features/auth/view/pages/homepage.dart';
 import 'package:jurai/features/home/view/pages/personal_information.dart';
 import 'package:jurai/features/home/view/pages/privacy_security.dart';
@@ -42,7 +43,7 @@ class Profile extends StatelessWidget {
                   border: Border.all(color: Colors.white, width: 3),
                 ),
                 margin: EdgeInsets.only(bottom: 20),
-                child: Image.asset("img/profile.png", scale: 0.7),
+                child: SvgPicture.asset("img/profile.svg"),
               ),
               ProfileOptionsButton(text: "Informações Pessoais", preffixIcon: Icons.account_circle, destiny: PersonalInformation()),
               ProfileOptionsButton(text: "Privacidade e Segurança", preffixIcon: Icons.lock, destiny: PrivacySecurity()),

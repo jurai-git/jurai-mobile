@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:jurai/features/home/view/pages/profile.dart';
 
 class Documents extends StatelessWidget {
@@ -31,7 +32,7 @@ class Documents extends StatelessWidget {
                         padding: EdgeInsets.all(20),
                         backgroundColor: Colors.amber,
                       ),
-                      child: Image.asset("img/profile.png"),
+                      child: SvgPicture.asset("img/profile.svg"),
                     ),
                   ),
                 ],

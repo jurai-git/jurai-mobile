@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class CustomTextField extends StatefulWidget {
   final TextEditingController textController;
@@ -33,13 +34,13 @@ class _CustomTextFieldState extends State<CustomTextField> {
     switch (widget.type) {
       case "username":
         _hintText = "Nome Completo";
-        _iconPath = "img/profile.png";
+        _iconPath = "img/profile.svg";
         _validator = (value) =>
             value == null || value.isEmpty ? "O campo nome é obrigatório!" : null;
         break;
       case "oab":
         _hintText = "Nº OAB";
-        _iconPath = "img/oab.png";
+        _iconPath = "img/oab.svg";
         _validator = (value) {
           if (value == null || value.isEmpty) return "O campo Nº OAB é obrigatório!";
           if (!RegExp(r"^\d+$").hasMatch(value)) return "O campo Nº OAB deve conter apenas números!";
@@ -48,7 +49,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         break;
       case "email":
         _hintText = "E-mail";
-        _iconPath = "img/email.png";
+        _iconPath = "img/email.svg";
         _validator = (value) {
           if (value == null || value.isEmpty) return "O campo e-mail é obrigatório!";
           if (!RegExp(r"^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$").hasMatch(value)) return "Formato de e-mail inválido!";
@@ -57,19 +58,19 @@ class _CustomTextFieldState extends State<CustomTextField> {
         break;
       case "password":
         _hintText = "Senha";
-        _iconPath = "img/password.png";
+        _iconPath = "img/password.svg";
         _validator = (value) =>
             value == null || value.isEmpty ? "O campo senha é obrigatório!" : null;
         break;
       case "confirmPassword":
         _hintText = "Confirmar Senha";
-        _iconPath = "img/password.png";
+        _iconPath = "img/password.svg";
         _validator = (value) =>
             value == null || value.isEmpty ? "Confirme sua senha!" : null;
         break;
       default:
         _hintText = "Campo";
-        _iconPath = "img/profile.png";
+        _iconPath = "img/profile.svg";
         _validator = (value) => null;
     }
   }
@@ -97,14 +98,14 @@ class _CustomTextFieldState extends State<CustomTextField> {
           hintText: _hintText,
           hintStyle: TextStyle(color: Colors.grey),
           errorStyle: TextStyle(color: Color(0xFFD32F2F), fontWeight: FontWeight.bold),
-          prefixIcon: Image.asset(_iconPath),
-          prefixIconConstraints: BoxConstraints(minWidth: 10, minHeight: 10),
+          prefixIcon: SvgPicture.asset(_iconPath),
+          prefixIconConstraints: BoxConstraints(maxWidth: 20, maxHeight: 20),
           border: InputBorder.none,
           fillColor: Colors.transparent,
           suffixIcon: widget.showSuffix
               ? IconButton(
-                  icon: Image.asset(
-                    widget.obscureText ? "img/invisiblePassword.png" : "img/visiblePassword.png",
+                  icon: SvgPicture.asset(
+                    widget.obscureText ? "img/invisiblePassword.svg" : "img/visiblePassword.svg",
                   ),
                   onPressed: widget.onSuffixTap,
                 )

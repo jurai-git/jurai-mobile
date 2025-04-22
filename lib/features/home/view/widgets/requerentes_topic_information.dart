@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class RequerentesTopicInformation extends StatelessWidget {
   final String topicName;
@@ -19,7 +20,7 @@ class RequerentesTopicInformation extends StatelessWidget {
             color: Color(0xFF387FB9),
             borderRadius: BorderRadius.all(Radius.circular(5))
           ),
-          child: Image.asset(topicImage, scale: .8,),
+          child: SvgPicture.asset(topicImage, width: 30, height: 30,),
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,

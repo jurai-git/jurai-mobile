@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:jurai/features/home/providers/advogado_provider.dart';
 import 'package:jurai/features/home/repositories/home_remote_repository.dart';
 import 'package:jurai/features/home/view/pages/profile.dart';
@@ -55,7 +56,7 @@ class _UserHomeState extends ConsumerState<UserHome>{
                         padding: EdgeInsets.all(20),
                         backgroundColor: Colors.amber,
                       ),
-                      child: Image.asset("img/profile.png"),
+                      child: SvgPicture.asset("img/profile.svg"),
                     ),
                   ),
                 ],

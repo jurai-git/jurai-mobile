@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:http/http.dart' as http;
 import 'package:jurai/features/home/view/pages/profile.dart';
 
@@ -50,7 +51,7 @@ class _AnalysisState extends State<Analysis> {
                         padding: EdgeInsets.all(20),
                         backgroundColor: Colors.amber,
                       ),
-                      child: Image.asset("img/profile.png"),
+                      child: SvgPicture.asset("img/profile.svg"),
                     ),
                   ),
                 ],
