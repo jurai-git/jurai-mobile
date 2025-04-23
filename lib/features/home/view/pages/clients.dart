@@ -145,11 +145,7 @@ class _ClientsState extends ConsumerState<Clients> {
                     child: Column(
                       spacing: 30,
                       children: [
-                        if (buttonIndex == 0) PersonalInformation(),
-                        if (buttonIndex == 1) GeneralInformation(),
-                        if (buttonIndex == 2) AdressInformation(),
                         Container(
-                          padding: EdgeInsets.symmetric(horizontal: 60),
                           width: MediaQuery.of(context).size.width,
                           child: SingleChoice(
                             onSelectionChanged: (value) {
@@ -159,6 +155,9 @@ class _ClientsState extends ConsumerState<Clients> {
                             },
                           ),
                         ),
+                        if (buttonIndex == 0) PersonalInformation(),
+                        if (buttonIndex == 1) GeneralInformation(),
+                        if (buttonIndex == 2) AdressInformation(),
                       ]
                     ),
                   )
@@ -194,10 +193,12 @@ class SingleChoice extends StatelessWidget {
     return SegmentedButton<Options>(
       showSelectedIcon: false,
       style: SegmentedButton.styleFrom(
-        backgroundColor: Color.fromRGBO(120, 120, 128, 0.120),
-        foregroundColor: Color(0x77808080),
-        selectedForegroundColor: Colors.black,
+        backgroundColor: Color.fromRGBO(25, 24, 29, 1),
+        foregroundColor: const Color.fromRGBO(255, 255, 255, .5),
+        selectedBackgroundColor: Colors.blue,
+        selectedForegroundColor: Colors.white,
         side: BorderSide(color: Colors.transparent, width: 0),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
         textStyle: TextStyle(fontWeight: FontWeight.w400),
       ),
       segments: const <ButtonSegment<Options>>[
