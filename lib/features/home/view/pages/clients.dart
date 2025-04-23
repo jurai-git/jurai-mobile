@@ -155,9 +155,38 @@ class _ClientsState extends ConsumerState<Clients> {
                             },
                           ),
                         ),
-                        if (buttonIndex == 0) PersonalInformation(),
-                        if (buttonIndex == 1) GeneralInformation(),
-                        if (buttonIndex == 2) AdressInformation(),
+                        if (buttonIndex == 0) 
+                          Column(
+                            spacing: 30,
+                            children: [
+                              RequerentesTopicInformation(topicName: "Nome Social", topicData: currentRequerente.nomeSocial!= '' ? currentRequerente.nomeSocial : "Não possui", topicImage: "img/profile.svg",),
+                              RequerentesTopicInformation(topicName: "Email", topicData: currentRequerente.email, topicImage: "img/email.svg",),
+                              RequerentesTopicInformation(topicName: "Gênero", topicData: currentRequerente.genero, topicImage: "img/profile.svg",),
+                            ],
+                          ),
+                        if (buttonIndex == 1) 
+                          Column(
+                            spacing: 30,
+                            children: [
+                              RequerentesTopicInformation(topicName: "CPF/CNPJ", topicData: currentRequerente.cpf_cnpj, topicImage: "img/oab.svg",),
+                              RequerentesTopicInformation(topicName: "RG", topicData: currentRequerente.rg, topicImage: "img/rg.svg",),
+                              RequerentesTopicInformation(topicName: "Profissão", topicData: currentRequerente.profissao, topicImage: "img/job.svg",),
+                              RequerentesTopicInformation(topicName: "Nacionalidade", topicData: currentRequerente.nacionalidade, topicImage: "img/nationality.svg",),
+                              RequerentesTopicInformation(topicName: "Estado Civil", topicData: currentRequerente.estadoCivil, topicImage: "img/civil.svg",),
+                            ],
+                          ),
+                        if (buttonIndex == 2)
+                          Column(
+                            spacing: 30,
+                            children: [
+                              RequerentesTopicInformation(topicName: "CEP", topicData: currentRequerente.cep, topicImage: "img/cep.svg",),
+                              RequerentesTopicInformation(topicName: "Cidade", topicData: currentRequerente.cidade, topicImage: "img/city.svg",),
+                              RequerentesTopicInformation(topicName: "Bairro", topicData: currentRequerente.bairro, topicImage: "img/bairro.svg",),
+                              RequerentesTopicInformation(topicName: "Logradouro", topicData: currentRequerente.logradouro, topicImage: "img/nationality.svg",),
+                              RequerentesTopicInformation(topicName: "Nº", topicData: currentRequerente.estadoCivil, topicImage: "img/number.svg",),
+                              RequerentesTopicInformation(topicName: "Complemento", topicData: currentRequerente.complemento!= '' ? currentRequerente.complemento : 'Não possui', topicImage: "img/complement.svg",),
+                            ],
+                          ),
                       ]
                     ),
                   )
@@ -218,59 +247,6 @@ class SingleChoice extends StatelessWidget {
           selectedValue = 3;
         onSelectionChanged(selectedValue);
       },
-    );
-  }
-}
-
-class PersonalInformation extends StatelessWidget {
-  const PersonalInformation({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      spacing: 30,
-      children: [
-        RequerentesTopicInformation(topicName: "Nome Social", topicData: currentRequerente.nomeSocial!= '' ? currentRequerente.nomeSocial : "Não possui", topicImage: "img/profile.svg",),
-        RequerentesTopicInformation(topicName: "Email", topicData: currentRequerente.email, topicImage: "img/email.svg",),
-        RequerentesTopicInformation(topicName: "Gênero", topicData: currentRequerente.genero, topicImage: "img/profile.svg",),
-      ],
-    );
-  }
-}
-
-class GeneralInformation extends StatelessWidget {
-  const GeneralInformation({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      spacing: 30,
-      children: [
-        RequerentesTopicInformation(topicName: "CPF/CNPJ", topicData: currentRequerente.cpf_cnpj, topicImage: "img/oab.svg",),
-        RequerentesTopicInformation(topicName: "RG", topicData: currentRequerente.rg, topicImage: "img/rg.svg",),
-        RequerentesTopicInformation(topicName: "Profissão", topicData: currentRequerente.profissao, topicImage: "img/job.svg",),
-        RequerentesTopicInformation(topicName: "Nacionalidade", topicData: currentRequerente.nacionalidade, topicImage: "img/nationality.svg",),
-        RequerentesTopicInformation(topicName: "Estado Civil", topicData: currentRequerente.estadoCivil, topicImage: "img/civil.svg",),
-      ],
-    );
-  }
-}
-
-class AdressInformation extends StatelessWidget {
-  const AdressInformation({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      spacing: 30,
-      children: [
-        RequerentesTopicInformation(topicName: "CEP", topicData: currentRequerente.cep, topicImage: "img/cep.svg",),
-        RequerentesTopicInformation(topicName: "Cidade", topicData: currentRequerente.cidade, topicImage: "img/city.svg",),
-        RequerentesTopicInformation(topicName: "Bairro", topicData: currentRequerente.bairro, topicImage: "img/bairro.svg",),
-        RequerentesTopicInformation(topicName: "Logradouro", topicData: currentRequerente.logradouro, topicImage: "img/nationality.svg",),
-        RequerentesTopicInformation(topicName: "Nº", topicData: currentRequerente.estadoCivil, topicImage: "img/number.svg",),
-        RequerentesTopicInformation(topicName: "Complemento", topicData: currentRequerente.complemento!= '' ? currentRequerente.complemento : 'Não possui', topicImage: "img/complement.svg",),
-      ],
     );
   }
 }
