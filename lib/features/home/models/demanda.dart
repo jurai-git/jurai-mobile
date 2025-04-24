@@ -7,12 +7,12 @@ class Demanda {
   final String competencia;
   final String classe;
   final String assunto_principal;
-  final String pedido_liminar;
-  final String segredo_justica;
-  final String valor_acao;
-  final String dispensa_legal;
-  final String justica_gratuita;
-  final String guia_custas;
+  final bool pedido_liminar;
+  final bool segredo_justica;
+  final double valor_acao;
+  final bool dispensa_legal;
+  final bool justica_gratuita;
+  final bool guia_custas;
   final String resumo;
 
   Demanda({required this.identificacao, required this.foro, required this.status, required this.competencia, required this.classe, required this.assunto_principal, required this.pedido_liminar, required this.segredo_justica, required this.valor_acao, required this.dispensa_legal, required this.justica_gratuita, required this.guia_custas, required this.resumo});
@@ -24,12 +24,12 @@ class Demanda {
     String? competencia,
     String? classe,
     String? assunto_principal,
-    String? pedido_liminar,
-    String? segredo_justica,
-    String? valor_acao,
-    String? dispensa_legal,
-    String? justica_gratuita,
-    String? guia_custas,
+    bool? pedido_liminar,
+    bool? segredo_justica,
+    double? valor_acao,
+    bool? dispensa_legal,
+    bool? justica_gratuita,
+    bool? guia_custas,
     String? resumo,
   }) {
     return Demanda(identificacao: identificacao ?? this.identificacao, foro: foro ?? this.foro, status: status ?? this.status, competencia: competencia ?? this.competencia, classe: classe ?? this.classe, assunto_principal: assunto_principal ?? this.assunto_principal, pedido_liminar: pedido_liminar ?? this.pedido_liminar, segredo_justica: segredo_justica ?? this.segredo_justica, valor_acao: valor_acao ?? this.valor_acao, dispensa_legal: dispensa_legal ?? this.dispensa_legal, justica_gratuita: justica_gratuita ?? this.justica_gratuita, guia_custas: guia_custas ?? this.guia_custas, resumo: resumo ?? this.resumo);
