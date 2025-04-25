@@ -6,6 +6,7 @@ import 'package:jurai/features/home/models/demanda.dart';
 import 'package:jurai/features/home/providers/demanda_provider.dart';
 import 'package:jurai/features/home/view/pages/profile.dart';
 import 'package:jurai/features/home/view/widgets/demandas_view_button.dart';
+import 'package:jurai/features/home/view/widgets/topic_information.dart';
 
 class Documents extends ConsumerStatefulWidget {
   const Documents({super.key});
@@ -150,18 +151,18 @@ class _DocumentsState extends ConsumerState<Documents>{
                           Column(
                             spacing: 30,
                             children: [
+                              TopicInformation(topicName: "Foro", topicData: currentDemanda.foro, topicImage: "img/foro.svg"),
+                              TopicInformation(topicName: "Status", topicData: currentDemanda.status, topicImage: "img/status.svg"),
+                              TopicInformation(topicName: "Competência", topicData: currentDemanda.competencia, topicImage: "img/competencia.svg"),
+                              TopicInformation(topicName: "Classe", topicData: currentDemanda.classe, topicImage: "img/classe.svg"),
                             ],
                           ),
                         if (buttonIndex == 1) 
                           Column(
                             spacing: 30,
                             children: [
-                            ],
-                          ),
-                        if (buttonIndex == 2)
-                          Column(
-                            spacing: 30,
-                            children: [
+                              TopicInformation(topicName: "Assunto Principal", topicData: currentDemanda.assunto_principal, topicImage: "img/assuntoPrincipal.svg"),
+                              TopicInformation(topicName: "Valor da Ação", topicData: currentDemanda.valor_acao, topicImage: "img/valorAcao.svg"),
                             ],
                           ),
                       ]
