@@ -12,7 +12,7 @@ class HomeViewModel extends _$HomeViewModel{
 
 
   @override
-  AsyncValue<List<Requerente>>? build(){
+  AsyncValue<List>? build(){
     homeRemoteRepository = ref.watch(homeRemoteRepositoryProvider);
     return null;
   }
@@ -26,5 +26,17 @@ class HomeViewModel extends _$HomeViewModel{
       Right(value: final r) => [ref.read(requerenteListProvider.notifier).setRequerenteList(r), state = AsyncValue.data(r)],
     };
     print(val);
+  }
+
+  Future<void> getAllDemandasFromRequerente({
+    required int id_requerente
+  }) async{
+    state = AsyncValue.loading();
+    final res = await homeRemoteRepository.getAllDemandasFromRequerente(id_requerente: id_requerente);
+
+    final val = switch(res){
+      Left(value: final l) => state = AsyncValue.error(l.message, StackTrace.current),
+      Right(value: final r) => state = AsyncValue.data(r),
+    };
   }
 }
