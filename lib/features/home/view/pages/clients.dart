@@ -5,7 +5,7 @@ import 'package:jurai/features/auth/view/widgets/loading_circle.dart';
 import 'package:jurai/features/home/models/requerente.dart';
 import 'package:jurai/features/home/providers/requerente_provider.dart';
 import 'package:jurai/features/home/view/pages/profile.dart';
-import 'package:jurai/features/home/view/widgets/requerentes_topic_information.dart';
+import 'package:jurai/features/home/view/widgets/topic_information.dart';
 import 'package:jurai/features/home/view/widgets/requerentes_view_button.dart';
 
 class Clients extends ConsumerStatefulWidget {
@@ -159,32 +159,32 @@ class _ClientsState extends ConsumerState<Clients> {
                           Column(
                             spacing: 30,
                             children: [
-                              RequerentesTopicInformation(topicName: "Nome Social", topicData: currentRequerente.nomeSocial!= '' ? currentRequerente.nomeSocial : "Não possui", topicImage: "img/profile.svg",),
-                              RequerentesTopicInformation(topicName: "Email", topicData: currentRequerente.email, topicImage: "img/email.svg",),
-                              RequerentesTopicInformation(topicName: "Gênero", topicData: currentRequerente.genero, topicImage: "img/profile.svg",),
+                              TopicInformation(topicName: "Nome Social", topicData: currentRequerente.nomeSocial!= '' ? currentRequerente.nomeSocial : "Não possui", topicImage: "img/profile.svg",),
+                              TopicInformation(topicName: "Email", topicData: currentRequerente.email, topicImage: "img/email.svg",),
+                              TopicInformation(topicName: "Gênero", topicData: currentRequerente.genero, topicImage: "img/profile.svg",),
                             ],
                           ),
                         if (buttonIndex == 1) 
                           Column(
                             spacing: 30,
                             children: [
-                              RequerentesTopicInformation(topicName: "CPF/CNPJ", topicData: currentRequerente.cpf_cnpj, topicImage: "img/oab.svg",),
-                              RequerentesTopicInformation(topicName: "RG", topicData: currentRequerente.rg, topicImage: "img/rg.svg",),
-                              RequerentesTopicInformation(topicName: "Profissão", topicData: currentRequerente.profissao, topicImage: "img/job.svg",),
-                              RequerentesTopicInformation(topicName: "Nacionalidade", topicData: currentRequerente.nacionalidade, topicImage: "img/nationality.svg",),
-                              RequerentesTopicInformation(topicName: "Estado Civil", topicData: currentRequerente.estadoCivil, topicImage: "img/civil.svg",),
+                              TopicInformation(topicName: "CPF/CNPJ", topicData: currentRequerente.cpf_cnpj, topicImage: "img/oab.svg",),
+                              TopicInformation(topicName: "RG", topicData: currentRequerente.rg, topicImage: "img/rg.svg",),
+                              TopicInformation(topicName: "Profissão", topicData: currentRequerente.profissao, topicImage: "img/job.svg",),
+                              TopicInformation(topicName: "Nacionalidade", topicData: currentRequerente.nacionalidade, topicImage: "img/nationality.svg",),
+                              TopicInformation(topicName: "Estado Civil", topicData: currentRequerente.estadoCivil, topicImage: "img/civil.svg",),
                             ],
                           ),
                         if (buttonIndex == 2)
                           Column(
                             spacing: 30,
                             children: [
-                              RequerentesTopicInformation(topicName: "CEP", topicData: currentRequerente.cep, topicImage: "img/cep.svg",),
-                              RequerentesTopicInformation(topicName: "Cidade", topicData: currentRequerente.cidade, topicImage: "img/city.svg",),
-                              RequerentesTopicInformation(topicName: "Bairro", topicData: currentRequerente.bairro, topicImage: "img/bairro.svg",),
-                              RequerentesTopicInformation(topicName: "Logradouro", topicData: currentRequerente.logradouro, topicImage: "img/nationality.svg",),
-                              RequerentesTopicInformation(topicName: "Nº", topicData: currentRequerente.estadoCivil, topicImage: "img/number.svg",),
-                              RequerentesTopicInformation(topicName: "Complemento", topicData: currentRequerente.complemento!= '' ? currentRequerente.complemento : 'Não possui', topicImage: "img/complement.svg",),
+                              TopicInformation(topicName: "CEP", topicData: currentRequerente.cep, topicImage: "img/cep.svg",),
+                              TopicInformation(topicName: "Cidade", topicData: currentRequerente.cidade, topicImage: "img/city.svg",),
+                              TopicInformation(topicName: "Bairro", topicData: currentRequerente.bairro, topicImage: "img/bairro.svg",),
+                              TopicInformation(topicName: "Logradouro", topicData: currentRequerente.logradouro, topicImage: "img/nationality.svg",),
+                              TopicInformation(topicName: "Nº", topicData: currentRequerente.estadoCivil, topicImage: "img/number.svg",),
+                              TopicInformation(topicName: "Complemento", topicData: currentRequerente.complemento!= '' ? currentRequerente.complemento : 'Não possui', topicImage: "img/complement.svg",),
                             ],
                           ),
                       ]
