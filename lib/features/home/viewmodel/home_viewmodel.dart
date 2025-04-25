@@ -1,5 +1,4 @@
 import 'package:either_dart/either.dart';
-import 'package:jurai/features/home/models/requerente.dart';
 import 'package:jurai/features/home/providers/requerente_provider.dart';
 import 'package:jurai/features/home/repositories/home_remote_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -38,5 +37,6 @@ class HomeViewModel extends _$HomeViewModel{
       Left(value: final l) => state = AsyncValue.error(l.message, StackTrace.current),
       Right(value: final r) => state = AsyncValue.data(r),
     };
+    print(val);
   }
 }
