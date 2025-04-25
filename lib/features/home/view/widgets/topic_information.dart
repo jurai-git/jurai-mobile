@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class RequerentesTopicInformation extends StatelessWidget {
+class TopicInformation extends StatelessWidget {
   final String topicName;
   final String topicData;
   final String topicImage;
 
-  const RequerentesTopicInformation({super.key, required this.topicName, required this.topicData, required this.topicImage});
+  const TopicInformation({super.key, required this.topicName, required this.topicData, required this.topicImage});
 
   @override
   Widget build(BuildContext context) {
