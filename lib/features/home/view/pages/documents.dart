@@ -1,12 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:jurai/features/home/models/demanda.dart';
+import 'package:jurai/features/home/providers/demanda_provider.dart';
 import 'package:jurai/features/home/view/pages/profile.dart';
+import 'package:jurai/features/home/view/widgets/demandas_view_button.dart';
 
-class Documents extends StatelessWidget {
+class Documents extends ConsumerStatefulWidget {
   const Documents({super.key});
 
   @override
+  ConsumerState<Documents> createState() => _DocumentsState();
+}
+
+var demandasList;
+var currentDemanda;
+
+class _DocumentsState extends ConsumerState<Documents>{ 
+
+  @override
+  void initState() {
+    super.initState();
+    demandasList = loadDemandas(context, ref);
+  }
+
+  @override
   Widget build(BuildContext context) {
+    currentDemanda = ref.watch(demandaProvider);
     return Container(
       color: Color.fromRGBO(25, 24, 29, 1),
       child: Scaffold(
@@ -67,4 +87,18 @@ class Documents extends StatelessWidget {
       )
     );
   }
+}
+
+Future<List<Widget>> loadDemandas(BuildContext context, WidgetRef ref) async{
+  var lista = <Widget>[];
+  int count = 1;
+  demandasList = ref.read(demandaListProvider);
+
+  for (Demanda d in demandasList) {
+    lista.add(DemandasViewButton(demanda: d, ref: ref, count: count,));
+    count++;
+  }
+  print(lista);
+  
+  return lista;
 }
