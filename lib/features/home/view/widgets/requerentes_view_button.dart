@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:jurai/features/home/models/requerente.dart';
+import 'package:jurai/features/home/providers/demanda_provider.dart';
 import 'package:jurai/features/home/providers/requerente_provider.dart';
+import 'package:jurai/features/home/viewmodel/home_viewmodel.dart';
 
 class RequerentesViewButton extends StatefulWidget {
   final Requerente requerente;
@@ -22,6 +24,7 @@ class _RequerentesViewButtonState extends State<RequerentesViewButton> {
       onPressed: () {
         setState(() {
           widget.ref.watch(requerenteProvider.notifier).setRequerente(widget.requerente);
+          widget.ref.watch(homeViewModelProvider.notifier).getAllDemandasFromRequerente(id_requerente: widget.requerente.id_requerente);
         });
       },
       style: ElevatedButton.styleFrom(
