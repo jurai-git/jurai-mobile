@@ -1,4 +1,5 @@
 import 'package:either_dart/either.dart';
+import 'package:jurai/features/home/providers/demanda_provider.dart';
 import 'package:jurai/features/home/providers/requerente_provider.dart';
 import 'package:jurai/features/home/repositories/home_remote_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -35,7 +36,7 @@ class HomeViewModel extends _$HomeViewModel{
 
     final val = switch(res){
       Left(value: final l) => state = AsyncValue.error(l.message, StackTrace.current),
-      Right(value: final r) => state = AsyncValue.data(r),
+      Right(value: final r) => [ref.read(demandaListProvider.notifier).setDemandaList(r), state = AsyncValue.data(r)],
     };
     print(val);
   }
