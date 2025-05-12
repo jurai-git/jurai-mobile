@@ -162,7 +162,7 @@ class _DocumentsState extends ConsumerState<Documents>{
                             spacing: 30,
                             children: [
                               TopicInformation(topicName: "Assunto Principal", topicData: currentDemanda.assunto_principal, topicImage: "img/assuntoPrincipal.svg"),
-                              TopicInformation(topicName: "Valor da Ação", topicData: currentDemanda.valor_acao, topicImage: "img/valorAcao.svg"),
+                              TopicInformation(topicName: "Valor da Ação", topicData: currentDemanda.valor_acao.toString(), topicImage: "img/valorAcao.svg"),
                             ],
                           ),
                       ]
