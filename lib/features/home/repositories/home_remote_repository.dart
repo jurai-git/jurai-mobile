@@ -65,7 +65,7 @@ class HomeRemoteRepository {
         );
 
         var resBodyMap = jsonDecode(res.body);
-        if(res.statusCode != 201){
+        if(res.statusCode / 100 != 2){
           return Left(FlutterError(resBodyMap['detail']));
         }
 
