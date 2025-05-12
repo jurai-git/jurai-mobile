@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:jurai/features/auth/view/widgets/loading_circle.dart';
 import 'package:jurai/features/home/models/requerente.dart';
+import 'package:jurai/features/home/providers/demanda_provider.dart';
 import 'package:jurai/features/home/providers/requerente_provider.dart';
 import 'package:jurai/features/home/view/pages/profile.dart';
 import 'package:jurai/features/home/view/widgets/topic_information.dart';
@@ -76,7 +77,7 @@ class _ClientsState extends ConsumerState<Clients> {
                     padding: EdgeInsets.fromLTRB(50, 50, 50, 20),
                     child: Row(
                       children: [
-                        currentRequerente != null ? IconButton(onPressed: (){setState((){ref.watch(requerenteProvider.notifier).clear(); buttonIndex=0;});}, icon: Icon(Icons.arrow_back, color: Colors.white, size: 40,)) : Text(''),
+                        currentRequerente != null ? IconButton(onPressed: (){setState((){ref.watch(requerenteProvider.notifier).clear(); ref.watch(demandaListProvider.notifier).clear(); buttonIndex=0;});}, icon: Icon(Icons.arrow_back, color: Colors.white, size: 40,)) : Text(''),
                         Text(
                           "Seus ",
                           style: TextStyle(color: Colors.white, fontSize: 32),
