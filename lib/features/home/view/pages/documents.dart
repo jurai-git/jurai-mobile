@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:jurai/features/auth/view/widgets/loading_circle.dart';
 import 'package:jurai/features/home/models/demanda.dart';
 import 'package:jurai/features/home/providers/demanda_provider.dart';
+import 'package:jurai/features/home/providers/requerente_provider.dart';
 import 'package:jurai/features/home/view/pages/profile.dart';
 import 'package:jurai/features/home/view/widgets/demandas_view_button.dart';
 import 'package:jurai/features/home/view/widgets/topic_information.dart';
@@ -97,10 +98,16 @@ class _DocumentsState extends ConsumerState<Documents>{
                     } else if (snapshot.hasError) {
                       return Text('Error: ${snapshot.error}', style: TextStyle(color: Colors.white),);
                     } else if (snapshot.hasData) {
-                      return Column(
-                        spacing: 15,
-                        children: snapshot.data!,
-                      );
+                        if(ref.read(requerenteProvider) == null)
+                          return Text('Selecione um requerente!', style: TextStyle(color: Colors.white),);
+                        else if(ref.read(demandaListProvider).isEmpty)
+                          return Text('O requerente selecionado não possui demandas!', style: TextStyle(color: Colors.white),);
+                        else{
+                          return Column(
+                            spacing: 15,
+                            children: snapshot.data!,
+                          );
+                        }
                     } else {
                       return Text('Não foram encontradas demandas!', style: TextStyle(color: Colors.white),);
                     }
