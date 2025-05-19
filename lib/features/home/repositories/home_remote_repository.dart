@@ -22,12 +22,12 @@ class HomeRemoteRepository {
       String? token = await tokenService.getToken();
       
       final res = await http
-        .post(Uri.parse("https://jurai-server.onrender.com/advogado/requerentes"), headers: {
+        .get(Uri.parse("https://jurai-server.onrender.com/advogado/requerentes"), headers: {
           'Content-Type': 'application/json',
           'Authorization': token != null ? 'Bearer $token' : ''
         });
         var resBodyMap = jsonDecode(res.body);
-        if(res.statusCode != 201){
+        if(res.statusCode / 100 != 2){
           return Left(FlutterError(resBodyMap['detail']));
         }
 
@@ -53,15 +53,12 @@ class HomeRemoteRepository {
     try{
       String? token = await tokenService.getToken();
       
-      final res = await http.post(
-        Uri.parse("https://jurai-server.onrender.com/requerente/demandas"), 
+      final res = await http.get(
+        Uri.parse("https://jurai-server.onrender.com/advogado/requerente/${id_requerente.toString()}/demandas"), 
         headers: {
           'Content-Type': 'application/json',
           'Authorization': token != null ? 'Bearer $token' : ''
         },
-        body: jsonEncode({
-          'id_requerente': id_requerente,
-          }),
         );
 
         var resBodyMap = jsonDecode(res.body);
