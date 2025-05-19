@@ -133,7 +133,7 @@ class _DocumentsState extends ConsumerState<Documents>{
                               borderRadius: BorderRadius.all(Radius.circular(100)),
                             ),
                             padding: EdgeInsets.all(20),
-                            child: SvgPicture.asset("img/profile.svg"),
+                            child: Icon(Icons.description, color: Colors.white, size: 25,),
                           ),
                           Text("teste", style: TextStyle(color: Colors.white, fontSize: 20)),
                         ]
