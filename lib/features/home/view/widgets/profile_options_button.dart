@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:jurai/features/home/providers/advogado_provider.dart';
+import 'package:jurai/features/home/providers/demanda_provider.dart';
+import 'package:jurai/features/home/providers/requerente_provider.dart';
 
-class ProfileOptionsButton extends StatefulWidget {
+class ProfileOptionsButton extends ConsumerStatefulWidget {
   final String text;
   final IconData preffixIcon;
   final bool quit;
@@ -17,10 +21,10 @@ class ProfileOptionsButton extends StatefulWidget {
   });
 
   @override
-  State<ProfileOptionsButton> createState() => _ProfileOptionsButtonState();
+  ConsumerState<ProfileOptionsButton> createState() => _ProfileOptionsButtonState();
 }
 
-class _ProfileOptionsButtonState extends State<ProfileOptionsButton> {
+class _ProfileOptionsButtonState extends ConsumerState<ProfileOptionsButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -62,6 +66,11 @@ class _ProfileOptionsButtonState extends State<ProfileOptionsButton> {
                           ScaffoldMessenger.of(
                             context,
                           ).hideCurrentSnackBar();
+                          ref.watch(advogadoProvider.notifier).clear();
+                          ref.watch(demandaProvider.notifier).clear();
+                          ref.watch(demandaListProvider.notifier).clear();
+                          ref.watch(requerenteProvider.notifier).clear();
+                          ref.watch(requerenteListProvider.notifier).clear();
                           Navigator.push(
                             context,
                             MaterialPageRoute(
