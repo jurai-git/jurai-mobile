@@ -43,7 +43,7 @@ class RegisterState extends ConsumerState<Register>{
           data: (data) {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Conta criada com sucesso! Faça login para entrar"))
             );
-            Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Login()));
           },
           error: (error, st) {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.toString())));
