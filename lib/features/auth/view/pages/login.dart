@@ -40,7 +40,7 @@ class LoginState extends ConsumerState<Login> {
             Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
-                builder: (context) => const Navigation(),
+                builder: (context) => const CustomBotNavBar(),
               ),
               (_) => false,
             );

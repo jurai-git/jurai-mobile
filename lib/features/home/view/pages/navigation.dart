@@ -5,22 +5,6 @@ import 'package:jurai/features/home/view/pages/devs.dart';
 import 'package:jurai/features/home/view/pages/documents.dart';
 import 'package:jurai/features/home/view/pages/userhome.dart';
 
-class Navigation extends StatelessWidget {
-  const Navigation({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-        fontFamily: "MPLUSRounded1c"
-      ),
-      home: CustomBotNavBar(),
-      debugShowCheckedModeBanner: false
-      );
-  }
-}
-
 class CustomBotNavBar extends StatefulWidget {
   final int? customIndex;
   const CustomBotNavBar({super.key, this.customIndex});
