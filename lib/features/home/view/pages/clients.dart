@@ -77,7 +77,7 @@ class _ClientsState extends ConsumerState<Clients> {
                     padding: EdgeInsets.fromLTRB(50, 50, 50, 20),
                     child: Row(
                       children: [
-                        currentRequerente != null ? IconButton(onPressed: (){setState((){ref.watch(requerenteProvider.notifier).clear(); ref.watch(demandaListProvider.notifier).clear(); buttonIndex=0;});}, icon: Icon(Icons.arrow_back, color: Colors.white, size: 40,)) : Text(''),
+                        currentRequerente != null ? IconButton(onPressed: (){setState((){ref.watch(requerenteProvider.notifier).clear(); ref.watch(demandaListProvider.notifier).clear(); ref.watch(demandaProvider.notifier).clear(); buttonIndex=0;});}, icon: Icon(Icons.arrow_back, color: Colors.white, size: 40,)) : Text(''),
                         Text(
                           "Seus ",
                           style: TextStyle(color: Colors.white, fontSize: 32),
