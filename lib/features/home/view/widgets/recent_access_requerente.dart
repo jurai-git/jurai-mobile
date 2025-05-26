@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:jurai/features/home/models/requerente.dart';
 import 'package:jurai/features/home/providers/requerente_provider.dart';
 import 'package:jurai/features/home/view/pages/navigation.dart';
+import 'package:jurai/features/home/viewmodel/home_viewmodel.dart';
 
 class RecentAccessRequerente extends ConsumerStatefulWidget {
   final Requerente requerente;
@@ -21,6 +22,7 @@ class _RecentAccessRequerenteState extends ConsumerState<RecentAccessRequerente>
     return GestureDetector(
           onTap: (){
             ref.read(requerenteProvider.notifier).setRequerente(widget.requerente);
+            ref.watch(homeViewModelProvider.notifier).getAllDemandasFromRequerente(id_requerente: widget.requerente.id_requerente);
             Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => CustomBotNavBar(customIndex: 1)));
           },
           child: Column(
