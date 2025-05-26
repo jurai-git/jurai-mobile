@@ -14,8 +14,14 @@ class CustomBotNavBar extends StatefulWidget {
 }
 
 class CheckState extends State<CustomBotNavBar> {
-  int selectedIndex = 0;
+  late int selectedIndex;
   static const List<Widget> pages = <Widget>[UserHome(), Clients(), Documents(), Analysis(), Devs()];
+
+  @override
+  void initState() {
+    super.initState();
+    selectedIndex = widget.customIndex ?? 0;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +38,7 @@ class CheckState extends State<CustomBotNavBar> {
           selectedItemColor: Color(0xFF387FB9),
           selectedFontSize: 20,
           unselectedItemColor: Colors.white,
-          currentIndex: widget.customIndex ?? selectedIndex,
+          currentIndex: selectedIndex,
           onTap: (value) {
             setState(() {
               selectedIndex = value;
