@@ -22,7 +22,8 @@ class Navigation extends StatelessWidget {
 }
 
 class CustomBotNavBar extends StatefulWidget {
-  const CustomBotNavBar({super.key});
+  final int? customIndex;
+  const CustomBotNavBar({super.key, this.customIndex});
 
   @override
   State<CustomBotNavBar> createState() => CheckState();
@@ -30,7 +31,6 @@ class CustomBotNavBar extends StatefulWidget {
 
 class CheckState extends State<CustomBotNavBar> {
   int selectedIndex = 0;
-
   static const List<Widget> pages = <Widget>[UserHome(), Clients(), Documents(), Analysis(), Devs()];
 
   @override
@@ -48,7 +48,7 @@ class CheckState extends State<CustomBotNavBar> {
           selectedItemColor: Color(0xFF387FB9),
           selectedFontSize: 20,
           unselectedItemColor: Colors.white,
-          currentIndex: selectedIndex,
+          currentIndex: widget.customIndex ?? selectedIndex,
           onTap: (value) {
             setState(() {
               selectedIndex = value;
