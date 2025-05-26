@@ -5,7 +5,13 @@ class RecentReqAcessListNotifier extends StateNotifier<List<Requerente>>{
   RecentReqAcessListNotifier() : super([]);
 
   void setRecentReqAcessList(Requerente requerente){
-    state.add(requerente);
+    for(Requerente r in state){
+      if(r == requerente){
+        state.remove(r);
+        break;
+      }
+    }
+    state.insert(0, requerente);
   }
 
   void clear(){
