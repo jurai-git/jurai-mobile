@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:jurai/features/home/providers/advogado_provider.dart';
+import 'package:jurai/features/home/providers/recent_acess_provider.dart';
 import 'package:jurai/features/home/view/pages/profile.dart';
+import 'package:jurai/features/home/view/widgets/recent_access_requerente.dart';
 
 class UserHome extends ConsumerStatefulWidget {
   const UserHome({super.key});
@@ -20,7 +22,6 @@ class _UserHomeState extends ConsumerState<UserHome>{
 
   @override
   Widget build(BuildContext context) {
-
     final currentAdvogado = ref.watch(advogadoProvider);
     return Container(
       color: Color.fromRGBO(25, 24, 29, 1),
@@ -130,6 +131,23 @@ class _UserHomeState extends ConsumerState<UserHome>{
                   ),
                 ],
               ),
+              SizedBox(
+                height: 200,
+                child: ListView.builder(
+                  padding: EdgeInsets.symmetric(horizontal: 50),
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  itemCount: ref.watch(recentReqAcessListProvider).length,
+                  itemBuilder: (BuildContext context, index){
+                    return Container( 
+                      margin: EdgeInsets.only(right: 20),
+                      child: RecentAccessRequerente(requerente: ref.watch(recentReqAcessListProvider)[index],
+                      )
+                    );
+                  }
+                ),
+              )
             ],
           ),
         ),
