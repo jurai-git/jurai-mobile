@@ -155,24 +155,33 @@ class _DocumentsState extends ConsumerState<Documents>{
                             },
                           ),
                         ),
-                        if (buttonIndex == 0) 
-                          Column(
-                            spacing: 30,
-                            children: [
-                              TopicInformation(topicName: "Foro", topicData: currentDemanda.foro, topicImage: "img/foro.svg"),
-                              TopicInformation(topicName: "Status", topicData: currentDemanda.status, topicImage: "img/status.svg"),
-                              TopicInformation(topicName: "Competência", topicData: currentDemanda.competencia, topicImage: "img/competencia.svg"),
-                              TopicInformation(topicName: "Classe", topicData: currentDemanda.classe, topicImage: "img/classe.svg"),
-                            ],
-                          ),
-                        if (buttonIndex == 1) 
-                          Column(
-                            spacing: 30,
-                            children: [
-                              TopicInformation(topicName: "Assunto Principal", topicData: currentDemanda.assunto_principal, topicImage: "img/assuntoPrincipal.svg"),
-                              TopicInformation(topicName: "Valor da Ação", topicData: currentDemanda.valor_acao.toString(), topicImage: "img/valorAcao.svg"),
-                            ],
-                          ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.45,
+                          child: SingleChildScrollView(
+                            child: (){
+                              if (buttonIndex == 0) {
+                                return Column(
+                                  spacing: 30,
+                                  children: [
+                                    TopicInformation(topicName: "Foro", topicData: currentDemanda.foro, topicImage: "img/foro.svg"),
+                                    TopicInformation(topicName: "Status", topicData: currentDemanda.status, topicImage: "img/status.svg"),
+                                    TopicInformation(topicName: "Competência", topicData: currentDemanda.competencia, topicImage: "img/competencia.svg"),
+                                    TopicInformation(topicName: "Classe", topicData: currentDemanda.classe, topicImage: "img/classe.svg"),
+                                  ],
+                                );
+                              }
+                              if (buttonIndex == 1) {
+                                  return Column(
+                                    spacing: 30,
+                                    children: [
+                                      TopicInformation(topicName: "Assunto Principal", topicData: currentDemanda.assunto_principal, topicImage: "img/assuntoPrincipal.svg"),
+                                      TopicInformation(topicName: "Valor da Ação", topicData: currentDemanda.valor_acao.toString(), topicImage: "img/valorAcao.svg"),
+                                    ],
+                                  );
+                                }
+                              }()
+                            ),
+                          )
                       ]
                     ),
                   )

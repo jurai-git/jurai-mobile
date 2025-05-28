@@ -156,38 +156,48 @@ class _ClientsState extends ConsumerState<Clients> {
                             },
                           ),
                         ),
-                        if (buttonIndex == 0) 
-                          Column(
-                            spacing: 30,
-                            children: [
-                              TopicInformation(topicName: "Nome Social", topicData: currentRequerente.nomeSocial!= '' ? currentRequerente.nomeSocial : "Não possui", topicImage: "img/profile.svg",),
-                              TopicInformation(topicName: "Email", topicData: currentRequerente.email, topicImage: "img/email.svg",),
-                              TopicInformation(topicName: "Gênero", topicData: currentRequerente.genero, topicImage: "img/profile.svg",),
-                            ],
-                          ),
-                        if (buttonIndex == 1) 
-                          Column(
-                            spacing: 30,
-                            children: [
-                              TopicInformation(topicName: "CPF/CNPJ", topicData: currentRequerente.cpf_cnpj, topicImage: "img/oab.svg",),
-                              TopicInformation(topicName: "RG", topicData: currentRequerente.rg, topicImage: "img/rg.svg",),
-                              TopicInformation(topicName: "Profissão", topicData: currentRequerente.profissao, topicImage: "img/job.svg",),
-                              TopicInformation(topicName: "Nacionalidade", topicData: currentRequerente.nacionalidade, topicImage: "img/nationality.svg",),
-                              TopicInformation(topicName: "Estado Civil", topicData: currentRequerente.estadoCivil, topicImage: "img/civil.svg",),
-                            ],
-                          ),
-                        if (buttonIndex == 2)
-                          Column(
-                            spacing: 30,
-                            children: [
-                              TopicInformation(topicName: "CEP", topicData: currentRequerente.cep, topicImage: "img/cep.svg",),
-                              TopicInformation(topicName: "Cidade", topicData: currentRequerente.cidade, topicImage: "img/city.svg",),
-                              TopicInformation(topicName: "Bairro", topicData: currentRequerente.bairro, topicImage: "img/bairro.svg",),
-                              TopicInformation(topicName: "Logradouro", topicData: currentRequerente.logradouro, topicImage: "img/nationality.svg",),
-                              TopicInformation(topicName: "Nº", topicData: currentRequerente.estadoCivil, topicImage: "img/number.svg",),
-                              TopicInformation(topicName: "Complemento", topicData: currentRequerente.complemento!= '' ? currentRequerente.complemento : 'Não possui', topicImage: "img/complement.svg",),
-                            ],
-                          ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.45,
+                          child: SingleChildScrollView(
+                            child: (){
+                              if (buttonIndex == 0) {
+                                return Column(
+                                  spacing: 30,
+                                  children: [
+                                    TopicInformation(topicName: "Nome Social", topicData: currentRequerente.nomeSocial!= '' ? currentRequerente.nomeSocial : "Não possui", topicImage: "img/profile.svg",),
+                                    TopicInformation(topicName: "Email", topicData: currentRequerente.email, topicImage: "img/email.svg",),
+                                    TopicInformation(topicName: "Gênero", topicData: currentRequerente.genero, topicImage: "img/profile.svg",),
+                                  ],
+                                );
+                              }
+                              if (buttonIndex == 1) {
+                                return Column(
+                                  spacing: 30,
+                                  children: [
+                                    TopicInformation(topicName: "CPF/CNPJ", topicData: currentRequerente.cpf_cnpj, topicImage: "img/oab.svg",),
+                                    TopicInformation(topicName: "RG", topicData: currentRequerente.rg, topicImage: "img/rg.svg",),
+                                    TopicInformation(topicName: "Profissão", topicData: currentRequerente.profissao, topicImage: "img/job.svg",),
+                                    TopicInformation(topicName: "Nacionalidade", topicData: currentRequerente.nacionalidade, topicImage: "img/nationality.svg",),
+                                    TopicInformation(topicName: "Estado Civil", topicData: currentRequerente.estadoCivil, topicImage: "img/civil.svg",),
+                                  ],
+                                );
+                              }
+                              if (buttonIndex == 2) {
+                                return Column(
+                                  spacing: 30,
+                                  children: [
+                                    TopicInformation(topicName: "CEP", topicData: currentRequerente.cep, topicImage: "img/cep.svg",),
+                                    TopicInformation(topicName: "Cidade", topicData: currentRequerente.cidade, topicImage: "img/city.svg",),
+                                    TopicInformation(topicName: "Bairro", topicData: currentRequerente.bairro, topicImage: "img/bairro.svg",),
+                                    TopicInformation(topicName: "Logradouro", topicData: currentRequerente.logradouro, topicImage: "img/nationality.svg",),
+                                    TopicInformation(topicName: "Nº", topicData: currentRequerente.estadoCivil, topicImage: "img/number.svg",),
+                                    TopicInformation(topicName: "Complemento", topicData: currentRequerente.complemento!= '' ? currentRequerente.complemento : 'Não possui', topicImage: "img/complement.svg",),
+                                  ],
+                                );
+                              }
+                            }()
+                          )
+                        )
                       ]
                     ),
                   )
