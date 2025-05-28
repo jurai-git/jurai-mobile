@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:jurai/features/home/models/requerente.dart';
-import 'package:jurai/features/home/providers/demanda_provider.dart';
 import 'package:jurai/features/home/providers/recent_acess_provider.dart';
 import 'package:jurai/features/home/providers/requerente_provider.dart';
 import 'package:jurai/features/home/viewmodel/home_viewmodel.dart';
@@ -51,8 +50,11 @@ class _RequerentesViewButtonState extends State<RequerentesViewButton> {
             padding: EdgeInsets.all(20),
             child: SvgPicture.asset("img/profile.svg"),
           ),
-
-          Text(widget.requerente.nome, style: TextStyle(color: Colors.white, fontSize: 25)),
+          Flexible(
+            child: FittedBox( 
+              child:Text(widget.requerente.nome, style: TextStyle(color: Colors.white, fontSize: 25,), overflow: TextOverflow.ellipsis, maxLines: 1,),
+            )
+          )
         ],
       ),
     );

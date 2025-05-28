@@ -46,8 +46,11 @@ class _DemandasViewButtonState extends State<DemandasViewButton> {
             padding: EdgeInsets.all(20),
             child: Icon(Icons.description, color: Colors.white,),
           ),
-
-          Text("Demanda ${widget.count}", style: TextStyle(color: Colors.white, fontSize: 25)),
+          Flexible(
+            child: FittedBox( 
+              child: Text("Demanda ${widget.count}", style: TextStyle(color: Colors.white, fontSize: 25), overflow: TextOverflow.ellipsis, maxLines: 1,),
+            )
+          )
         ],
       ),
     );
