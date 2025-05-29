@@ -133,7 +133,7 @@ class LoginState extends ConsumerState<Login> {
                       },
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Container(
                           child: Row(
