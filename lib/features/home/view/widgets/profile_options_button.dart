@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jurai/features/home/providers/advogado_provider.dart';
 import 'package:jurai/features/home/providers/demanda_provider.dart';
 import 'package:jurai/features/home/providers/requerente_provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProfileOptionsButton extends ConsumerStatefulWidget {
   final String text;
@@ -10,6 +11,7 @@ class ProfileOptionsButton extends ConsumerStatefulWidget {
   final bool quit;
   final bool isLast;
   final Widget destiny;
+  final bool outsideUrl;
 
   const ProfileOptionsButton({
     super.key,
@@ -17,7 +19,8 @@ class ProfileOptionsButton extends ConsumerStatefulWidget {
     required this.preffixIcon,
     this.quit = false,
     this.isLast = false,
-    required this.destiny
+    required this.destiny,
+    this.outsideUrl = false
   });
 
   @override
@@ -32,7 +35,7 @@ class _ProfileOptionsButtonState extends ConsumerState<ProfileOptionsButton> {
         border: Border(bottom: !widget.isLast ? BorderSide(color: const Color.fromRGBO(255, 255, 255, 0.5), width: 1) : BorderSide.none),
       ),
       child: ElevatedButton(
-        onPressed: () {
+        onPressed: widget.outsideUrl ? _launchUrl : () {
           !widget.quit ? Navigator.push(context, MaterialPageRoute(builder: (context) => widget.destiny))
           :
           showModalBottomSheet<void>(
@@ -141,5 +144,11 @@ class _ProfileOptionsButtonState extends ConsumerState<ProfileOptionsButton> {
         ),
       ),
     );
+  }
+}
+
+Future<void> _launchUrl() async {
+  if (!await launchUrl(Uri.parse("https://github.com/jurai-git/jurai-server/blob/main/app/main/controller/advogado_controller.py"))) {
+    throw Exception('Could not launch https://github.com/jurai-git/jurai-server/blob/main/app/main/controller/advogado_controller.py');
   }
 }
