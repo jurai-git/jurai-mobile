@@ -21,10 +21,10 @@ class Homepage extends StatelessWidget {
             children: [
               Container(
                 padding: EdgeInsets.only(bottom: 10),
-                child: Image.asset('img/jurailogo.png', scale: 0.7),
+                child: Image.asset('img/jurailogo.png', width: 200, fit: BoxFit.contain,),
               ),
 
-              Image.asset('img/jurai-name_resized.png', scale: 2),
+              Image.asset('img/jurai-name_resized.png', width: 250, fit: BoxFit.contain,),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -97,7 +97,6 @@ class Homepage extends StatelessWidget {
                 ],
               ),
               Container(
-                width: MediaQuery.of(context).size.width - 200,
                 margin: EdgeInsets.symmetric(horizontal: 0, vertical: 20),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
@@ -114,14 +113,13 @@ class Homepage extends StatelessWidget {
                     shape: RoundedRectangleBorder(),
                     shadowColor: Colors.transparent,
                     backgroundColor: Colors.transparent,
-                    fixedSize: Size.fromWidth(250),
+                    fixedSize: Size.fromWidth(MediaQuery.of(context).size.width*0.75),
                     padding: EdgeInsets.all(25),
                   ),
                   child: Text("Entrar", style: TextStyle(color: Colors.white, fontSize: 16)),
                 ),
               ),
               Container(
-                width: MediaQuery.of(context).size.width - 200,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   color: Color.fromRGBO(56, 127, 185, 0.750),
@@ -137,7 +135,7 @@ class Homepage extends StatelessWidget {
                     shape: RoundedRectangleBorder(),
                     shadowColor: Colors.transparent,
                     backgroundColor: Colors.transparent,
-                    fixedSize: Size.fromWidth(250),
+                    fixedSize: Size.fromWidth(MediaQuery.of(context).size.width*0.75),
                     padding: EdgeInsets.all(25),
                   ),
                   child: Text(
