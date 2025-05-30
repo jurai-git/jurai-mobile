@@ -68,8 +68,8 @@ class RegisterState extends ConsumerState<Register>{
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset('img/jurailogo.png', scale: 1.3),
-                    Image.asset('img/jurai-name_resized.png', scale: 2.0),
+                    Image.asset('img/jurailogo.png', width: 100, fit: BoxFit.contain,),
+                    Image.asset('img/jurai-name_resized.png', width: 200, fit: BoxFit.contain,),
                   ],
                 ),
               ),
@@ -82,13 +82,13 @@ class RegisterState extends ConsumerState<Register>{
                       children: [
                         Text(
                           "Olá, seja  ",
-                          style: TextStyle(fontSize: 30, color: Colors.white),
+                          style: TextStyle(fontSize: 27, color: Colors.white),
                           textAlign: TextAlign.center,
                         ),
                         Text(
                           "bem-vindo(a)",
                           style: TextStyle(
-                            fontSize: 30,
+                            fontSize: 27,
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                           ),
@@ -180,7 +180,7 @@ class RegisterState extends ConsumerState<Register>{
                     shadowColor: Colors.transparent,
                     backgroundColor: Colors.transparent,
                     fixedSize: Size.fromWidth(MediaQuery.of(context).size.width),
-                    padding: EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+                    padding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
                   ),
                   child: Text(
                     "Criar Conta",

@@ -114,7 +114,7 @@ class Homepage extends StatelessWidget {
                     shadowColor: Colors.transparent,
                     backgroundColor: Colors.transparent,
                     fixedSize: Size.fromWidth(MediaQuery.of(context).size.width),
-                    padding: EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+                    padding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
                   ),
                   child: Text("Entrar", style: TextStyle(color: Colors.white, fontSize: 16)),
                 ),
@@ -137,7 +137,7 @@ class Homepage extends StatelessWidget {
                     shadowColor: Colors.transparent,
                     backgroundColor: Colors.transparent,
                     fixedSize: Size.fromWidth(MediaQuery.of(context).size.width),
-                    padding: EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+                    padding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
                   ),
                   child: Text(
                     "Criar Conta",
