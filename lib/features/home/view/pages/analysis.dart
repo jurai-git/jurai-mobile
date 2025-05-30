@@ -282,7 +282,7 @@ class RenderEment extends StatelessWidget {
         ),
         Container(
           height: MediaQuery.of(context).size.height - 600,
-          margin: EdgeInsets.symmetric(horizontal: 40),
+          margin: EdgeInsets.symmetric(horizontal: 25),
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             color: Color(0x772B2932),
