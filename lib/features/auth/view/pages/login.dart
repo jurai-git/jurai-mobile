@@ -168,7 +168,7 @@ class LoginState extends ConsumerState<Login> {
               ),
               Spacer(),
               Container(
-                margin: EdgeInsets.only(bottom: 40),
+                margin: EdgeInsets.only(left: 25, right: 25, bottom: 40),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   color: Color.fromRGBO(56, 127, 185, 0.750),
@@ -185,8 +185,8 @@ class LoginState extends ConsumerState<Login> {
                     shape: RoundedRectangleBorder(),
                     shadowColor: Colors.transparent,
                     backgroundColor: Colors.transparent,
-                    fixedSize: Size.fromWidth(MediaQuery.of(context).size.width*0.75),
-                    padding: EdgeInsets.all(25),
+                    fixedSize: Size.fromWidth(MediaQuery.of(context).size.width),
+                    padding: EdgeInsets.symmetric(horizontal: 25, vertical: 15),
                   ),
                   child: Text(
                     "Entrar",

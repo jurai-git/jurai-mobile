@@ -49,7 +49,7 @@ class Homepage extends StatelessWidget {
                 spacing: 20,
                 children: [
                   Container(
-                    padding: EdgeInsets.only(left: 20, right: 20, bottom: 20),
+                    padding: EdgeInsets.only(left: 25, right: 25, bottom: 20),
 
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -97,7 +97,7 @@ class Homepage extends StatelessWidget {
                 ],
               ),
               Container(
-                margin: EdgeInsets.symmetric(horizontal: 0, vertical: 20),
+                margin: EdgeInsets.only(left: 25, right: 25, top: 20),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(color: Color(0xFF387FB9)),
@@ -113,13 +113,14 @@ class Homepage extends StatelessWidget {
                     shape: RoundedRectangleBorder(),
                     shadowColor: Colors.transparent,
                     backgroundColor: Colors.transparent,
-                    fixedSize: Size.fromWidth(MediaQuery.of(context).size.width*0.75),
-                    padding: EdgeInsets.all(25),
+                    fixedSize: Size.fromWidth(MediaQuery.of(context).size.width),
+                    padding: EdgeInsets.symmetric(horizontal: 25, vertical: 15),
                   ),
                   child: Text("Entrar", style: TextStyle(color: Colors.white, fontSize: 16)),
                 ),
               ),
               Container(
+                margin: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   color: Color.fromRGBO(56, 127, 185, 0.750),
@@ -135,8 +136,8 @@ class Homepage extends StatelessWidget {
                     shape: RoundedRectangleBorder(),
                     shadowColor: Colors.transparent,
                     backgroundColor: Colors.transparent,
-                    fixedSize: Size.fromWidth(MediaQuery.of(context).size.width*0.75),
-                    padding: EdgeInsets.all(25),
+                    fixedSize: Size.fromWidth(MediaQuery.of(context).size.width),
+                    padding: EdgeInsets.symmetric(horizontal: 25, vertical: 15),
                   ),
                   child: Text(
                     "Criar Conta",
