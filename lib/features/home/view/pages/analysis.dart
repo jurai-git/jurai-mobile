@@ -31,12 +31,12 @@ class _AnalysisState extends State<Analysis> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Container(
-                    margin: EdgeInsets.only(left: 50, top: 50),
+                    margin: EdgeInsets.only(left: 25, top: 50),
                     child: Image.asset('img/jurai-name.png', scale: 6.5),
                   ),
                   Spacer(),
                   Container(
-                    margin: EdgeInsets.only(right: 50, top: 50),
+                    margin: EdgeInsets.only(right: 25, top: 50),
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.push(
@@ -60,7 +60,7 @@ class _AnalysisState extends State<Analysis> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
-                    padding: EdgeInsets.fromLTRB(50, 50, 50, 20),
+                    padding: EdgeInsets.fromLTRB(25, 50, 25, 20),
                     child: Row(
                       children: [
                         Text(
@@ -81,7 +81,7 @@ class _AnalysisState extends State<Analysis> {
                 ],
               ),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 60),
+                padding: EdgeInsets.symmetric(horizontal: 30),
                 width: MediaQuery.of(context).size.width,
                 child: SingleChoice(
                   onSelectionChanged: (value) {
@@ -162,7 +162,7 @@ class _RenderPdfState extends State<RenderPdf> {
         ),
         Container(
           height: MediaQuery.of(context).size.height - 600,
-          margin: EdgeInsets.symmetric(horizontal: 40),
+          margin: EdgeInsets.symmetric(horizontal: 25),
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             color: Color(0x772B2932),

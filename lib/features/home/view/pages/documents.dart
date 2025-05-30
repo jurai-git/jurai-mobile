@@ -45,12 +45,12 @@ class _DocumentsState extends ConsumerState<Documents>{
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Container(
-                    margin: EdgeInsets.only(left: 50, top: 50),
+                    margin: EdgeInsets.only(left: 25, top: 50),
                     child: Image.asset('img/jurai-name.png', scale: 6.5),
                   ),
                   Spacer(),
                   Container(
-                    margin: EdgeInsets.only(right: 50, top: 50),
+                    margin: EdgeInsets.only(right: 25, top: 50),
                     child: ElevatedButton(
                       onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const Profile()));},
                       style: ElevatedButton.styleFrom(
@@ -67,7 +67,7 @@ class _DocumentsState extends ConsumerState<Documents>{
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
-                    padding: EdgeInsets.fromLTRB(50, 50, 50, 20),
+                    padding: EdgeInsets.fromLTRB(25, 50, 25, 20),
                     child: Row(
                       children: [
                         currentDemanda != null ? IconButton(onPressed: (){setState((){ref.watch(demandaProvider.notifier).clear(); buttonIndex=0;});}, icon: Icon(Icons.arrow_back, color: Colors.white, size: 40,)) : Text(''),
@@ -89,7 +89,7 @@ class _DocumentsState extends ConsumerState<Documents>{
                 ],
               ),
               currentDemanda == null ? Container(
-                padding: EdgeInsets.symmetric(horizontal: 50),
+                padding: EdgeInsets.symmetric(horizontal: 25),
                 child: FutureBuilder<List<Widget>>(
                   future: demandasList,
                   builder: (context, snapshot) {
@@ -123,7 +123,7 @@ class _DocumentsState extends ConsumerState<Documents>{
                       border: Border(top: BorderSide(color: const Color.fromRGBO(255, 255, 255, .1)), bottom: BorderSide(color: const Color.fromRGBO(255, 255, 255, .1))),
                     ),
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                      padding: EdgeInsets.symmetric(horizontal: 25, vertical: 15),
                       child: Row(
                         spacing: 15,
                         children: [
@@ -141,7 +141,7 @@ class _DocumentsState extends ConsumerState<Documents>{
                     )
                   ),
                   Padding( 
-                    padding: EdgeInsets.symmetric(horizontal: 50),
+                    padding: EdgeInsets.symmetric(horizontal: 25),
                     child: Column(
                       spacing: 30,
                       children: [

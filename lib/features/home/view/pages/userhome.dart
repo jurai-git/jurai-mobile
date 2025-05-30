@@ -35,12 +35,12 @@ class _UserHomeState extends ConsumerState<UserHome>{
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Container(
-                    margin: EdgeInsets.only(left: 50, top: 50),
+                    margin: EdgeInsets.only(left: 25, top: 50),
                     child: Image.asset('img/jurai-name.png', scale: 6.5),
                   ),
                   Spacer(),
                   Container(
-                    margin: EdgeInsets.only(right: 50, top: 50),
+                    margin: EdgeInsets.only(right: 25, top: 50),
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.push(
@@ -64,7 +64,7 @@ class _UserHomeState extends ConsumerState<UserHome>{
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
-                    padding: EdgeInsets.fromLTRB(50, 50, 50, 20),
+                    padding: EdgeInsets.fromLTRB(25, 50, 25, 20),
                     child: Row(
                       children: [
                         Text(
@@ -88,7 +88,7 @@ class _UserHomeState extends ConsumerState<UserHome>{
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 50),
+                    padding: EdgeInsets.symmetric(horizontal: 25),
                     child: Row(
                       children: [
                         Text(
@@ -111,7 +111,7 @@ class _UserHomeState extends ConsumerState<UserHome>{
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 50, vertical: 35),
+                    padding: EdgeInsets.symmetric(horizontal: 25, vertical: 35),
                     child: Row(
                       children: [
                         Text(
@@ -134,7 +134,7 @@ class _UserHomeState extends ConsumerState<UserHome>{
               SizedBox(
                 height: 200,
                 child: ListView.builder(
-                  padding: EdgeInsets.symmetric(horizontal: 50),
+                  padding: EdgeInsets.symmetric(horizontal: 25),
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
                   physics: const AlwaysScrollableScrollPhysics(),
