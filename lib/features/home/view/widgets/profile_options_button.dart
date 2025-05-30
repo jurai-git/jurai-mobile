@@ -50,12 +50,18 @@ class _ProfileOptionsButtonState extends ConsumerState<ProfileOptionsButton> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(
-                      margin: EdgeInsets.symmetric(vertical: 10),
-                      child: Text(
-                        "Você tem certeza que deseja sair da conta?",
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      ),
+                      Flexible(
+                        child: FittedBox( 
+                      //margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                          child: Padding(
+                            padding: EdgeInsets.all(10),
+                            child: Text(
+                              "Você tem certeza que deseja sair da conta?",
+                              style: TextStyle(color: Colors.white, fontSize: 20),
+                              maxLines: 1,
+                            ),
+                          )
+                        )
                       )
                     ],
                   ),
