@@ -18,7 +18,7 @@ class _PersonalInformationState extends ConsumerState<PersonalInformation> {
     return Container(
       color: Color.fromRGBO(25, 24, 29, 1),
       child: Scaffold(
-        appBar: AppBar(title: Text("Informações Pessoais", style: TextStyle(color: Colors.white)), centerTitle: true, backgroundColor: Colors.transparent),
+        appBar: AppBar(title: Text("Informações Pessoais", style: TextStyle(color: Colors.white)), centerTitle: true, iconTheme: IconThemeData(color: Color(0xFF387FB9)), backgroundColor: Colors.transparent),
         backgroundColor: Colors.transparent,
         body: Column(
           children: [
