@@ -37,7 +37,7 @@ class _DocumentsState extends ConsumerState<Documents>{
       color: Color.fromRGBO(25, 24, 29, 1),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        body: Center(
+        body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -156,8 +156,11 @@ class _DocumentsState extends ConsumerState<Documents>{
                           ),
                         ),
                         SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.45,
-                          child: SingleChildScrollView(
+                          height: MediaQuery.of(context).size.height * 0.4,
+                          child: Scrollbar(
+                            thumbVisibility: true,
+                            thickness: 3,
+                            child: SingleChildScrollView(
                             child: (){
                               if (buttonIndex == 0) {
                                 return Column(
@@ -182,6 +185,7 @@ class _DocumentsState extends ConsumerState<Documents>{
                               }()
                             ),
                           )
+                        )
                       ]
                     ),
                   )
