@@ -33,7 +33,7 @@ class _RequerentesViewButtonState extends State<RequerentesViewButton> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(15)),
         ),
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         shadowColor: const Color.fromRGBO(255, 255, 255, 0.1),
         elevation: 5,
       ),
@@ -42,7 +42,6 @@ class _RequerentesViewButtonState extends State<RequerentesViewButton> {
         spacing: 20,
         children: [
           Container(
-            margin: EdgeInsets.only(left: 10),
             decoration: BoxDecoration(
               color: Colors.blue,
               borderRadius: BorderRadius.all(Radius.circular(100)),
