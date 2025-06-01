@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:jurai/features/auth/view/pages/homepage.dart';
 import 'package:jurai/features/home/view/pages/personal_information.dart';
+import 'package:jurai/features/home/view/pages/privacy_policy.dart';
 import 'package:jurai/features/home/view/widgets/profile_options_button.dart';
 
 class Profile extends StatelessWidget {
@@ -39,7 +40,7 @@ class Profile extends StatelessWidget {
               ),
               ProfileOptionsButton(text: "Informações Pessoais", preffixIcon: Icons.account_circle, destiny: PersonalInformation()),
               ProfileOptionsButton(text: "Alteração de Senha", preffixIcon: Icons.lock_outline, destiny: Text("")),
-              ProfileOptionsButton(text: "Termos de Privacidade", preffixIcon: Icons.privacy_tip_outlined, destiny: Text("")),
+              ProfileOptionsButton(text: "Política de Privacidade", preffixIcon: Icons.privacy_tip_outlined, destiny: PrivacyPolicy()),
               ProfileOptionsButton(text: "Sair da Conta", preffixIcon: Icons.logout, quit: true, isLast: true, destiny: Homepage()),
               
             ],
