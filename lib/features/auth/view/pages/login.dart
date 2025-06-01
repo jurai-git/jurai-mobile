@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:jurai/features/auth/view/pages/register.dart';
 import 'package:jurai/features/auth/view/widgets/customcheckbox.dart';
 import 'package:jurai/features/auth/view/widgets/customtextfield.dart';
 import 'package:jurai/features/auth/view/widgets/gradientbg.dart';
@@ -60,16 +61,19 @@ class LoginState extends ConsumerState<Login> {
       child: isLoading? Center(child: LoadingCircle(),) : Scaffold(
         backgroundColor: Colors.transparent,
         body: Center(
-          child: Column(
+          child: SingleChildScrollView(
+            child: Padding(
+            padding: EdgeInsets.all(15),
+            child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                padding: EdgeInsets.only(top: 50, bottom: 10),
-                child: Image.asset('img/jurailogo.png', scale: 1.0),
+                margin: EdgeInsets.only(top: 10, bottom: 10),
+                child: Image.asset('img/jurailogo.png', width: 200, fit: BoxFit.contain,),
               ),
 
-              Image.asset('img/jurai-name_resized.png', scale: 3.0),
+              Image.asset('img/jurai-name_resized.png', width: 250, fit: BoxFit.contain,),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -166,9 +170,8 @@ class LoginState extends ConsumerState<Login> {
                   ],
                 ),
               ),
-              Spacer(),
               Container(
-                margin: EdgeInsets.only(left: 25, right: 25, bottom: 40),
+                margin: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   color: Color.fromRGBO(56, 127, 185, 0.750),
@@ -194,9 +197,17 @@ class LoginState extends ConsumerState<Login> {
                   ),
                 ),
               ),
+              TextButton(
+                onPressed: (){
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => Register()));
+                },
+                child: Text("Não possuo uma conta", style: TextStyle(color: Colors.white),) 
+              )
             ],
           ),
         ),
+          )
+        )
       ),
     );
   }

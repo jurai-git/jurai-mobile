@@ -61,16 +61,18 @@ class RegisterState extends ConsumerState<Register>{
         backgroundColor: Colors.transparent,
         body: Center(
           child: SingleChildScrollView(
-          child: Column(
+          child: Padding(
+            padding: EdgeInsets.all(15),
+            child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                padding: EdgeInsets.only(top: 30, bottom: 10),
+                padding: EdgeInsets.only(top: 10, bottom: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset('img/jurailogo.png', width: 100, fit: BoxFit.contain,),
-                    Image.asset('img/jurai-name_resized.png', width: 200, fit: BoxFit.contain,),
+                    Image.asset('img/jurailogo.png', width: 130, fit: BoxFit.contain,),
+                    Image.asset('img/jurai-name_resized.png', width: 260, fit: BoxFit.contain,),
                   ],
                 ),
               ),
@@ -157,7 +159,7 @@ class RegisterState extends ConsumerState<Register>{
               ),
               ),
               Container(
-                margin: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+                margin: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   color: Color.fromRGBO(56, 127, 185, 0.750),
@@ -188,11 +190,18 @@ class RegisterState extends ConsumerState<Register>{
                   ),
                 ),
               ),
+              TextButton(
+                onPressed: (){
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => Login()));
+                }, 
+                child: Text("Já possuo uma conta", style: TextStyle(color: Colors.white),)
+              )
             ],
           ),
           )
         ),
       ),
+      )
     );
   }
 }
