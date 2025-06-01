@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:jurai/features/auth/view/pages/homepage.dart';
 import 'package:jurai/features/home/view/pages/personal_information.dart';
-import 'package:jurai/features/home/view/pages/privacy_security.dart';
 import 'package:jurai/features/home/view/widgets/profile_options_button.dart';
 
 class Profile extends StatelessWidget {
@@ -39,16 +38,17 @@ class Profile extends StatelessWidget {
                 child: SvgPicture.asset("img/profile.svg", width: 80,),
               ),
               ProfileOptionsButton(text: "Informações Pessoais", preffixIcon: Icons.account_circle, destiny: PersonalInformation()),
-              ProfileOptionsButton(text: "Privacidade e Segurança", preffixIcon: Icons.lock, destiny: PrivacySecurity()),
+              ProfileOptionsButton(text: "Alteração de Senha", preffixIcon: Icons.lock_outline, destiny: Text(""), outsideUrl: true,),
+              ProfileOptionsButton(text: "Termos de Privacidade", preffixIcon: Icons.privacy_tip_outlined, destiny: Text("")),
               ProfileOptionsButton(text: "Sair da Conta", preffixIcon: Icons.logout, quit: true, isLast: true, destiny: Homepage()),
               
             ],
           ),
         ),
-        //bottomNavigationBar: Container(
-        //padding: EdgeInsets.all(10),
-        //child: Text("A inteligência que facilita o processo | © 2024 JurAI", style: TextStyle(color: Colors.white, fontSize: 15), textAlign: TextAlign.center,),
-        //),
+        bottomNavigationBar: Container(
+          padding: EdgeInsets.all(10),
+          child: Text("A inteligência que facilita o processo | © 2025 JurAI", style: TextStyle(color: Colors.white, fontSize: 15), textAlign: TextAlign.center,),
+        ),
       ),
     );
   }
