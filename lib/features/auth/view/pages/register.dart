@@ -60,6 +60,7 @@ class RegisterState extends ConsumerState<Register>{
       child: isLoading? Center(child: LoadingCircle(),) : Scaffold(
         backgroundColor: Colors.transparent,
         body: Center(
+          child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -155,7 +156,6 @@ class RegisterState extends ConsumerState<Register>{
                 ],
               ),
               ),
-              Spacer(),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
                 decoration: BoxDecoration(
@@ -190,6 +190,7 @@ class RegisterState extends ConsumerState<Register>{
               ),
             ],
           ),
+          )
         ),
       ),
     );
