@@ -132,7 +132,7 @@ class _UserHomeState extends ConsumerState<UserHome>{
                 ],
               ),
               SizedBox(
-                height: 200,
+                height: 250,
                 child: ListView.builder(
                   padding: EdgeInsets.symmetric(horizontal: 25),
                   scrollDirection: Axis.horizontal,
@@ -140,11 +140,7 @@ class _UserHomeState extends ConsumerState<UserHome>{
                   physics: const AlwaysScrollableScrollPhysics(),
                   itemCount: ref.watch(recentReqAcessListProvider).length,
                   itemBuilder: (BuildContext context, index){
-                    return Container( 
-                      margin: EdgeInsets.only(right: 20),
-                      child: RecentAccessRequerente(requerente: ref.watch(recentReqAcessListProvider)[index],
-                      )
-                    );
+                    return RecentAccessRequerente(requerente: ref.watch(recentReqAcessListProvider)[index],);
                   }
                 ),
               )
