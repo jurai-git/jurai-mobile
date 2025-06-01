@@ -182,7 +182,6 @@ class RegisterState extends ConsumerState<Register>{
                     shadowColor: Colors.transparent,
                     backgroundColor: Colors.transparent,
                     fixedSize: Size.fromWidth(MediaQuery.of(context).size.width),
-                    padding: EdgeInsets.symmetric(horizontal: 25, vertical: 15),
                   ),
                   child: Text(
                     "Criar Conta",
