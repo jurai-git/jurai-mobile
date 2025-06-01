@@ -23,7 +23,7 @@ class _AnalysisState extends State<Analysis> {
       color: Color.fromRGBO(25, 24, 29, 1),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        body: Center(
+        body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -161,7 +161,7 @@ class _RenderPdfState extends State<RenderPdf> {
           ),
         ),
         Container(
-          height: MediaQuery.of(context).size.height - 600,
+          height: 300,
           margin: EdgeInsets.symmetric(horizontal: 25),
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
@@ -211,8 +211,7 @@ class _RenderPdfState extends State<RenderPdf> {
           ),
         ),
         Container(
-          width: MediaQuery.of(context).size.width - 200,
-          margin: EdgeInsets.only(top: 60),
+          margin: EdgeInsets.symmetric(horizontal: 25, vertical: 40),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             color: Color.fromARGB(255, 29, 28, 34),
@@ -252,8 +251,7 @@ class _RenderPdfState extends State<RenderPdf> {
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
               shadowColor: Colors.transparent,
               backgroundColor: Colors.transparent,
-              fixedSize: Size.fromWidth(250),
-              padding: EdgeInsets.all(25),
+              fixedSize: Size.fromWidth(MediaQuery.of(context).size.width),
             ),
             child: Text("Analisar", style: TextStyle(color: Colors.white, fontSize: 16)),
           ),
@@ -281,7 +279,7 @@ class RenderEment extends StatelessWidget {
           ),
         ),
         Container(
-          height: MediaQuery.of(context).size.height - 600,
+          height: 300,
           margin: EdgeInsets.symmetric(horizontal: 25),
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
@@ -299,8 +297,7 @@ class RenderEment extends StatelessWidget {
           ),
         ),
         Container(
-          width: MediaQuery.of(context).size.width - 200,
-          margin: EdgeInsets.only(top: 60),
+          margin: EdgeInsets.symmetric(horizontal: 25, vertical: 40),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             color: Color.fromARGB(255, 29, 28, 34),
@@ -311,8 +308,7 @@ class RenderEment extends StatelessWidget {
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
               shadowColor: Colors.transparent,
               backgroundColor: Colors.transparent,
-              fixedSize: Size.fromWidth(250),
-              padding: EdgeInsets.all(25),
+              fixedSize: Size.fromWidth(MediaQuery.of(context).size.width),
             ),
             child: Text("Analisar", style: TextStyle(color: Colors.white, fontSize: 16)),
           ),
