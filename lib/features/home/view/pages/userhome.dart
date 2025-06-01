@@ -64,7 +64,7 @@ class _UserHomeState extends ConsumerState<UserHome>{
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
-                    padding: EdgeInsets.fromLTRB(25, 50, 25, 20),
+                    padding: EdgeInsets.fromLTRB(25, 50, 25, 10),
                     child: Row(
                       children: [
                         Text(
@@ -111,7 +111,7 @@ class _UserHomeState extends ConsumerState<UserHome>{
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 25, vertical: 35),
+                    padding: EdgeInsets.only(left: 25, right: 25, top: 35, bottom: 10),
                     child: Row(
                       children: [
                         Text(
