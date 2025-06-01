@@ -38,7 +38,7 @@ class Profile extends StatelessWidget {
                 child: SvgPicture.asset("img/profile.svg", width: 80,),
               ),
               ProfileOptionsButton(text: "Informações Pessoais", preffixIcon: Icons.account_circle, destiny: PersonalInformation()),
-              ProfileOptionsButton(text: "Alteração de Senha", preffixIcon: Icons.lock_outline, destiny: Text(""), outsideUrl: true,),
+              ProfileOptionsButton(text: "Alteração de Senha", preffixIcon: Icons.lock_outline, destiny: Text("")),
               ProfileOptionsButton(text: "Termos de Privacidade", preffixIcon: Icons.privacy_tip_outlined, destiny: Text("")),
               ProfileOptionsButton(text: "Sair da Conta", preffixIcon: Icons.logout, quit: true, isLast: true, destiny: Homepage()),
               
