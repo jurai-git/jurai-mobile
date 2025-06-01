@@ -29,14 +29,14 @@ class Profile extends StatelessWidget {
                 child: Image.asset('img/jurai-name.png', scale: 5.5),
               ),
               Container(
-                padding: EdgeInsets.all(80),
+                padding: EdgeInsets.all(70),
                 decoration: BoxDecoration(
-                  color: Colors.amber,
+                  color: Colors.blue,
                   shape: BoxShape.circle,
                   border: Border.all(color: Colors.white, width: 3),
                 ),
                 margin: EdgeInsets.only(bottom: 20),
-                child: SvgPicture.asset("img/profile.svg"),
+                child: SvgPicture.asset("img/profile.svg", width: 80,),
               ),
               ProfileOptionsButton(text: "Informações Pessoais", preffixIcon: Icons.account_circle, destiny: PersonalInformation()),
               ProfileOptionsButton(text: "Privacidade e Segurança", preffixIcon: Icons.lock, destiny: PrivacySecurity()),
