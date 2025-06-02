@@ -189,6 +189,7 @@ class LoginState extends ConsumerState<Login> {
                     shadowColor: Colors.transparent,
                     backgroundColor: Colors.transparent,
                     fixedSize: Size.fromWidth(MediaQuery.of(context).size.width),
+                    padding: EdgeInsets.symmetric(vertical: 20)
                   ),
                   child: Text(
                     "Entrar",
