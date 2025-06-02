@@ -167,6 +167,7 @@ class RegisterState extends ConsumerState<Register>{
                 child: ElevatedButton(
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
+                      if(confirmPasswordController.text == passwordController.text){
                       await ref
                         .read(authViewModelProvider.notifier)
                           .signUpUser(
@@ -175,6 +176,10 @@ class RegisterState extends ConsumerState<Register>{
                             oab: oabController.text, 
                             password: passwordController.text
                             );
+                      }
+                      else{
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("As senhas não coincidem!")));
+                      }
                     }
                   },
                   style: ElevatedButton.styleFrom(
