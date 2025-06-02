@@ -55,7 +55,7 @@ class _DocumentsState extends ConsumerState<Documents>{
                       onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const Profile()));},
                       style: ElevatedButton.styleFrom(
                         shape: CircleBorder(),
-                        padding: EdgeInsets.all(13),
+                        padding: EdgeInsets.all(20),
                         backgroundColor: Colors.blue,
                       ),
                       child: SvgPicture.asset("img/profile.svg"),

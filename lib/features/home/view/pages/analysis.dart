@@ -48,7 +48,7 @@ class _AnalysisState extends State<Analysis> {
                       },
                       style: ElevatedButton.styleFrom(
                         shape: CircleBorder(),
-                        padding: EdgeInsets.all(13),
+                        padding: EdgeInsets.all(20),
                         backgroundColor: Colors.blue,
                       ),
                       child: SvgPicture.asset("img/profile.svg"),
