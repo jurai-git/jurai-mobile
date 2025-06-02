@@ -97,8 +97,10 @@ class CarouselWithSnap extends StatelessWidget {
   CarouselWithSnap({super.key});
   
   final List<ProfileCard> imgList = [
-    ProfileCard(profileName: "Wendel Frota", profilePictureUrl: "https://avatars.githubusercontent.com/u/132313694?v=4", profileAge: "17"),
+    ProfileCard(profileName: "Wendel Frota", profilePictureUrl: "https://avatars.githubusercontent.com/u/132313694?v=4", profileAge: "18"),
     ProfileCard(profileName: "Mateus Daroz", profilePictureUrl: "https://avatars.githubusercontent.com/u/143561347?v=4", profileAge: "18"),
+    ProfileCard(profileName: "Lucas Bachega", profilePictureUrl: "https://media.licdn.com/dms/image/v2/D4D03AQGAZKqNA_krAQ/profile-displayphoto-shrink_800_800/B4DZbHEaC5G4Ac-/0/1747096543981?e=1754524800&v=beta&t=-jgeuE-i3PUdhBw4MpYK4RaKQP0-oqYqkSHjRQerh8Y", profileAge: "17"),
+    ProfileCard(profileName: "Miguel Vale", profilePictureUrl: "https://media.licdn.com/dms/image/v2/D4D03AQGt8uCAOgyx-A/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1715478655603?e=1754524800&v=beta&t=BIN0LTib-yKrR_j_acRFgJstW8R5kVRnvUcwGCBadDM", profileAge: "17"),
   ];
 
   @override
