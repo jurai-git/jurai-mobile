@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 
 class CustomTextField extends StatefulWidget {
@@ -89,6 +90,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
         ),
       ),
       child: TextFormField(
+        inputFormatters: widget.type == "oab" ? [
+          LengthLimitingTextInputFormatter(6),
+        ] : null,
+        keyboardType: widget.type == "oab" ? TextInputType.number : TextInputType.text,
         controller: widget.textController,
         obscureText: widget.obscureText,
         validator: _validator,
