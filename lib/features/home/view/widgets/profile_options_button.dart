@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jurai/features/home/providers/advogado_provider.dart';
 import 'package:jurai/features/home/providers/demanda_provider.dart';
+import 'package:jurai/features/home/providers/recent_acess_provider.dart';
 import 'package:jurai/features/home/providers/requerente_provider.dart';
 
 class ProfileOptionsButton extends ConsumerStatefulWidget {
@@ -79,6 +80,7 @@ class _ProfileOptionsButtonState extends ConsumerState<ProfileOptionsButton> {
                           ref.watch(demandaListProvider.notifier).clear();
                           ref.watch(requerenteProvider.notifier).clear();
                           ref.watch(requerenteListProvider.notifier).clear();
+                          ref.watch(recentReqAcessListProvider.notifier).clear();
                           Navigator.push(
                             context,
                             MaterialPageRoute(
