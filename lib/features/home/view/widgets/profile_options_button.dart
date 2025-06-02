@@ -130,7 +130,7 @@ class _ProfileOptionsButtonState extends ConsumerState<ProfileOptionsButton> {
         style: ElevatedButton.styleFrom(
           shadowColor: Colors.transparent,
           backgroundColor: Color.fromRGBO(25, 24, 29, 1),
-          padding: EdgeInsets.symmetric(horizontal: 25, vertical: 18),
+          padding: EdgeInsets.symmetric(horizontal: 25, vertical: 25),
           shape: LinearBorder(),
         ),
         child: Row(
