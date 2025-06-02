@@ -33,7 +33,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
     // Setup hint, icon, and validator based on type
     switch (widget.type) {
       case "username":
-        _hintText = "Nome Completo";
+        _hintText = "Nome de Usuário";
         _iconPath = "img/profile.svg";
         _validator = (value) =>
             value == null || value.isEmpty ? "O campo nome é obrigatório!" : null;
