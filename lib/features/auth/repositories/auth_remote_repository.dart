@@ -70,4 +70,22 @@ class AuthRemoteRepository {
       return Left(FlutterError(e.toString()));
     }
   }
+
+  Future<Either<FlutterError, Advogado>> forgetPassword({
+    required String email,
+  }) async{
+    try{
+      final response = await http.post(
+        Uri.parse("https://jurai-server.onrender.com/advogado/request-reset/${email}"),
+        headers: {'Content-Type': 'application/json',},
+      );
+      final resBodyMap = jsonDecode(response.body) as Map<String, dynamic>;
+      if(response.statusCode / 100 != 2){
+        return Left(FlutterError(resBodyMap['detail']));
+      }
+      return Right(Advogado.f());
+    } catch (e){
+      return Left(FlutterError(e.toString()));
+    }
+  }
 }

@@ -55,5 +55,18 @@ class AuthViewModel extends _$AuthViewModel{
     print(val);
   }
 
+  Future<void> resetPasswordUser({
+    required String email,
+  }) async {
+    state = const AsyncValue.loading();
+    final res = await authRemoteRepository.forgetPassword(email: email);
+
+    final val = switch(res){
+      Left(value: final l) => state = AsyncValue.error(l.message, StackTrace.current),
+      Right(value: final r) => state = AsyncValue.data(r)
+    };
+    print(val);
+  }
+
   
 }
