@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:jurai/features/auth/view/pages/forget_password.dart';
 import 'package:jurai/features/auth/view/pages/register.dart';
 import 'package:jurai/features/auth/view/widgets/customcheckbox.dart';
 import 'package:jurai/features/auth/view/widgets/customtextfield.dart';
@@ -194,7 +195,7 @@ class LoginState extends ConsumerState<Login> {
                 ),
                 child: ElevatedButton(
                   onPressed: () {
-                    
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => ForgetPassword()));
                   },
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(),
