@@ -194,10 +194,7 @@ class LoginState extends ConsumerState<Login> {
                 ),
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const Login()),
-                    );
+                    
                   },
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(),
