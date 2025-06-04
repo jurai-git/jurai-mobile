@@ -137,33 +137,22 @@ class LoginState extends ConsumerState<Login> {
                       },
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              CustomCheckBox(
-                                value: isChecked,
-                                onTapCheck: (newBool) {
-                                  setState(() {
-                                    isChecked = newBool;
-                                  });
-                                },
-                              ),
-                              Text(
-                                "Manter-me conectado",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ],
+                          margin: EdgeInsets.only(left: 10),
+                          child: CustomCheckBox(
+                            value: isChecked,
+                            onTapCheck: (newBool) {
+                              setState(() {
+                                isChecked = newBool;
+                              });
+                            },
                           ),
                         ),
                         Text(
-                          "Esqueci minha senha",
-                          style: TextStyle(
-                            color: Color(0xFF387FB9),
-                            fontWeight: FontWeight.bold,
-                          ),
+                          "Manter-me conectado",
+                          style: TextStyle(color: Colors.white),
                         ),
                       ],
                     ),
@@ -195,6 +184,29 @@ class LoginState extends ConsumerState<Login> {
                     "Entrar",
                     style: TextStyle(color: Colors.white, fontSize: 16),
                   ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(left: 12, right: 12, bottom: 20),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: Color(0xFF387FB9)),
+                ),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Login()),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(),
+                    shadowColor: Colors.transparent,
+                    backgroundColor: Colors.transparent,
+                    fixedSize: Size.fromWidth(MediaQuery.of(context).size.width),
+                    padding: EdgeInsets.symmetric(vertical: 20)
+                  ),
+                  child: Text("Esqueci minha senha", style: TextStyle(color: Colors.white, fontSize: 16)),
                 ),
               ),
               TextButton(
