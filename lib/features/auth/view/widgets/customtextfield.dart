@@ -8,6 +8,7 @@ class CustomTextField extends StatefulWidget {
   final bool obscureText;
   final Function()? onSuffixTap;
   final bool showSuffix;
+  final bool enabled;
 
   const CustomTextField({
     super.key,
@@ -16,6 +17,7 @@ class CustomTextField extends StatefulWidget {
     this.obscureText = false,
     this.onSuffixTap,
     this.showSuffix = false,
+    this.enabled = true
   });
 
   @override
@@ -90,6 +92,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         ),
       ),
       child: TextFormField(
+        enabled: widget.enabled,
         inputFormatters: widget.type == "oab" ? [
           LengthLimitingTextInputFormatter(6),
         ] : null,
