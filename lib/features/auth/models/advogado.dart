@@ -8,6 +8,7 @@ class Advogado{
   final String access_token;
 
   Advogado({required this.id, required this.username, required this.email, required this.oab, required this.access_token});
+  Advogado.f({this.id="", this.username="", this.email="", this.oab="", this.access_token=""});
 
   Map<String, dynamic> toMap(){
     return <String, dynamic>{
