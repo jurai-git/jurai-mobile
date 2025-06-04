@@ -252,6 +252,7 @@ class _RenderPdfState extends State<RenderPdf> {
               shadowColor: Colors.transparent,
               backgroundColor: Colors.transparent,
               fixedSize: Size.fromWidth(MediaQuery.of(context).size.width),
+              padding: EdgeInsets.symmetric(vertical: 20)
             ),
             child: Text("Analisar", style: TextStyle(color: Colors.white, fontSize: 16)),
           ),
@@ -309,6 +310,7 @@ class RenderEment extends StatelessWidget {
               shadowColor: Colors.transparent,
               backgroundColor: Colors.transparent,
               fixedSize: Size.fromWidth(MediaQuery.of(context).size.width),
+              padding: EdgeInsets.symmetric(vertical: 20)
             ),
             child: Text("Analisar", style: TextStyle(color: Colors.white, fontSize: 16)),
           ),

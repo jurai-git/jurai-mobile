@@ -33,7 +33,7 @@ class _RequerentesViewButtonState extends State<RequerentesViewButton> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(15)),
         ),
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         shadowColor: const Color.fromRGBO(255, 255, 255, 0.1),
         elevation: 5,
       ),
