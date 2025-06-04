@@ -107,7 +107,7 @@ class CarouselWithSnap extends StatelessWidget {
   Widget build(BuildContext context) {
     return CarouselSlider(
           options: CarouselOptions(
-            height: 430.0,
+            height: 350.0,
             enlargeCenterPage: true,
             enableInfiniteScroll: true,
             autoPlay: true,
@@ -121,33 +121,22 @@ class CarouselWithSnap extends StatelessWidget {
             initialPage: 0,
             pageSnapping: true,
           ),
-          items: imgList.map((item) => Stack(
-            children: [
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 20),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(bottomLeft: Radius.circular(12), bottomRight: Radius.circular(12)),
-                    color: Color.fromARGB(255, 32, 31, 36),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.topCenter,
-                  child: Container(
-                    height: 125,
-                    margin: EdgeInsets.symmetric(horizontal: 20),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(topLeft: Radius.circular(12), topRight: Radius.circular(12),),
-                      color: Color(0xFF387FB9),
-                    ),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.topCenter,
-                    child: item,
-                  ),
-                  
-              ]
+          items: imgList.map((item) => Container(
+            alignment: Alignment.center,
+            margin: EdgeInsets.symmetric(horizontal: 20),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(12)),
+              gradient: LinearGradient(
+                colors: [Color.fromARGB(255, 32, 31, 36), Color.fromARGB(255, 32, 31, 36), Color.fromRGBO(12, 58, 96, 1),],
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter
               )
+            ),
+            child: Padding(
+              padding: EdgeInsets.all(10),
+              child: item,
+            )
+          )
               ).toList(),
         );
   }
