@@ -31,20 +31,8 @@ class ProfileCard extends StatelessWidget {
             backgroundColor: Colors.transparent,
           ),
         ),
-        Text(profileName, style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),),
-        Text("$profileAge anos", style: TextStyle(color: Colors.white, fontSize: 20),),
-        Spacer(),
-        Container(
-          margin: EdgeInsets.only(bottom: 40),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Image.asset("img/icons8-github-30.png", scale: .75),
-              Image.asset("img/icons8-linkedin-30.png", scale: .8),
-              Image.asset("img/icons8-instagram-30.png", scale: .8)
-          ],
-        )
-        )
+        Text(profileName, style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold), textAlign: TextAlign.center,),
+        Text("$profileAge anos", style: TextStyle(color: Colors.white, fontSize: 20), textAlign: TextAlign.center,),
       ],
     );
   }
