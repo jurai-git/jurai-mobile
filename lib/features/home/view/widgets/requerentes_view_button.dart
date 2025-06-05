@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:jurai/features/home/models/requerente.dart';
 import 'package:jurai/features/home/providers/recent_acess_provider.dart';
 import 'package:jurai/features/home/providers/requerente_provider.dart';
+import 'package:jurai/features/home/view/pages/clients_information.dart';
 import 'package:jurai/features/home/viewmodel/home_viewmodel.dart';
 
 class RequerentesViewButton extends StatefulWidget {
@@ -23,6 +24,7 @@ class _RequerentesViewButtonState extends State<RequerentesViewButton> {
     return ElevatedButton(
       onPressed: () {
         setState(() {
+          Navigator.push(context, MaterialPageRoute(builder: (_) => ClientsInformation(requerente: widget.requerente)));
           widget.ref.watch(requerenteProvider.notifier).setRequerente(widget.requerente);
           widget.ref.watch(recentReqAcessListProvider.notifier).setRecentReqAcessList(widget.requerente);
           widget.ref.watch(homeViewModelProvider.notifier).getAllDemandasFromRequerente(id_requerente: widget.requerente.id_requerente);
