@@ -77,7 +77,6 @@ class _ClientsState extends ConsumerState<Clients> {
                     padding: EdgeInsets.fromLTRB(25, 50, 25, 20),
                     child: Row(
                       children: [
-                        currentRequerente != null ? IconButton(onPressed: (){setState((){ref.watch(requerenteProvider.notifier).clear(); ref.watch(demandaListProvider.notifier).clear(); ref.watch(demandaProvider.notifier).clear(); buttonIndex=0;});}, icon: Icon(Icons.arrow_back, color: Colors.white, size: 40,)) : Text(''),
                         Text(
                           "Seus ",
                           style: TextStyle(color: Colors.white, fontSize: 32),
@@ -95,7 +94,7 @@ class _ClientsState extends ConsumerState<Clients> {
                   ),
                 ],
               ),
-              currentRequerente == null ? Container(
+              Container(
                 padding: EdgeInsets.symmetric(horizontal: 25),
                 child: FutureBuilder<List<Widget>>(
                   future: finalList,
@@ -114,98 +113,6 @@ class _ClientsState extends ConsumerState<Clients> {
                     }
                   },
                 ),
-              )
-              :
-              Column(
-                spacing: 30,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border(top: BorderSide(color: const Color.fromRGBO(255, 255, 255, .1)), bottom: BorderSide(color: const Color.fromRGBO(255, 255, 255, .1))),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 25, vertical: 15),
-                      child: Row(
-                        spacing: 15,
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              color: Colors.blue,
-                              borderRadius: BorderRadius.all(Radius.circular(100)),
-                            ),
-                            padding: EdgeInsets.all(20),
-                            child: SvgPicture.asset("img/profile.svg"),
-                          ),
-                          Text(currentRequerente.nome, style: TextStyle(color: Colors.white, fontSize: 20)),
-                        ]
-                      ),
-                    )
-                  ),
-                  Padding( 
-                    padding: EdgeInsets.symmetric(horizontal: 25),
-                    child: Column(
-                      spacing: 30,
-                      children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width,
-                          child: SingleChoice(
-                            onSelectionChanged: (value) {
-                              setState(() {
-                                buttonIndex = value - 1;
-                              });
-                            },
-                          ),
-                        ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.4,
-                          child: Scrollbar(
-                            thumbVisibility: true,
-                            thickness: 3,
-                            child: SingleChildScrollView(
-                            child: (){
-                              if (buttonIndex == 0) {
-                                return Column(
-                                  spacing: 30,
-                                  children: [
-                                    TopicInformation(topicName: "Nome Social", topicData: currentRequerente.nomeSocial!= '' ? currentRequerente.nomeSocial : "Não possui", topicImage: "img/profile.svg",),
-                                    TopicInformation(topicName: "Email", topicData: currentRequerente.email, topicImage: "img/email.svg",),
-                                    TopicInformation(topicName: "Gênero", topicData: currentRequerente.genero, topicImage: "img/profile.svg",),
-                                  ],
-                                );
-                              }
-                              if (buttonIndex == 1) {
-                                return Column(
-                                  spacing: 30,
-                                  children: [
-                                    TopicInformation(topicName: "CPF/CNPJ", topicData: currentRequerente.cpf_cnpj, topicImage: "img/oab.svg",),
-                                    TopicInformation(topicName: "RG", topicData: currentRequerente.rg, topicImage: "img/rg.svg",),
-                                    TopicInformation(topicName: "Profissão", topicData: currentRequerente.profissao, topicImage: "img/job.svg",),
-                                    TopicInformation(topicName: "Nacionalidade", topicData: currentRequerente.nacionalidade, topicImage: "img/nationality.svg",),
-                                    TopicInformation(topicName: "Estado Civil", topicData: currentRequerente.estadoCivil, topicImage: "img/civil.svg",),
-                                  ],
-                                );
-                              }
-                              if (buttonIndex == 2) {
-                                return Column(
-                                  spacing: 30,
-                                  children: [
-                                    TopicInformation(topicName: "CEP", topicData: currentRequerente.cep, topicImage: "img/cep.svg",),
-                                    TopicInformation(topicName: "Cidade", topicData: currentRequerente.cidade, topicImage: "img/city.svg",),
-                                    TopicInformation(topicName: "Bairro", topicData: currentRequerente.bairro, topicImage: "img/bairro.svg",),
-                                    TopicInformation(topicName: "Logradouro", topicData: currentRequerente.logradouro, topicImage: "img/nationality.svg",),
-                                    TopicInformation(topicName: "Nº", topicData: currentRequerente.estadoCivil, topicImage: "img/number.svg",),
-                                    TopicInformation(topicName: "Complemento", topicData: currentRequerente.complemento!= '' ? currentRequerente.complemento : 'Não possui', topicImage: "img/complement.svg",),
-                                  ],
-                                );
-                              }
-                            }()
-                          )
-                        )
-                        )
-                      ]
-                    ),
-                  )
-                ],
               )
             ],
           ),
