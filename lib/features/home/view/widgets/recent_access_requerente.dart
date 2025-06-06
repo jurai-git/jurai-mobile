@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:jurai/features/home/models/requerente.dart';
 import 'package:jurai/features/home/providers/requerente_provider.dart';
+import 'package:jurai/features/home/view/pages/clients_information.dart';
 import 'package:jurai/features/home/view/pages/navigation.dart';
 import 'package:jurai/features/home/viewmodel/home_viewmodel.dart';
 
@@ -42,7 +43,7 @@ class _RecentAccessRequerenteState extends ConsumerState<RecentAccessRequerente>
               onPressed: (){
                 ref.read(requerenteProvider.notifier).setRequerente(widget.requerente);
                 ref.watch(homeViewModelProvider.notifier).getAllDemandasFromRequerente(id_requerente: widget.requerente.id_requerente);
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => CustomBotNavBar(customIndex: 1)));
+                Navigator.push(context, MaterialPageRoute(builder: (_) => ClientsInformation(requerente: widget.requerente)));
               }, 
               child: Text("Ver detalhes", style: TextStyle(color: Color(0xFF387FB9),),)
             )
