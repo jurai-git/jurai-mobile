@@ -50,7 +50,7 @@ class _DemandasDetailsState extends ConsumerState<DemandasDetails> {
                     ]
                   ),
 
-                  TopicInformation(topicName: "Identificação", topicData: widget.demanda.identificacao, topicImage: "img/profile.svg"),
+                  TopicInformation(topicName: "Identificação", topicData: widget.demanda.identificacao, topicImage: "img/profile.svg", first: true,),
                   TopicInformation(topicName: "Foro", topicData: widget.demanda.foro, topicImage: "img/foro.svg"),
                   TopicInformation(topicName: "Status", topicData: widget.demanda.status, topicImage: "img/status.svg"),
                   TopicInformation(topicName: "Competência", topicData: widget.demanda.competencia, topicImage: "img/competencia.svg"),
