@@ -7,9 +7,8 @@ import 'package:jurai/features/home/providers/demanda_provider.dart';
 class DemandasViewButton extends StatefulWidget {
   final Demanda demanda;
   final WidgetRef ref;
-  final int count;
 
-  const DemandasViewButton({super.key, required this.demanda, required this.ref, required this.count});
+  const DemandasViewButton({super.key, required this.demanda, required this.ref});
 
   @override
   State<DemandasViewButton> createState() => _DemandasViewButtonState();
@@ -47,7 +46,7 @@ class _DemandasViewButtonState extends State<DemandasViewButton> {
           ),
           Flexible(
             child: FittedBox( 
-              child: Text("Demanda ${widget.count}", style: TextStyle(color: Colors.white, fontSize: 25), overflow: TextOverflow.ellipsis, maxLines: 1,),
+              child: Text(widget.demanda.identificacao, style: TextStyle(color: Colors.white, fontSize: 25), overflow: TextOverflow.ellipsis, maxLines: 1,),
             )
           )
         ],
