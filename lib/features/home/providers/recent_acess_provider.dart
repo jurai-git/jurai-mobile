@@ -1,25 +1,27 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jurai/features/home/models/requerente.dart';
 
-class RecentReqAcessListNotifier extends StateNotifier<List<Requerente>>{
-  RecentReqAcessListNotifier() : super([]);
+class RecentReqAcessListNotifier extends StateNotifier<AsyncValue<List<Requerente>>>{
+  RecentReqAcessListNotifier() : super(AsyncValue.data([]));
 
   void setRecentReqAcessList(Requerente requerente){
-    for(Requerente r in state){
-      if(r == requerente){
-        state.remove(r);
-        break;
-      }
-    }
-    state.insert(0, requerente);
+    final currentList = state.value ?? [];
+      
+    final newList = List<Requerente>.from(currentList);
+
+    newList.removeWhere((r) => r == requerente);
+
+    newList.insert(0, requerente);
+
+    state = AsyncValue.data(newList);
   }
 
   void clear(){
-    state = [];
+    state = AsyncValue.data([]);
   }
 
 }
 
-final recentReqAcessListProvider = StateNotifierProvider<RecentReqAcessListNotifier, List<Requerente>>((ref) {
+final recentReqAcessListProvider = StateNotifierProvider<RecentReqAcessListNotifier, AsyncValue<List<Requerente>>>((ref) {
   return RecentReqAcessListNotifier();
 });
