@@ -33,10 +33,34 @@ class DemandaListNotifier extends StateNotifier<AsyncValue<List<Demanda>>> {
   }
 }
 
+class AllDemandaListNotiifer extends StateNotifier<AsyncValue<List<Demanda>>>{
+  AllDemandaListNotiifer() : super(const AsyncValue.data([]));
+
+  void setLoading() {
+    state = const AsyncValue.loading();
+  }
+
+  void setAllDemandaList(List<Demanda> allDemandaList) {
+    state = AsyncValue.data(allDemandaList);
+  }
+
+  void setError(Object error, StackTrace stackTrace) {
+    state = AsyncValue.error(error, stackTrace);
+  }
+
+  void clear() {
+    state = const AsyncValue.data([]);
+  }
+}
+
 final demandaProvider = StateNotifierProvider<DemandaNotifier, Demanda?>((ref) {
   return DemandaNotifier();
 });
 
 final demandaListProvider = StateNotifierProvider<DemandaListNotifier, AsyncValue<List<Demanda>>>((ref) {
   return DemandaListNotifier();
+});
+
+final allDemandaListProvider = StateNotifierProvider<AllDemandaListNotiifer, AsyncValue<List<Demanda>>>((ref) {
+  return AllDemandaListNotiifer();
 });
