@@ -22,6 +22,7 @@ class _UserHomeState extends ConsumerState<UserHome>{
 
   @override
   Widget build(BuildContext context) {
+    final asyncList = ref.watch(recentReqAcessListProvider);
     final currentAdvogado = ref.watch(advogadoProvider);
     return Container(
       color: Color.fromRGBO(25, 24, 29, 1),
@@ -133,16 +134,22 @@ class _UserHomeState extends ConsumerState<UserHome>{
               ),
               SizedBox(
                 height: 250,
-                child: ListView.builder(
-                  padding: EdgeInsets.symmetric(horizontal: 25),
-                  scrollDirection: Axis.horizontal,
-                  shrinkWrap: true,
-                  physics: const AlwaysScrollableScrollPhysics(),
-                  itemCount: ref.watch(recentReqAcessListProvider).length,
-                  itemBuilder: (BuildContext context, index){
-                    return RecentAccessRequerente(requerente: ref.watch(recentReqAcessListProvider)[index],);
-                  }
-                ),
+                child: asyncList.when(
+                  data: (list) {
+                    return ListView.builder(
+                      padding: EdgeInsets.symmetric(horizontal: 25),
+                      scrollDirection: Axis.horizontal,
+                      shrinkWrap: true,
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      itemCount: list.length,
+                      itemBuilder: (BuildContext context, index){
+                        return RecentAccessRequerente(requerente: list[index],);
+                      }
+                    ); 
+                  }, 
+                  error: (error, stackTrace) => Text(''),
+                  loading: (){}
+                )
               )
             ],
           ),
