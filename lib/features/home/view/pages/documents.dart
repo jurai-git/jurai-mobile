@@ -64,7 +64,6 @@ class _DocumentsState extends ConsumerState<Documents>{
                     padding: EdgeInsets.fromLTRB(25, 50, 25, 20),
                     child: Row(
                       children: [
-                        currentDemanda != null ? IconButton(onPressed: (){setState((){ref.watch(demandaProvider.notifier).clear(); buttonIndex=0;});}, icon: Icon(Icons.arrow_back, color: Colors.white, size: 40,)) : Text(''),
                         Text(
                           "Seus ",
                           style: TextStyle(color: Colors.white, fontSize: 32),
