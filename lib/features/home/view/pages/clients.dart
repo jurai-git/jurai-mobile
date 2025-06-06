@@ -100,6 +100,7 @@ class _ClientsState extends ConsumerState<Clients> {
                         );
                       }
                       return Column(
+                        spacing: 15,
                         children: requerentes.asMap().entries.map((entry) {
                           return RequerentesViewButton(
                             requerente: entry.value,

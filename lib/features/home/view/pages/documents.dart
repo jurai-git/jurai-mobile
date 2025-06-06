@@ -93,6 +93,7 @@ class _DocumentsState extends ConsumerState<Documents>{
                         );
                       }
                       return Column(
+                        spacing: 15,
                         children: requerentes.asMap().entries.map((entry) {
                           return DemandasViewButton(
                             demanda: entry.value,

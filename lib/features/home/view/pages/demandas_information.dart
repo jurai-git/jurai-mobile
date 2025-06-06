@@ -43,6 +43,7 @@ class _DemandasInformationState extends ConsumerState<DemandasInformation> {
                     );
                   }
                   return Column(
+                    spacing: 15,
                     children: demandas.asMap().entries.map((entry) {
                       return DemandasViewButton(
                         demanda: entry.value,
