@@ -42,25 +42,26 @@ class _ClientsInformationState extends ConsumerState<ClientsInformation> {
                     margin: EdgeInsets.only(bottom: 20),
                     child: SvgPicture.asset("img/profile.svg", width: 65,),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text("Informações Pessoais", style: TextStyle(color: Colors.white, fontSize: 22),),
-                    ]
-                  ),
 
                   ElevatedButton(
                     onPressed: (){
                       Navigator.push(context, MaterialPageRoute(builder: (_) => DemandasInformation()));
                     },
                     style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                         shadowColor: Colors.transparent,
                         backgroundColor: Color.fromRGBO(56, 127, 185, 0.750),
                         fixedSize: Size.fromWidth(MediaQuery.of(context).size.width),
-                        padding: EdgeInsets.symmetric(vertical: 20)
+                        padding: EdgeInsets.symmetric(vertical: 20),
                       ),
-                      child: Text("Entrar", style: TextStyle(color: Colors.white, fontSize: 16)),
+                      child: Text("Ver Demandas", style: TextStyle(color: Colors.white, fontSize: 16)),
+                  ),
+                  SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text("Informações Pessoais", style: TextStyle(color: Colors.white, fontSize: 22),),
+                    ]
                   ),
                   
                   TopicInformation(topicName: "Nome Completo  ", topicData: widget.requerente.nome, topicImage: "img/profile.svg", first: true,),
