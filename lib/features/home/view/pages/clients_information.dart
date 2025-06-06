@@ -27,7 +27,7 @@ class _ClientsInformationState extends ConsumerState<ClientsInformation> {
         body: Center(
           child: SingleChildScrollView(
               child: Padding(
-                padding: EdgeInsets.all(10),
+                padding: EdgeInsets.all(20),
                 child: Column(
                 children: [
                   Container(
@@ -47,17 +47,32 @@ class _ClientsInformationState extends ConsumerState<ClientsInformation> {
                     ]
                   ),
                   
-                  TopicInformation(topicName: "Nome Social", topicData: widget.requerente.nomeSocial!= '' ? widget.requerente.nomeSocial : "Não possui", topicImage: "img/profile.svg",),
+                  TopicInformation(topicName: "Nome Completo  ", topicData: widget.requerente.nome, topicImage: "img/profile.svg", first: true,),
+                  TopicInformation(topicName: "Nome Social", topicData: widget.requerente.nomeSocial!= '' ? widget.requerente.nomeSocial : "Não possui", topicImage: "img/profile.svg"),
                   TopicInformation(topicName: "Email", topicData: widget.requerente.email, topicImage: "img/email.svg",),
                   TopicInformation(topicName: "Gênero", topicData: widget.requerente.genero, topicImage: "img/profile.svg",),
                 
-                  TopicInformation(topicName: "CPF/CNPJ", topicData: widget.requerente.cpf_cnpj, topicImage: "img/oab.svg",),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text("Informações Gerais", style: TextStyle(color: Colors.white, fontSize: 22),),
+                    ]
+                  ),
+
+                  TopicInformation(topicName: "CPF/CNPJ", topicData: widget.requerente.cpf_cnpj, topicImage: "img/oab.svg", first: true,),
                   TopicInformation(topicName: "RG", topicData: widget.requerente.rg, topicImage: "img/rg.svg",),
                   TopicInformation(topicName: "Profissão", topicData: widget.requerente.profissao, topicImage: "img/job.svg",),
                   TopicInformation(topicName: "Nacionalidade", topicData: widget.requerente.nacionalidade, topicImage: "img/nationality.svg",),
                   TopicInformation(topicName: "Estado Civil", topicData: widget.requerente.estadoCivil, topicImage: "img/civil.svg",),
                 
-                  TopicInformation(topicName: "CEP", topicData: widget.requerente.cep, topicImage: "img/cep.svg",),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text("Informações de Endereço", style: TextStyle(color: Colors.white, fontSize: 22),),
+                    ]
+                  ),
+
+                  TopicInformation(topicName: "CEP", topicData: widget.requerente.cep, topicImage: "img/cep.svg", first: true,),
                   TopicInformation(topicName: "Cidade", topicData: widget.requerente.cidade, topicImage: "img/city.svg",),
                   TopicInformation(topicName: "Bairro", topicData: widget.requerente.bairro, topicImage: "img/bairro.svg",),
                   TopicInformation(topicName: "Logradouro", topicData: widget.requerente.logradouro, topicImage: "img/nationality.svg",),
