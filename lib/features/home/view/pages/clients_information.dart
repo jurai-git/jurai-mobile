@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:jurai/features/home/models/requerente.dart';
+import 'package:jurai/features/home/providers/requerente_provider.dart';
+import 'package:jurai/features/home/view/pages/demandas_information.dart';
 import 'package:jurai/features/home/view/widgets/topic_information.dart';
 
 class ClientsInformation extends ConsumerStatefulWidget {
@@ -45,6 +47,20 @@ class _ClientsInformationState extends ConsumerState<ClientsInformation> {
                     children: [
                       Text("Informações Pessoais", style: TextStyle(color: Colors.white, fontSize: 22),),
                     ]
+                  ),
+
+                  ElevatedButton(
+                    onPressed: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (_) => DemandasInformation()));
+                    },
+                    style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(),
+                        shadowColor: Colors.transparent,
+                        backgroundColor: Color.fromRGBO(56, 127, 185, 0.750),
+                        fixedSize: Size.fromWidth(MediaQuery.of(context).size.width),
+                        padding: EdgeInsets.symmetric(vertical: 20)
+                      ),
+                      child: Text("Entrar", style: TextStyle(color: Colors.white, fontSize: 16)),
                   ),
                   
                   TopicInformation(topicName: "Nome Completo  ", topicData: widget.requerente.nome, topicImage: "img/profile.svg", first: true,),
