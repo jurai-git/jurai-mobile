@@ -30,14 +30,18 @@ class HomeViewModel extends _$HomeViewModel{
 
   Future<void> getAllDemandasFromRequerente({
     required int id_requerente
-  }) async{
-    state = AsyncValue.loading();
-    final res = await homeRemoteRepository.getAllDemandasFromRequerente(id_requerente: id_requerente);
+    }) async {
+      final notifier = ref.read(demandaListProvider.notifier);
+      notifier.setLoading();
+      final res = await homeRemoteRepository.getAllDemandasFromRequerente(id_requerente: id_requerente);
 
-    final val = switch(res){
-      Left(value: final l) => state = AsyncValue.error(l.message, StackTrace.current),
-      Right(value: final r) => [ref.read(demandaListProvider.notifier).setDemandaList(r), state = AsyncValue.data(r)],
-    };
-    print(val);
-  }
+      switch (res) {
+        case Left(value: final l):
+          notifier.setError(l.message, StackTrace.current);
+          state = AsyncValue.error(l.message, StackTrace.current);
+        case Right(value: final r):
+          notifier.setDemandaList(r);
+          state = AsyncValue.data(r);
+      }
+    }
 }
