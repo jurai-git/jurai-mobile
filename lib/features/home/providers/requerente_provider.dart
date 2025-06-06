@@ -13,15 +13,23 @@ class RequerenteNotifier extends StateNotifier<Requerente?>{
   }
 }
 
-class RequerenteListNotifier extends StateNotifier<List<Requerente>>{
-  RequerenteListNotifier() : super([]);
+class RequerenteListNotifier extends StateNotifier<AsyncValue<List<Requerente>>>{
+  RequerenteListNotifier() : super(const AsyncValue.data([]));
 
-  void setRequerenteList(List<Requerente> requerenteList){
-    state = requerenteList;
+  void setLoading() {
+    state = const AsyncValue.loading();
   }
 
-  void clear(){
-    state = [];
+  void setRequerenteList(List<Requerente> requerenteList){
+    state = AsyncValue.data(requerenteList);
+  }
+
+  void setError(Object error, StackTrace stackTrace) {
+    state = AsyncValue.error(error, stackTrace);
+  }
+
+  void clear() {
+    state = const AsyncValue.data([]);
   }
 
 }
@@ -30,6 +38,6 @@ final requerenteProvider = StateNotifierProvider<RequerenteNotifier, Requerente?
   return RequerenteNotifier();
 });
 
-final requerenteListProvider = StateNotifierProvider<RequerenteListNotifier, List<Requerente>>((ref) {
+final requerenteListProvider = StateNotifierProvider<RequerenteListNotifier, AsyncValue<List<Requerente>>>((ref) {
   return RequerenteListNotifier();
 });
