@@ -16,23 +16,17 @@ class Documents extends ConsumerStatefulWidget {
   ConsumerState<Documents> createState() => _DocumentsState();
 }
 
-var demandasList;
 var currentDemanda;
 int buttonIndex = 0;
 
 enum Options{ general, ement }
 
 class _DocumentsState extends ConsumerState<Documents>{ 
-
-  @override
-  void initState() {
-    super.initState();
-    demandasList = loadDemandas(context, ref);
-  }
-
   @override
   Widget build(BuildContext context) {
     currentDemanda = ref.watch(demandaProvider);
+    final demandasListAsync = ref.watch(allDemandaListProvider);
+
     return Container(
       color: Color.fromRGBO(25, 24, 29, 1),
       child: Scaffold(
@@ -88,108 +82,34 @@ class _DocumentsState extends ConsumerState<Documents>{
                   ),
                 ],
               ),
-              currentDemanda == null ? Container(
+              Container(
                 padding: EdgeInsets.symmetric(horizontal: 25),
-                child: FutureBuilder<List<Widget>>(
-                  future: demandasList,
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Padding(padding: EdgeInsets.only(top: MediaQuery.of(context).size.height/4-100), child: LoadingCircle());
-                    } else if (snapshot.hasError) {
-                      return Text('Error: ${snapshot.error}', style: TextStyle(color: Colors.white),);
-                    } else if (snapshot.hasData) {
-                        if(ref.read(requerenteProvider) == null)
-                          return Text('Selecione um requerente!', style: TextStyle(color: Colors.white),);
-                        else if(ref.read(demandaListProvider).isEmpty)
-                          return Text('O requerente selecionado não possui demandas!', style: TextStyle(color: Colors.white),);
-                        else{
-                          return Column(
-                            spacing: 15,
-                            children: snapshot.data!,
+                child: demandasListAsync.when(
+                    data: (requerentes) {
+                      if (requerentes.isEmpty) {
+                        return const Text(
+                          'Você não possui documents associados à requerentes!',
+                          style: TextStyle(color: Colors.white),
+                        );
+                      }
+                      return Column(
+                        children: requerentes.asMap().entries.map((entry) {
+                          return DemandasViewButton(
+                            demanda: entry.value,
+                            ref: ref,
                           );
-                        }
-                    } else {
-                      return Text('Não foram encontradas demandas!', style: TextStyle(color: Colors.white),);
-                    }
-                  },
-                ),
-              )
-              :
-              Column(
-                spacing: 30,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border(top: BorderSide(color: const Color.fromRGBO(255, 255, 255, .1)), bottom: BorderSide(color: const Color.fromRGBO(255, 255, 255, .1))),
+                        }).toList(),
+                      );
+                    },
+                    loading: () => const Padding(
+                      padding: EdgeInsets.only(top: 100),
+                      child: LoadingCircle(),
                     ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 25, vertical: 15),
-                      child: Row(
-                        spacing: 15,
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              color: Colors.blue,
-                              borderRadius: BorderRadius.all(Radius.circular(100)),
-                            ),
-                            padding: EdgeInsets.all(20),
-                            child: Icon(Icons.description, color: Colors.white, size: 25,),
-                          ),
-                          Text("teste", style: TextStyle(color: Colors.white, fontSize: 20)),
-                        ]
-                      ),
-                    )
+                    error: (error, stack) => Text(
+                      'Error: $error',
+                      style: const TextStyle(color: Colors.white),
+                    ),
                   ),
-                  Padding( 
-                    padding: EdgeInsets.symmetric(horizontal: 25),
-                    child: Column(
-                      spacing: 30,
-                      children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width,
-                          child: SingleChoice(
-                            onSelectionChanged: (value) {
-                              setState(() {
-                                buttonIndex = value - 1;
-                              });
-                            },
-                          ),
-                        ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.4,
-                          child: Scrollbar(
-                            thumbVisibility: true,
-                            thickness: 3,
-                            child: SingleChildScrollView(
-                            child: (){
-                              if (buttonIndex == 0) {
-                                return Column(
-                                  spacing: 30,
-                                  children: [
-                                    TopicInformation(topicName: "Foro", topicData: currentDemanda.foro, topicImage: "img/foro.svg"),
-                                    TopicInformation(topicName: "Status", topicData: currentDemanda.status, topicImage: "img/status.svg"),
-                                    TopicInformation(topicName: "Competência", topicData: currentDemanda.competencia, topicImage: "img/competencia.svg"),
-                                    TopicInformation(topicName: "Classe", topicData: currentDemanda.classe, topicImage: "img/classe.svg"),
-                                  ],
-                                );
-                              }
-                              if (buttonIndex == 1) {
-                                  return Column(
-                                    spacing: 30,
-                                    children: [
-                                      TopicInformation(topicName: "Assunto Principal", topicData: currentDemanda.assunto_principal, topicImage: "img/assuntoPrincipal.svg"),
-                                      TopicInformation(topicName: "Valor da Ação", topicData: currentDemanda.valor_acao.toString(), topicImage: "img/valorAcao.svg"),
-                                    ],
-                                  );
-                                }
-                              }()
-                            ),
-                          )
-                        )
-                      ]
-                    ),
-                  )
-                ],
               )
             ]
           )
@@ -197,20 +117,6 @@ class _DocumentsState extends ConsumerState<Documents>{
       )
     );
   }
-}
-
-Future<List<Widget>> loadDemandas(BuildContext context, WidgetRef ref) async{
-  var lista = <Widget>[];
-  int count = 1;
-  demandasList = ref.read(demandaListProvider);
-
-  for (Demanda d in demandasList) {
-    lista.add(DemandasViewButton(demanda: d, ref: ref, count: count,));
-    count++;
-  }
-  print(lista);
-  
-  return lista;
 }
 
 class SingleChoice extends StatelessWidget {
