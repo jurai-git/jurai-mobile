@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jurai/features/home/models/demanda.dart';
 import 'package:jurai/features/home/providers/demanda_provider.dart';
+import 'package:jurai/features/home/view/pages/demandas_details.dart';
+import 'package:jurai/features/home/view/pages/demandas_information.dart';
 
 class DemandasViewButton extends StatefulWidget {
   final Demanda demanda;
@@ -20,7 +22,7 @@ class _DemandasViewButtonState extends State<DemandasViewButton> {
     return ElevatedButton(
       onPressed: () {
         setState(() {
-          widget.ref.watch(demandaProvider.notifier).setDemanda(widget.demanda);
+          Navigator.push(context, MaterialPageRoute(builder: (_) => DemandasDetails(demanda: widget.demanda)));
         });
       },
       style: ElevatedButton.styleFrom(
