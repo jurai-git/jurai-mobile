@@ -47,6 +47,35 @@ class HomeRemoteRepository {
     }
   }
 
+  Future<Either<FlutterError, List<Demanda>>> getAllDemandas() async{
+    try{
+      String? token = await tokenService.getToken();
+      
+      final res = await http
+        .get(Uri.parse("https://jurai-server.onrender.com/advogado/demandas"), headers: {
+          'Content-Type': 'application/json',
+          'Authorization': token != null ? 'Bearer $token' : ''
+        });
+        var resBodyMap = jsonDecode(res.body);
+        if(res.statusCode / 100 != 2){
+          return Left(FlutterError(resBodyMap['detail']));
+        }
+
+        resBodyMap = resBodyMap['demandas'] as List;
+
+        List<Demanda> demandas = [];
+
+        for(final map in resBodyMap){
+          demandas.add(Demanda.fromMap(map));
+        }
+        print(demandas);
+
+        return Right(demandas);
+    } catch (e) {
+      return Left(FlutterError(e.toString()));
+    }
+  }
+
   Future<Either<FlutterError, List<Demanda>>> getAllDemandasFromRequerente({
     required int id_requerente,
   }) async {
