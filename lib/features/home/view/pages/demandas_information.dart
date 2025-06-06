@@ -16,65 +16,59 @@ class DemandasInformation extends ConsumerStatefulWidget {
 class _DemandasInformationState extends ConsumerState<DemandasInformation> {
   @override
   Widget build(BuildContext context) {
-    final demandas = ref.watch(demandaListProvider);
+    final demandaListAsync = ref.watch(demandaListProvider);
 
     return Scaffold(
-      backgroundColor: Color.fromRGBO(25, 24, 29, 1),
-        appBar: AppBar(
-          title: Text("Lista de Demandas", style: TextStyle(color: Colors.white),),
-          centerTitle: true,
-          iconTheme: IconThemeData(color: Color(0xFF387FB9)),
-          backgroundColor: Colors.transparent,
+      backgroundColor: const Color.fromRGBO(25, 24, 29, 1),
+      appBar: AppBar(
+        title: const Text(
+          "Lista de Demandas",
+          style: TextStyle(color: Colors.white),
         ),
-        body: Center(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.all(20),
-              child: Column(
+        centerTitle: true,
+        iconTheme: const IconThemeData(color: Color(0xFF387FB9)),
+        backgroundColor: Colors.transparent,
+      ),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
               children: [
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 25),
-                  child: FutureBuilder<List<Widget>>(
-                    future: loadDemandas(context, ref, demandas),
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Padding(padding: EdgeInsets.only(top: MediaQuery.of(context).size.height/4-100), child: LoadingCircle());
-                      }
-                      if (snapshot.hasError) {
-                        return Text('Error: ${snapshot.error}', style: TextStyle(color: Colors.white),);
-                      }
-                      if (snapshot.hasData) {
-                        if(snapshot.data!.isEmpty){
-                          return Text('O requerente selecionado não possui demandas!', style: TextStyle(color: Colors.white),);
-                        }
-                        return Column(
-                        spacing: 15,
-                          children: snapshot.data!,
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: demandaListAsync.when(
+                    data: (demandas) {
+                      if (demandas.isEmpty) {
+                        return const Text(
+                          'O requerente selecionado não possui demandas!',
+                          style: TextStyle(color: Colors.white),
                         );
-                      } 
-                        return Text('Não foram encontradas demandas!', style: TextStyle(color: Colors.white),);
-                      
+                      }
+                      return Column(
+                        children: demandas.asMap().entries.map((entry) {
+                          return DemandasViewButton(
+                            demanda: entry.value,
+                            ref: ref,
+                          );
+                        }).toList(),
+                      );
                     },
+                    loading: () => const Padding(
+                      padding: EdgeInsets.only(top: 100),
+                      child: LoadingCircle(),
+                    ),
+                    error: (error, stack) => Text(
+                      'Error: $error',
+                      style: const TextStyle(color: Colors.white),
+                    ),
                   ),
-                )
-              ]
-            )
-          )
-        )
-      )
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
-}
-
-Future<List<Widget>> loadDemandas(BuildContext context, WidgetRef ref, List<Demanda> demandas) async{
-  var lista = <Widget>[];
-  int count = 1;
-
-  for (Demanda d in demandas) {
-    lista.add(DemandasViewButton(demanda: d, ref: ref, count: count,));
-    count++;
-  }
-  print(lista);
-  
-  return lista;
 }
