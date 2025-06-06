@@ -33,7 +33,7 @@ class _DemandasInformationState extends ConsumerState<DemandasInformation> {
         child: Column(
           children: [
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
+              padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
               child: demandaListAsync.when(
                 data: (demandas) {
                   if (demandas.isEmpty) {
