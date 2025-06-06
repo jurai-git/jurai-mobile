@@ -29,44 +29,41 @@ class _DemandasInformationState extends ConsumerState<DemandasInformation> {
         iconTheme: const IconThemeData(color: Color(0xFF387FB9)),
         backgroundColor: Colors.transparent,
       ),
-      body: Center(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: demandaListAsync.when(
-                    data: (demandas) {
-                      if (demandas.isEmpty) {
-                        return const Text(
-                          'O requerente selecionado não possui demandas!',
-                          style: TextStyle(color: Colors.white),
-                        );
-                      }
-                      return Column(
-                        children: demandas.asMap().entries.map((entry) {
-                          return DemandasViewButton(
-                            demanda: entry.value,
-                            ref: ref,
-                          );
-                        }).toList(),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: demandaListAsync.when(
+                data: (demandas) {
+                  if (demandas.isEmpty) {
+                    return const Text(
+                      'O requerente selecionado não possui demandas!',
+                      style: TextStyle(color: Colors.white),
+                    );
+                  }
+                  return Column(
+                    children: demandas.asMap().entries.map((entry) {
+                      return DemandasViewButton(
+                        demanda: entry.value,
+                        ref: ref,
                       );
-                    },
-                    loading: () => const Padding(
-                      padding: EdgeInsets.only(top: 100),
-                      child: LoadingCircle(),
-                    ),
-                    error: (error, stack) => Text(
-                      'Error: $error',
-                      style: const TextStyle(color: Colors.white),
-                    ),
+                    }).toList(),
+                  );
+                },
+                loading: () => const Padding(
+                  padding: EdgeInsets.only(top: 100),
+                  child: Center(
+                    child: LoadingCircle(),
                   ),
                 ),
-              ],
+                error: (error, stack) => Text(
+                  'Error: $error',
+                  style: const TextStyle(color: Colors.white),
+                ),
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );
