@@ -7,13 +7,17 @@ class TopicInformation extends StatelessWidget {
   final String topicData;
   final String topicImage;
   final bool first;
+  final int? maxLines;
+  final TextInputType kbType;
 
   const TopicInformation({
     super.key,
     required this.topicName,
     required this.topicData,
     required this.topicImage,
-    this.first=false
+    this.first=false,
+    this.maxLines = 1,
+    this.kbType = TextInputType.text
   });
 
   @override
@@ -21,6 +25,8 @@ class TopicInformation extends StatelessWidget {
     return Container(
       margin: first ? EdgeInsets.symmetric(vertical: 20) : EdgeInsets.only(bottom: 20),
       child: TextFormField(
+        maxLines: maxLines,
+        keyboardType: kbType,
         initialValue: topicData,
         style: const TextStyle(color: Colors.white),
         enabled: false,
