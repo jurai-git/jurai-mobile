@@ -57,6 +57,7 @@ class _DemandasDetailsState extends ConsumerState<DemandasDetails> {
                   TopicInformation(topicName: "Classe", topicData: widget.demanda.classe, topicImage: "img/classe.svg"),
                   TopicInformation(topicName: "Assunto Principal", topicData: widget.demanda.assunto_principal, topicImage: "img/assuntoPrincipal.svg"),
                   TopicInformation(topicName: "Valor da Ação", topicData: widget.demanda.valor_acao.toString(), topicImage: "img/valorAcao.svg"),
+                  TopicInformation(topicName: "Resumo da Demanda", topicData: widget.demanda.resumo, topicImage: "img/assuntoPrincipal.svg", maxLines: null, kbType: TextInputType.multiline)
                 ],
               ),
           ),
