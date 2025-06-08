@@ -76,7 +76,7 @@ class _DemandasInformationState extends ConsumerState<DemandasInformation> {
                     child: ListView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      itemCount: 5,
+                      itemCount: (MediaQuery.of(context).size.height/120).toInt(),
                       itemBuilder: (context, index) {
                         return DemandasViewButton(demanda: Demanda.f(), ref: ref);
                       },

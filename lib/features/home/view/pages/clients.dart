@@ -125,12 +125,12 @@ class _ClientsState extends ConsumerState<Clients> {
                       });
 
                       return Skeletonizer(
-                      enabled: true, // Enable Skeletonizer during loading
+                      enabled: true,
                       enableSwitchAnimation: true,
                       child: ListView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        itemCount: 5, // Placeholder count for skeleton
+                        itemCount: (MediaQuery.of(context).size.height/200).toInt(),
                         itemBuilder: (context, index) {
                           return RequerentesViewButton(requerente: Requerente.f(), ref: ref);
                         },
