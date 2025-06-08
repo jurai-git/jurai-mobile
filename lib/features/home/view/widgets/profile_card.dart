@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 class ProfileCard extends StatelessWidget {
   final String profileName;
   final String profilePictureUrl;
-  final String profileAge;
+  final String profileRole;
 
   const ProfileCard(
     {
       super.key, 
       required this.profileName, 
       required this.profilePictureUrl, 
-      required this.profileAge
+      required this.profileRole
     }
   );
 
@@ -32,7 +32,7 @@ class ProfileCard extends StatelessWidget {
           ),
         ),
         Text(profileName, style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold), textAlign: TextAlign.center,),
-        Text("$profileAge anos", style: TextStyle(color: Colors.white, fontSize: 20), textAlign: TextAlign.center,),
+        Text(profileRole, style: TextStyle(color: Colors.white, fontSize: 20), textAlign: TextAlign.center,),
       ],
     );
   }
