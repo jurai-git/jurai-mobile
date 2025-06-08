@@ -2,7 +2,6 @@ import 'package:either_dart/either.dart';
 import 'package:jurai/features/auth/models/advogado.dart';
 import 'package:jurai/features/auth/repositories/auth_remote_repository.dart';
 import 'package:jurai/features/home/providers/advogado_provider.dart';
-import 'package:jurai/features/home/providers/demanda_provider.dart';
 import 'package:jurai/features/home/viewmodel/home_viewmodel.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

@@ -148,7 +148,9 @@ class _UserHomeState extends ConsumerState<UserHome>{
                     ); 
                   }, 
                   error: (error, stackTrace) => Text(''),
-                  loading: (){}
+                  loading: (){
+                    return null;
+                  }
                 )
               )
             ],

@@ -2,9 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jurai/features/home/models/demanda.dart';
-import 'package:jurai/features/home/providers/demanda_provider.dart';
 import 'package:jurai/features/home/view/pages/demandas_details.dart';
-import 'package:jurai/features/home/view/pages/demandas_information.dart';
 
 class DemandasViewButton extends StatefulWidget {
   final Demanda demanda;
