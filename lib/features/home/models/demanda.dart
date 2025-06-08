@@ -17,7 +17,8 @@ class Demanda {
   final String resumo;
 
   Demanda({required this.id, required this.identificacao, required this.foro, required this.status, required this.competencia, required this.classe, required this.assunto_principal, required this.pedido_liminar, required this.segredo_justica, required this.valor_acao, required this.dispensa_legal, required this.justica_gratuita, required this.guia_custas, required this.resumo});
-
+  Demanda.f({this.id=-1, this.identificacao='', this.foro='', this.status='', this.competencia='', this.classe='', this.assunto_principal='', this.pedido_liminar=false, this.segredo_justica=false, this.valor_acao=0, this.dispensa_legal=false, this.justica_gratuita=false, this.guia_custas=false, this.resumo=''});
+  
   Demanda copyWith({
     int? id,
     String? identificacao,
