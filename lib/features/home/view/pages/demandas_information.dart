@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jurai/features/auth/view/widgets/loading_circle.dart';
+import 'package:jurai/features/home/models/demanda.dart';
 import 'package:jurai/features/home/providers/demanda_provider.dart';
 import 'package:jurai/features/home/view/widgets/demandas_view_button.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class DemandasInformation extends ConsumerStatefulWidget {
   const DemandasInformation({super.key});
@@ -13,9 +15,11 @@ class DemandasInformation extends ConsumerStatefulWidget {
 }
 
 class _DemandasInformationState extends ConsumerState<DemandasInformation> {
+  bool isLoading = true;
+
   @override
   Widget build(BuildContext context) {
-    final demandaListAsync = ref.watch(demandaListProvider);
+    final demandasListAsync = ref.watch(demandaListProvider);
 
     return Scaffold(
       backgroundColor: const Color.fromRGBO(25, 24, 29, 1),
@@ -33,8 +37,15 @@ class _DemandasInformationState extends ConsumerState<DemandasInformation> {
           children: [
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
-              child: demandaListAsync.when(
+              child: demandasListAsync.when(
                 data: (demandas) {
+                  WidgetsBinding.instance.addPostFrameCallback((_){
+                    if(isLoading){
+                      setState(() {
+                        isLoading = false;
+                      });
+                    }
+                  });
                   if (demandas.isEmpty) {
                     return const Text(
                       'O requerente selecionado não possui demandas!',
@@ -42,7 +53,6 @@ class _DemandasInformationState extends ConsumerState<DemandasInformation> {
                     );
                   }
                   return Column(
-                    spacing: 15,
                     children: demandas.asMap().entries.map((entry) {
                       return DemandasViewButton(
                         demanda: entry.value,
@@ -51,12 +61,28 @@ class _DemandasInformationState extends ConsumerState<DemandasInformation> {
                     }).toList(),
                   );
                 },
-                loading: () => const Padding(
-                  padding: EdgeInsets.only(top: 100),
-                  child: Center(
-                    child: LoadingCircle(),
-                  ),
-                ),
+                loading: (){
+                  WidgetsBinding.instance.addPostFrameCallback((_){
+                    if(!isLoading){
+                      setState(() {
+                        isLoading = true;
+                      });
+                    }
+                  });
+
+                  return Skeletonizer(
+                    enabled: true,
+                    enableSwitchAnimation: true,
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: 5,
+                      itemBuilder: (context, index) {
+                        return DemandasViewButton(demanda: Demanda.f(), ref: ref);
+                      },
+                    ),
+                  );
+                },
                 error: (error, stack) => Text(
                   'Error: $error',
                   style: const TextStyle(color: Colors.white),
