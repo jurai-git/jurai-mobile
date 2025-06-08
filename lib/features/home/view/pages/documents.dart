@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:jurai/features/auth/view/widgets/loading_circle.dart';
+import 'package:jurai/features/home/models/demanda.dart';
 import 'package:jurai/features/home/providers/demanda_provider.dart';
 import 'package:jurai/features/home/view/pages/profile.dart';
 import 'package:jurai/features/home/view/widgets/demandas_view_button.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class Documents extends ConsumerStatefulWidget {
   const Documents({super.key});
@@ -19,6 +21,8 @@ int buttonIndex = 0;
 enum Options{ general, ement }
 
 class _DocumentsState extends ConsumerState<Documents>{ 
+  bool isLoading = true;
+
   @override
   Widget build(BuildContext context) {
     currentDemanda = ref.watch(demandaProvider);
@@ -81,16 +85,22 @@ class _DocumentsState extends ConsumerState<Documents>{
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 25),
                 child: demandasListAsync.when(
-                    data: (requerentes) {
-                      if (requerentes.isEmpty) {
+                    data: (demandas) {
+                      WidgetsBinding.instance.addPostFrameCallback((_){
+                        if(isLoading){
+                          setState(() {
+                            isLoading = false;
+                          });
+                        }
+                      });
+                      if (demandas.isEmpty) {
                         return const Text(
-                          'Você não possui documents associados à requerentes!',
+                          'Você não possui documentos associados à requerentes!',
                           style: TextStyle(color: Colors.white),
                         );
                       }
                       return Column(
-                        spacing: 15,
-                        children: requerentes.asMap().entries.map((entry) {
+                        children: demandas.asMap().entries.map((entry) {
                           return DemandasViewButton(
                             demanda: entry.value,
                             ref: ref,
@@ -98,10 +108,28 @@ class _DocumentsState extends ConsumerState<Documents>{
                         }).toList(),
                       );
                     },
-                    loading: () => const Padding(
-                      padding: EdgeInsets.only(top: 100),
-                      child: LoadingCircle(),
-                    ),
+                    loading: (){
+                      WidgetsBinding.instance.addPostFrameCallback((_){
+                        if(!isLoading){
+                          setState(() {
+                            isLoading = true;
+                          });
+                        }
+                      });
+
+                      return Skeletonizer(
+                        enabled: true, // Enable Skeletonizer during loading
+                        enableSwitchAnimation: true,
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: 5, // Placeholder count for skeleton
+                          itemBuilder: (context, index) {
+                            return DemandasViewButton(demanda: Demanda.f(), ref: ref);
+                          },
+                        ),
+                      );
+                    },
                     error: (error, stack) => Text(
                       'Error: $error',
                       style: const TextStyle(color: Colors.white),
