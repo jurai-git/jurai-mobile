@@ -37,7 +37,7 @@ class AuthRemoteRepository {
       );
       final resBodyMap = jsonDecode(response.body) as Map<String, dynamic>;
       if(response.statusCode != 201){
-        return Left(FlutterError(resBodyMap['detail']));
+        return Left(FlutterError(resBodyMap['message']));
       }
       return Right(Advogado.fromMap(resBodyMap));
     } catch (e){
@@ -61,7 +61,7 @@ class AuthRemoteRepository {
       );
       final resBodyMap = jsonDecode(response.body) as Map<String, dynamic>;
       if(response.statusCode / 100 != 2){
-        return Left(FlutterError(resBodyMap['detail']));
+        return Left(FlutterError(resBodyMap['message']));
       }
       final tokenService = TokenStorageService();
       await tokenService.saveToken((resBodyMap['advogado'] as Map<String, dynamic>)['access_token']);
@@ -81,7 +81,7 @@ class AuthRemoteRepository {
       );
       final resBodyMap = jsonDecode(response.body) as Map<String, dynamic>;
       if(response.statusCode / 100 != 2){
-        return Left(FlutterError(resBodyMap['detail']));
+        return Left(FlutterError(resBodyMap['message']));
       }
       return Right(Advogado.f());
     } catch (e){
