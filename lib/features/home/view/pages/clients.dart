@@ -8,6 +8,7 @@ import 'package:jurai/features/home/providers/requerente_provider.dart';
 import 'package:jurai/features/home/view/pages/profile.dart';
 import 'package:jurai/features/home/view/widgets/topic_information.dart';
 import 'package:jurai/features/home/view/widgets/requerentes_view_button.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class Clients extends ConsumerStatefulWidget {
   const Clients({super.key});
@@ -22,11 +23,12 @@ int buttonIndex = 0;
 enum Options { personal, general, adress }
 
 class _ClientsState extends ConsumerState<Clients> {
+  bool isLoading=true;
+
   @override
   Widget build(BuildContext context) { 
     final requerenteListAsync = ref.watch(requerenteListProvider);
     currentRequerente = ref.watch(requerenteProvider);
-
 
     return Container(
       color: Color.fromRGBO(25, 24, 29, 1),
@@ -93,6 +95,13 @@ class _ClientsState extends ConsumerState<Clients> {
                 padding: EdgeInsets.symmetric(horizontal: 25),
                 child: requerenteListAsync.when(
                     data: (requerentes) {
+                      WidgetsBinding.instance.addPostFrameCallback((_){
+                        if(isLoading){
+                          setState(() {
+                            isLoading = false;
+                          });
+                        }
+                      });
                       if (requerentes.isEmpty) {
                         return const Text(
                           'Você não possui requerentes associados!',
@@ -100,7 +109,6 @@ class _ClientsState extends ConsumerState<Clients> {
                         );
                       }
                       return Column(
-                        spacing: 15,
                         children: requerentes.asMap().entries.map((entry) {
                           return RequerentesViewButton(
                             requerente: entry.value,
@@ -108,11 +116,30 @@ class _ClientsState extends ConsumerState<Clients> {
                           );
                         }).toList(),
                       );
+                    
                     },
-                    loading: () => const Padding(
-                      padding: EdgeInsets.only(top: 100),
-                      child: LoadingCircle(),
-                    ),
+                    loading: () {
+                      WidgetsBinding.instance.addPostFrameCallback((_){
+                        if(!isLoading){
+                          setState(() {
+                            isLoading = true;
+                          });
+                        }
+                      });
+
+                      return Skeletonizer(
+                      enabled: true, // Enable Skeletonizer during loading
+                      enableSwitchAnimation: true,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: 5, // Placeholder count for skeleton
+                        itemBuilder: (context, index) {
+                          return RequerentesViewButton(requerente: Requerente.f(), ref: ref);
+                        },
+                      ),
+                    );
+                  },
                     error: (error, stack) => Text(
                       'Error: $error',
                       style: const TextStyle(color: Colors.white),
