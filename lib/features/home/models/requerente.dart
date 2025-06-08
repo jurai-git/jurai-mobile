@@ -22,7 +22,7 @@ class Requerente {
   final String cidade;
 
   Requerente({required this.id_requerente, required this.nome, required this.nomeSocial, required this.email, required this.genero, required this.cpf_cnpj, required this.idoso, required this.rg, required this.orgaoEmissor, required this.estadoCivil, required this.nacionalidade, required this.profissao, required this.cep, required this.logradouro, required this.numImovel, required this.complemento, required this.bairro, required this.estado, required this.cidade});
-
+  Requerente.f({this.nome='', this.nomeSocial='', this.email='', this.genero='', this.cpf_cnpj='', this.idoso=false, this.rg='', this.orgaoEmissor='', this.estadoCivil='', this.nacionalidade='', this.profissao='', this.cep='', this.logradouro='', this.numImovel='', this.complemento='', this.bairro='', this.estado='', this.cidade='', this.id_requerente=-1});
   Requerente copyWith({
     int? id_requerente,
     String? nome,
