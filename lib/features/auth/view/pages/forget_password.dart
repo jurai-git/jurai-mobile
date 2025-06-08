@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jurai/features/auth/view/pages/login.dart';
+import 'package:jurai/features/auth/view/widgets/custom_alert_dialog.dart';
 import 'package:jurai/features/auth/view/widgets/customtextfield.dart';
 import 'package:jurai/features/auth/view/widgets/gradientbg.dart';
-import 'package:jurai/features/auth/view/widgets/loading_circle.dart';
 import 'package:jurai/features/auth/viewmodel/auth_viewmodel.dart';
 
 class ForgetPassword extends ConsumerStatefulWidget {
@@ -23,7 +23,6 @@ class _ForgetPasswordState extends ConsumerState<ForgetPassword> {
 
   @override
   Widget build(BuildContext context) {
-    final isLoading = ref.watch(authViewModelProvider.select((val) => val?.isLoading == true));
 
     ref.listen(
       authViewModelProvider,
@@ -35,9 +34,22 @@ class _ForgetPasswordState extends ConsumerState<ForgetPassword> {
             });
           },
           error: (error, st) {
+            setState((){});
+            String title = '';
+            String content = '';
+
+            if(error == "ERROR_ADVOGADO_NOT_FOUND"){
+              title = "Advogado Não Identificado";
+              content = "Esse advogado não foi encontrado no sistema";
+            }
+            showDialog<void>(
+              context: context,
+              builder: (BuildContext context) {
+                return CustomAlertDialog(title: title, content: content,);
+              },
+            );
             staticColorButton = Color.fromRGBO(56, 127, 185, 0.750);
             buttonChild = Text("Enviar E-mail", style: TextStyle(color: Colors.white, fontSize: 16),);
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.toString())));
             isEnabled = true;
           },
           loading: () {
@@ -116,7 +128,7 @@ class _ForgetPasswordState extends ConsumerState<ForgetPassword> {
                     color: staticColorButton,
                   ),
                   child: ElevatedButton(
-                    onPressed: () async {
+                    onPressed: !isEnabled ? null : () async {
                       if (_formKey.currentState!.validate()) {
                         setState(() {
                           staticColorButton = Color.fromRGBO(31, 71, 104, 0.749);

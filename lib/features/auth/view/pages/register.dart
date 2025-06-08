@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jurai/features/auth/view/pages/login.dart';
+import 'package:jurai/features/auth/view/widgets/custom_alert_dialog.dart';
 import 'package:jurai/features/auth/view/widgets/customtextfield.dart';
 import 'package:jurai/features/auth/view/widgets/gradientbg.dart';
 import 'package:jurai/features/auth/view/widgets/loading_circle.dart';
@@ -46,7 +47,23 @@ class RegisterState extends ConsumerState<Register>{
             Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Login()));
           },
           error: (error, st) {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.toString())));
+            String title = '';
+            String content = '';
+
+            if(error == "ERROR_CONFLICT"){
+              title = "Cadastro Inválido";
+              content = "Já existe um advogado cadastrado no sistema com esse nome de usuário ou email";
+            }
+            else{
+              title = "Erro do Sistema";
+              content = "Por favor, faça o cadastro novamente e, se o erro persistir, tente novamente mais tarde";
+            }
+            showDialog<void>(
+              context: context,
+              builder: (BuildContext context) {
+                return CustomAlertDialog(title: title, content: content,);
+              },
+            );
           },
           loading: () {},
         );

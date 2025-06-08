@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jurai/features/auth/view/pages/forget_password.dart';
 import 'package:jurai/features/auth/view/pages/register.dart';
+import 'package:jurai/features/auth/view/widgets/custom_alert_dialog.dart';
 import 'package:jurai/features/auth/view/widgets/customcheckbox.dart';
 import 'package:jurai/features/auth/view/widgets/customtextfield.dart';
 import 'package:jurai/features/auth/view/widgets/gradientbg.dart';
@@ -48,7 +49,22 @@ class LoginState extends ConsumerState<Login> {
             );
           },
           error: (error, st) {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.toString())));
+            String title = '';
+            String content = '';
+            if(error == "ERROR_INVALID_CREDENTIALS"){
+              title = "Credenciais Inválidas";
+              content = "Verifique o seu nome de usuário e senha e tente fazer o login novamente";
+            }
+            else{
+              title = "Erro do Sistema";
+              content = "Por favor, faça o login novamente e, se o erro persistir, tente novamente mais tarde";
+            }
+            showDialog<void>(
+              context: context,
+              builder: (BuildContext context) {
+                return CustomAlertDialog(title: title, content: content,);
+              },
+            );
           },
           loading: () {},
         );
