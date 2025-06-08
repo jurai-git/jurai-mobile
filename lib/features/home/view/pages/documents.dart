@@ -143,34 +143,3 @@ class _DocumentsState extends ConsumerState<Documents>{
     );
   }
 }
-
-class SingleChoice extends StatelessWidget {
-  final Function(int) onSelectionChanged;
-  const SingleChoice({super.key, required this.onSelectionChanged});
-
-  @override
-  Widget build(BuildContext context) {
-    return SegmentedButton<Options>(
-      showSelectedIcon: false,
-      style: SegmentedButton.styleFrom(
-        backgroundColor: Color.fromRGBO(25, 24, 29, 1),
-        foregroundColor: const Color.fromRGBO(255, 255, 255, .5),
-        selectedBackgroundColor: Colors.blue,
-        selectedForegroundColor: Colors.white,
-        side: BorderSide(color: Colors.transparent, width: 0),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-        textStyle: TextStyle(fontWeight: FontWeight.w400),
-      ),
-      segments: const <ButtonSegment<Options>>[
-        ButtonSegment<Options>(value: Options.general, label: Text('Gerais')),
-        ButtonSegment<Options>(value: Options.ement, label: Text('Ementa')),
-      ],
-      selected: <Options>{Options.values[buttonIndex]},
-      onSelectionChanged: (Set<Options> newSelection) {
-        Options selectedOption = newSelection.first;
-        int selectedValue = selectedOption == Options.general ? 1 : 2;
-        onSelectionChanged(selectedValue);
-      },
-    );
-  }
-}
