@@ -42,9 +42,13 @@ class RegisterState extends ConsumerState<Register>{
       (_, next) {
         next?.when(
           data: (data) {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Conta criada com sucesso! Faça login para entrar"))
-            );
             Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Login()));
+            showDialog<void>(
+              context: context,
+              builder: (BuildContext context) {
+                return CustomAlertDialog(title: "Cadastro Realizado", content: "Seu cadastro foi realizado com sucesso! Faça login e desfrute das funcionalidades do JurAI",);
+              },
+            );
           },
           error: (error, st) {
             String title = '';
@@ -195,7 +199,12 @@ class RegisterState extends ConsumerState<Register>{
                             );
                       }
                       else{
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("As senhas não coincidem!")));
+                        showDialog<void>(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return CustomAlertDialog(title: "Erro ao se Cadastrar", content: "As senhas não coincidem. Por favor, verifique as senhas e tente novamente",);
+                          },
+                        );
                       }
                     }
                   },
