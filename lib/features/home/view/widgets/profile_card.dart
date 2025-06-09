@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 class ProfileCard extends StatelessWidget {
@@ -31,8 +32,16 @@ class ProfileCard extends StatelessWidget {
             backgroundColor: Colors.transparent,
           ),
         ),
-        Text(profileName, style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold), textAlign: TextAlign.center,),
-        Text(profileRole, style: TextStyle(color: Colors.white, fontSize: 20), textAlign: TextAlign.center,),
+        Flexible(
+          child: FittedBox(
+              child: Text(profileName, style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold), textAlign: TextAlign.center,),
+          )
+        ),
+        Flexible(
+          child: FittedBox(
+            child: AutoSizeText(profileRole, style: TextStyle(color: Colors.white, fontSize: 20), textAlign: TextAlign.center,),
+          )
+        )
       ],
     );
   }
