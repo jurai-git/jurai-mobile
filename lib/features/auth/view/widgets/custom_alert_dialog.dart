@@ -12,7 +12,7 @@ class CustomAlertDialog extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       backgroundColor: Color.fromRGBO(25, 24, 29, 1),
       title: Text(title, style: TextStyle(color: Colors.white),),
-      content: Text(content, style: TextStyle(color: Colors.white),),
+      content: Text(content, style: TextStyle(color: const Color.fromRGBO(255, 255, 255, .75)),),
       actions: <Widget>[
         TextButton(
           style: TextButton.styleFrom(textStyle: Theme.of(context).textTheme.labelLarge),
