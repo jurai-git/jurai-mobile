@@ -17,10 +17,36 @@ class Documents extends ConsumerStatefulWidget {
 var currentDemanda;
 int buttonIndex = 0;
 
-enum Options{ general, ement }
-
 class _DocumentsState extends ConsumerState<Documents>{ 
   bool isLoading = true;
+  final TextEditingController _searchController = TextEditingController();
+  List<Demanda> _filteredDemandas = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _searchController.addListener(_filterDemandas);
+  }
+
+  @override
+  void dispose() {
+    _searchController.removeListener(_filterDemandas);
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  void _filterDemandas() {
+    final query = _searchController.text.toLowerCase();
+    final demandaListAsync = ref.read(allDemandaListProvider);
+    demandaListAsync.whenData((demandas) {
+      setState(() {
+        _filteredDemandas = demandas
+            .where((demanda) =>
+                demanda.identificacao.toLowerCase().contains(query))
+            .toList();
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,12 +109,35 @@ class _DocumentsState extends ConsumerState<Documents>{
               ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 25),
+                margin: EdgeInsets.only(bottom: 20),
+                child: TextFormField(
+                  controller: _searchController,
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    hintText: 'Pesquisar por identificação...',
+                    hintStyle: TextStyle(color: Colors.white54),
+                    prefixIcon: Icon(Icons.search, color: Colors.white54),
+                    filled: true,
+                    fillColor: Colors.white10,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide.none,
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 25),
                 child: demandasListAsync.when(
                     data: (demandas) {
                       WidgetsBinding.instance.addPostFrameCallback((_){
                         if(isLoading){
                           setState(() {
                             isLoading = false;
+                            if (_filteredDemandas.isEmpty &&
+                              _searchController.text.isEmpty) {
+                            _filteredDemandas = demandas;
+                          }
                           });
                         }
                       });
@@ -98,8 +147,11 @@ class _DocumentsState extends ConsumerState<Documents>{
                           style: TextStyle(color: Colors.white),
                         );
                       }
+                      final displayList = _searchController.text.isNotEmpty
+                        ? _filteredDemandas
+                        : demandas;
                       return Column(
-                        children: demandas.asMap().entries.map((entry) {
+                        children: displayList.asMap().entries.map((entry) {
                           return DemandasViewButton(
                             demanda: entry.value,
                             ref: ref,

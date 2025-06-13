@@ -17,10 +17,37 @@ class Clients extends ConsumerStatefulWidget {
 late var finalList;
 late var currentRequerente;
 int buttonIndex = 0;
-enum Options { personal, general, adress }
 
 class _ClientsState extends ConsumerState<Clients> {
-  bool isLoading=true;
+  bool isLoading = true;
+  final TextEditingController _searchController = TextEditingController();
+  List<Requerente> _filteredRequerentes = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _searchController.addListener(_filterRequerentes);
+  }
+
+  @override
+  void dispose() {
+    _searchController.removeListener(_filterRequerentes);
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  void _filterRequerentes() {
+    final query = _searchController.text.toLowerCase();
+    final requerenteListAsync = ref.read(requerenteListProvider);
+    requerenteListAsync.whenData((requerentes) {
+      setState(() {
+        _filteredRequerentes = requerentes
+            .where((requerente) =>
+                requerente.nome.toLowerCase().contains(query))
+            .toList();
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) { 
@@ -90,49 +117,76 @@ class _ClientsState extends ConsumerState<Clients> {
               ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 25),
+                margin: EdgeInsets.only(bottom: 20),
+                child: TextFormField(
+                  controller: _searchController,
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    hintText: 'Pesquisar por nome...',
+                    hintStyle: TextStyle(color: Colors.white54),
+                    prefixIcon: Icon(Icons.search, color: Colors.white54),
+                    filled: true,
+                    fillColor: Colors.white10,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide.none,
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 25),
                 child: requerenteListAsync.when(
-                    data: (requerentes) {
-                      WidgetsBinding.instance.addPostFrameCallback((_){
-                        if(isLoading){
-                          setState(() {
-                            isLoading = false;
-                          });
-                        }
-                      });
-                      if (requerentes.isEmpty) {
-                        return const Text(
-                          'Você não possui requerentes associados!',
-                          style: TextStyle(color: Colors.white),
-                        );
+                  data: (requerentes) {
+                    WidgetsBinding.instance.addPostFrameCallback((_) {
+                      if (isLoading) {
+                        setState(() {
+                          isLoading = false;
+                          if (_filteredRequerentes.isEmpty &&
+                              _searchController.text.isEmpty) {
+                            _filteredRequerentes = requerentes;
+                          }
+                        });
                       }
-                      return Column(
-                        children: requerentes.asMap().entries.map((entry) {
-                          return RequerentesViewButton(
-                            requerente: entry.value,
-                            ref: ref,
-                          );
-                        }).toList(),
+                    });
+                    if (requerentes.isEmpty) {
+                      return  Text(
+                        'Você não possui requerentes associados!',
+                        style: TextStyle(color: Colors.white),
                       );
-                    
-                    },
-                    loading: () {
-                      WidgetsBinding.instance.addPostFrameCallback((_){
-                        if(!isLoading){
-                          setState(() {
-                            isLoading = true;
-                          });
-                        }
-                      });
-
-                      return Skeletonizer(
+                    }
+                    final displayList = _searchController.text.isNotEmpty
+                        ? _filteredRequerentes
+                        : requerentes;
+                    return Column(
+                      children: displayList.asMap().entries.map((entry) {
+                        return RequerentesViewButton(
+                          requerente: entry.value,
+                          ref: ref,
+                        );
+                      }).toList(),
+                    );
+                  },
+                  loading: () {
+                    WidgetsBinding.instance.addPostFrameCallback((_) {
+                      if (!isLoading) {
+                        setState(() {
+                          isLoading = true;
+                        });
+                      }
+                    });
+                    return Skeletonizer(
                       enabled: true,
                       enableSwitchAnimation: true,
                       child: ListView.builder(
                         shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: (MediaQuery.of(context).size.height/200).toInt(),
+                        physics: NeverScrollableScrollPhysics(),
+                        itemCount: (MediaQuery.of(context).size.height / 200).toInt(),
                         itemBuilder: (context, index) {
-                          return RequerentesViewButton(requerente: Requerente.f(), ref: ref);
+                          return RequerentesViewButton(
+                            requerente: Requerente.f(),
+                            ref: ref,
+                          );
                         },
                       ),
                     );
@@ -147,7 +201,6 @@ class _ClientsState extends ConsumerState<Clients> {
           ),
         ),
       ),
-      
     );
   }
 }
