@@ -15,6 +15,34 @@ class DemandasInformation extends ConsumerStatefulWidget {
 
 class _DemandasInformationState extends ConsumerState<DemandasInformation> {
   bool isLoading = true;
+  final TextEditingController _searchController = TextEditingController();
+  List<Demanda> _filteredDemandas = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _searchController.addListener(_filterDemandas);
+  }
+
+  @override
+  void dispose() {
+    _searchController.removeListener(_filterDemandas);
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  void _filterDemandas() {
+    final query = _searchController.text.toLowerCase();
+    final demandaListAsync = ref.read(demandaListProvider);
+    demandaListAsync.whenData((demandas) {
+      setState(() {
+        _filteredDemandas = demandas
+            .where((demanda) =>
+                demanda.identificacao.toLowerCase().contains(query))
+            .toList();
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +63,24 @@ class _DemandasInformationState extends ConsumerState<DemandasInformation> {
         child: Column(
           children: [
             Container(
+                padding: EdgeInsets.symmetric(horizontal: 25),
+                child: TextFormField(
+                  controller: _searchController,
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    hintText: 'Pesquisar por identificação...',
+                    hintStyle: TextStyle(color: Colors.white54),
+                    prefixIcon: Icon(Icons.search, color: Colors.white54),
+                    filled: true,
+                    fillColor: Colors.white10,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide.none,
+                    ),
+                  ),
+                ),
+              ),
+            Container(
               padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
               child: demandasListAsync.when(
                 data: (demandas) {
@@ -42,6 +88,10 @@ class _DemandasInformationState extends ConsumerState<DemandasInformation> {
                     if(isLoading){
                       setState(() {
                         isLoading = false;
+                        if (_filteredDemandas.isEmpty &&
+                              _searchController.text.isEmpty) {
+                            _filteredDemandas = demandas;
+                          }
                       });
                     }
                   });
@@ -51,8 +101,11 @@ class _DemandasInformationState extends ConsumerState<DemandasInformation> {
                       style: TextStyle(color: Colors.white),
                     );
                   }
+                  final displayList = _searchController.text.isNotEmpty
+                        ? _filteredDemandas
+                        : demandas;
                   return Column(
-                    children: demandas.asMap().entries.map((entry) {
+                    children: displayList.asMap().entries.map((entry) {
                       return DemandasViewButton(
                         demanda: entry.value,
                         ref: ref,
