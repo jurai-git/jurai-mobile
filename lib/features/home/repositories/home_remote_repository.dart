@@ -117,20 +117,25 @@ class HomeRemoteRepository {
     try{
       String? token = await tokenService.getToken();
       
-      final res = await http.get(
+      final res = await http.post(
         Uri.parse("https://jurai-server.onrender.com/ai/probability"), 
         headers: {
           'Content-Type': 'application/json',
           'Authorization': token != null ? 'Bearer $token' : ''
         },
+        body: jsonEncode({
+          'text': text
+        })
       );
 
       var resBodyMap = jsonDecode(res.body);
+      var probabilities = resBodyMap['probabilities'];
+      
       if(res.statusCode / 100 != 2){
         return Left(FlutterError(resBodyMap['detail']));
       }
 
-      return Right(Probability(input: resBodyMap['input'], predicted: resBodyMap['predicted'], negativePercentage: resBodyMap['negativePercentage'], partialPercentage: resBodyMap['partialPercentage'], positivePercentage: resBodyMap['positivePercentage']));
+      return Right(Probability(input: resBodyMap['input'], predicted: resBodyMap['predicted_class'], negativePercentage: probabilities['negative'], partialPercentage: probabilities['partial'], positivePercentage: probabilities['positive']));
     } catch (e) {
       return Left(FlutterError(e.toString()));
     }
