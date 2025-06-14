@@ -3,25 +3,70 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:http/http.dart' as http;
+import 'package:jurai/features/auth/view/widgets/custom_alert_dialog.dart';
+import 'package:jurai/features/auth/view/widgets/loading_circle.dart';
+import 'package:jurai/features/home/models/probability.dart';
 import 'package:jurai/features/home/view/pages/profile.dart';
+import 'package:jurai/features/home/view/pages/result.dart';
+import 'package:jurai/features/home/viewmodel/home_viewmodel.dart';
 
 int buttonIndex = 0;
 
-class Analysis extends StatefulWidget {
+class Analysis extends ConsumerStatefulWidget {
   const Analysis({super.key});
 
   @override
   _AnalysisState createState() => _AnalysisState();
 }
 
-class _AnalysisState extends State<Analysis> {
+class _AnalysisState extends ConsumerState<Analysis> {
   @override
   Widget build(BuildContext context) {
+    final isLoading = ref.watch(homeViewModelProvider.select((val) => val?.isLoading == true));
+
+    ref.listen(
+      homeViewModelProvider,
+      (_, next) {
+        next?.when(
+          data: (data) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Result(probability: data,),
+              ),
+            );
+          },
+          error: (error, st) {
+            String title = '';
+            String content = '';
+            if(error == "ERROR_REQUIRED_FIELDS_EMPTY"){
+              title = "Campos Inválidos";
+              content = "Preencha o campo da ementa e tente novamente";
+            }
+            else{
+              title = "Erro do Sistema";
+              content = "Por favor, tente novamente mais tarde";
+            }
+            showDialog<void>(
+              context: context,
+              builder: (BuildContext context) {
+                return CustomAlertDialog(title: title, content: content,);
+              },
+            );
+          },
+          loading: () {
+            LoadingCircle();
+          },
+        );
+      },
+    );
+
     return Container(
       color: Color.fromRGBO(25, 24, 29, 1),
-      child: Scaffold(
+      child: isLoading ? Center(child: LoadingCircle()) : Scaffold(
         backgroundColor: Colors.transparent,
         body: SingleChildScrollView(
           child: Column(
@@ -91,8 +136,7 @@ class _AnalysisState extends State<Analysis> {
                   },
                 ),
               ),
-              if (buttonIndex == 0) RenderPdf(),
-              if (buttonIndex == 1) RenderEment(),
+              buttonIndex == 0 ? RenderPdf() : RenderEment()
             ],
           ),
         ),
@@ -262,12 +306,19 @@ class _RenderPdfState extends State<RenderPdf> {
   }
 }
 
-class RenderEment extends StatelessWidget {
+class RenderEment extends ConsumerStatefulWidget {
   const RenderEment({super.key});
 
   @override
+  _RenderEmentState createState() => _RenderEmentState();
+}  
+
+class _RenderEmentState extends ConsumerState<RenderEment>{
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  TextEditingController _ementController = TextEditingController();
+
+  @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -287,15 +338,25 @@ class RenderEment extends StatelessWidget {
             color: Color(0x772B2932),
             borderRadius: BorderRadius.circular(50),
           ),
-          child: TextField(
-            maxLines: null,
-            style: TextStyle(color: Colors.white),
-            decoration: InputDecoration(
-              contentPadding: EdgeInsets.all(20),
-              hintText: "Digite aqui...",
-              border: InputBorder.none,
-            ),
-          ),
+          child: Form(
+            key: _formKey,
+            child: TextFormField(
+              controller: _ementController,
+              maxLines: null,
+              style: TextStyle(color: Colors.white),
+              decoration: InputDecoration(
+                contentPadding: EdgeInsets.all(20),
+                hintText: "Digite aqui...",
+                border: InputBorder.none,
+              ),
+              validator: (value) {
+                if (value == null || value.trim().isEmpty) {
+                  return null;
+                }
+                return null;
+              },
+            ), 
+          ) 
         ),
         Container(
           margin: EdgeInsets.symmetric(horizontal: 25, vertical: 40),
@@ -304,11 +365,17 @@ class RenderEment extends StatelessWidget {
             color: Color.fromARGB(255, 29, 28, 34),
           ),
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () async {
+                if(_formKey.currentState!.validate()){
+                  await ref
+                    .read(homeViewModelProvider.notifier)
+                      .getProbability(text: _ementController.text);
+                }
+            },
             style: ElevatedButton.styleFrom(
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
               shadowColor: Colors.transparent,
-              backgroundColor: Colors.transparent,
+              backgroundColor: _ementController.text.isEmpty ? Colors.transparent : Color.fromRGBO(56, 127, 185, 0.750),
               fixedSize: Size.fromWidth(MediaQuery.of(context).size.width),
               padding: EdgeInsets.symmetric(vertical: 20)
             ),
