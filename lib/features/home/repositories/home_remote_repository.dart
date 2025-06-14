@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:jurai/features/auth/service/token_storage_service.dart';
 import 'package:jurai/features/home/models/demanda.dart';
+import 'package:jurai/features/home/models/probability.dart';
 import 'package:jurai/features/home/models/requerente.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -105,6 +106,31 @@ class HomeRemoteRepository {
         print(demandas);
 
         return Right(demandas);
+    } catch (e) {
+      return Left(FlutterError(e.toString()));
+    }
+  }
+
+  Future<Either<FlutterError, Probability>> probability({
+    required String text,
+  }) async{
+    try{
+      String? token = await tokenService.getToken();
+      
+      final res = await http.get(
+        Uri.parse("https://jurai-server.onrender.com/ai/probability"), 
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': token != null ? 'Bearer $token' : ''
+        },
+      );
+
+      var resBodyMap = jsonDecode(res.body);
+      if(res.statusCode / 100 != 2){
+        return Left(FlutterError(resBodyMap['detail']));
+      }
+
+      return Right(Probability(input: resBodyMap['input'], predicted: resBodyMap['predicted'], negativePercentage: resBodyMap['negativePercentage'], partialPercentage: resBodyMap['partialPercentage'], positivePercentage: resBodyMap['positivePercentage']));
     } catch (e) {
       return Left(FlutterError(e.toString()));
     }
