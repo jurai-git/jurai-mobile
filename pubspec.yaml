@@ -45,7 +45,8 @@ dependencies:
   shared_preferences: ^2.5.2
   auto_size_text: ^3.0.0
   skeletonizer: ^2.0.1
-
+  syncfusion_flutter_charts: ^29.2.10
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
