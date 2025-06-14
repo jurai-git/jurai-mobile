@@ -12,7 +12,7 @@ class HomeViewModel extends _$HomeViewModel{
 
 
   @override
-  AsyncValue<List>? build(){
+  AsyncValue<dynamic>? build(){
     homeRemoteRepository = ref.watch(homeRemoteRepositoryProvider);
     return null;
   }
@@ -60,6 +60,20 @@ class HomeViewModel extends _$HomeViewModel{
           state = AsyncValue.error(l.message, StackTrace.current);
         case Right(value: final r):
           notifier.setDemandaList(r);
+          state = AsyncValue.data(r);
+      }
+    }
+
+    Future<void> getProbability({
+      required String text
+    }) async {
+      state = AsyncValue.loading();
+      final res = await homeRemoteRepository.probability(text: text);
+
+      switch (res) {
+        case Left(value: final l):
+          state = AsyncValue.error(l.message, StackTrace.current);
+        case Right(value: final r):
           state = AsyncValue.data(r);
       }
     }
