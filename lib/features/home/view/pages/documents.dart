@@ -123,6 +123,14 @@ class _DocumentsState extends ConsumerState<Documents>{
                       borderRadius: BorderRadius.circular(10),
                       borderSide: BorderSide.none,
                     ),
+                    suffixIcon: _searchController.text.isNotEmpty ? IconButton(
+                      onPressed: () {
+                        setState(() {
+                          _searchController.clear();
+                        });
+                      },
+                      icon: Icon(Icons.close, color: Colors.white54,))
+                      : null,
                   ),
                 ),
               ),

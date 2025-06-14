@@ -131,6 +131,14 @@ class _ClientsState extends ConsumerState<Clients> {
                       borderRadius: BorderRadius.circular(10),
                       borderSide: BorderSide.none,
                     ),
+                    suffixIcon: _searchController.text.isNotEmpty ? IconButton(
+                      onPressed: () {
+                        setState(() {
+                          _searchController.clear();
+                        });
+                      },
+                      icon: Icon(Icons.close, color: Colors.white54,))
+                      : null,
                   ),
                 ),
               ),
