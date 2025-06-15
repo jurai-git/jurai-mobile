@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:jurai/features/auth/models/advogado.dart';
 import 'package:jurai/features/auth/view/pages/homepage.dart';
 import 'package:jurai/features/home/view/pages/personal_information.dart';
 import 'package:jurai/features/home/view/pages/privacy_policy.dart';
 import 'package:jurai/features/home/view/widgets/profile_options_button.dart';
 
 class Profile extends StatelessWidget {
-  const Profile({super.key});
+  final Advogado? advogado;
+
+  const Profile({super.key, required this.advogado});
 
   @override
   Widget build(BuildContext context) {
@@ -28,15 +31,13 @@ class Profile extends StatelessWidget {
                 padding: EdgeInsets.fromLTRB(0, 10, 0, 30),
                 child: Image.asset('img/jurai-name.png', scale: 5.5),
               ),
-              Container(
-                padding: EdgeInsets.all(60),
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                  shape: BoxShape.circle,
-                  border: Border.all(color: Colors.white, width: 3),
+              ClipOval(
+                child: Image.network(
+                  "http://127.0.0.1:5000/advogado/${advogado!.id.toString()}/pfp",
+                  width: 180, 
+                  height: 180, 
+                  fit: BoxFit.cover,
                 ),
-                margin: EdgeInsets.only(bottom: 20),
-                child: SvgPicture.asset("img/profile.svg", width: 65,),
               ),
               ProfileOptionsButton(text: "Informações Pessoais", preffixIcon: Icons.account_circle, destiny: PersonalInformation()),
               ProfileOptionsButton(text: "Alteração de Senha", preffixIcon: Icons.lock_outline, destiny: Text("")),
