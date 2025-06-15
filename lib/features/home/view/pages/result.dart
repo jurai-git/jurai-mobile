@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jurai/features/home/models/probability.dart';
+import 'package:jurai/features/home/view/pages/analysis.dart';
+import 'package:jurai/features/home/view/pages/navigation.dart';
+import 'package:jurai/features/home/view/widgets/topic_information.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class Result extends ConsumerStatefulWidget {
@@ -21,9 +24,9 @@ class _ResultState extends ConsumerState<Result> {
   @override
   void initState(){
     data = [
-      _ChartData("Perda", widget.probability.negativePercentage),
-      _ChartData("Neutro", widget.probability.partialPercentage),
-      _ChartData("Ganho", widget.probability.positivePercentage)
+      _ChartData("Perda", double.parse((widget.probability.negativePercentage*100).toStringAsFixed(1))),
+      _ChartData("Parcial", double.parse((widget.probability.partialPercentage*100).toStringAsFixed(1))),
+      _ChartData("Ganho", double.parse((widget.probability.positivePercentage*100).toStringAsFixed(1)))
     ];
     _tooltip = TooltipBehavior(enable: true);
     super.initState();
@@ -50,15 +53,33 @@ class _ResultState extends ConsumerState<Result> {
                 Colors.yellow,
                 Colors.green
               ],
+              title: ChartTitle(text: "Resultados (em %)", textStyle: TextStyle(color: Colors.white)),
+              legend: Legend(isVisible: true, isResponsive: true, position: LegendPosition.bottom, orientation: LegendItemOrientation.horizontal, textStyle: TextStyle(color: Colors.white  )),
               tooltipBehavior: _tooltip,
               series: <CircularSeries<_ChartData, String>>[
                 DoughnutSeries<_ChartData, String>(
                   dataSource: data,
                   xValueMapper: (_ChartData data, _) => data.x,
                   yValueMapper: (_ChartData data, _) => data.y,
-                  name: "Probabilidade"
+                  name: "Probabilidade",
+                  radius: "100%",
+                  innerRadius: "60%",
+                  dataLabelSettings: DataLabelSettings(isVisible: true, textStyle: TextStyle(color: Colors.white)),
                 )
               ],
+            ),
+            Padding(
+              padding: EdgeInsets.all(15),
+              child: TopicInformation(topicName: "Ementa", topicData: widget.probability.input, topicImage: "img/assuntoPrincipal.svg", maxLines: null, kbType: TextInputType.multiline,),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(15, 0, 15, 15),
+              child: TextButton(
+                onPressed: (){
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => CustomBotNavBar(customIndex: 3,)));
+                },
+                child: Text("Fazer outra análise", style: TextStyle(color: Color(0xFF387FB9)),) 
+              ),
             )
           ],
         ),
