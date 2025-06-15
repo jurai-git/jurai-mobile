@@ -9,8 +9,10 @@ import 'package:http/http.dart' as http;
 import 'package:jurai/features/auth/view/widgets/custom_alert_dialog.dart';
 import 'package:jurai/features/auth/view/widgets/loading_circle.dart';
 import 'package:jurai/features/home/models/probability.dart';
+import 'package:jurai/features/home/providers/advogado_provider.dart';
 import 'package:jurai/features/home/view/pages/profile.dart';
 import 'package:jurai/features/home/view/pages/result.dart';
+import 'package:jurai/features/home/view/widgets/nav.dart';
 import 'package:jurai/features/home/viewmodel/home_viewmodel.dart';
 
 int buttonIndex = 0;
@@ -72,35 +74,7 @@ class _AnalysisState extends ConsumerState<Analysis> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(left: 25, top: 50),
-                    child: Image.asset('img/jurai-name.png', scale: 6.5),
-                  ),
-                  Spacer(),
-                  Container(
-                    margin: EdgeInsets.only(right: 25, top: 50),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const Profile(),
-                          ),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        shape: CircleBorder(),
-                        padding: EdgeInsets.all(20),
-                        backgroundColor: Colors.blue,
-                      ),
-                      child: SvgPicture.asset("img/profile.svg"),
-                    ),
-                  ),
-                ],
-              ),
+              Nav(advogado: ref.watch(advogadoProvider),),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [

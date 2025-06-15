@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:jurai/features/home/models/demanda.dart';
+import 'package:jurai/features/home/providers/advogado_provider.dart';
 import 'package:jurai/features/home/providers/demanda_provider.dart';
 import 'package:jurai/features/home/view/pages/profile.dart';
 import 'package:jurai/features/home/view/widgets/demandas_view_button.dart';
+import 'package:jurai/features/home/view/widgets/nav.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class Documents extends ConsumerStatefulWidget {
@@ -61,28 +63,7 @@ class _DocumentsState extends ConsumerState<Documents>{
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(left: 25, top: 50),
-                    child: Image.asset('img/jurai-name.png', scale: 6.5),
-                  ),
-                  Spacer(),
-                  Container(
-                    margin: EdgeInsets.only(right: 25, top: 50),
-                    child: ElevatedButton(
-                      onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context) => const Profile()));},
-                      style: ElevatedButton.styleFrom(
-                        shape: CircleBorder(),
-                        padding: EdgeInsets.all(20),
-                        backgroundColor: Colors.blue,
-                      ),
-                      child: SvgPicture.asset("img/profile.svg"),
-                    ),
-                  ),
-                ],
-              ),
+              Nav(advogado: ref.watch(advogadoProvider),),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
