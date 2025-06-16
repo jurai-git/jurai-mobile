@@ -104,10 +104,19 @@ class _DemandasInformationState extends ConsumerState<DemandasInformation> {
                     }
                   });
                   if (demandas.isEmpty) {
-                    return const Text(
-                      'O requerente selecionado não possui demandas!',
-                      style: TextStyle(color: Colors.white),
-                    );
+                    return Container(
+                          margin: EdgeInsets.only(top: 20),
+                          child: Column(
+                            children: [
+                              Icon(Icons.close, color: Colors.grey, size: 80,),
+                              const SizedBox(height: 10),
+                              Text(
+                                'O requerente selecionado não possui demandas!',
+                                style: TextStyle(color: Colors.grey, fontSize: 18),
+                              ),
+                            ],
+                          ),
+                        );
                   }
                   final displayList = _searchController.text.isNotEmpty
                         ? _filteredDemandas

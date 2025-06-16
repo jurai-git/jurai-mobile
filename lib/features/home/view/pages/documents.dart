@@ -131,9 +131,18 @@ class _DocumentsState extends ConsumerState<Documents>{
                         }
                       });
                       if (demandas.isEmpty) {
-                        return const Text(
-                          'Você não possui documentos associados à requerentes!',
-                          style: TextStyle(color: Colors.white),
+                        return Container(
+                          margin: EdgeInsets.only(top: 20),
+                          child: Column(
+                            children: [
+                              Icon(Icons.sentiment_dissatisfied_outlined, color: Colors.grey, size: 80,),
+                              const SizedBox(height: 10),
+                              Text(
+                                'Você não possui documentos associados à requerentes!',
+                                style: TextStyle(color: Colors.grey, fontSize: 18),
+                              ),
+                            ],
+                          ),
                         );
                       }
                       final displayList = _searchController.text.isNotEmpty
