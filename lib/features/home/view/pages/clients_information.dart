@@ -44,7 +44,7 @@ class _ClientsInformationState extends ConsumerState<ClientsInformation> {
 
                   ElevatedButton(
                     onPressed: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (_) => DemandasInformation()));
+                      Navigator.push(context, MaterialPageRoute(builder: (_) => DemandasInformation(requerente: widget.requerente)));
                     },
                     style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),

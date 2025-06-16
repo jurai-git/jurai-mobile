@@ -7,6 +7,7 @@ import 'package:jurai/features/home/providers/demanda_provider.dart';
 import 'package:jurai/features/home/view/pages/profile.dart';
 import 'package:jurai/features/home/view/widgets/demandas_view_button.dart';
 import 'package:jurai/features/home/view/widgets/nav.dart';
+import 'package:jurai/features/home/viewmodel/home_viewmodel.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class Documents extends ConsumerStatefulWidget {
@@ -141,6 +142,27 @@ class _DocumentsState extends ConsumerState<Documents>{
                                 'Você não possui documentos associados à requerentes!',
                                 style: TextStyle(color: Colors.grey, fontSize: 18),
                               ),
+                              Padding(
+                                padding: EdgeInsets.all(15),
+                                child: TextButton(
+                                  style: TextButton.styleFrom(
+                                    backgroundColor: Color(0xFF387FB9),
+                                    fixedSize: Size(125, 20)
+                                  ),
+                                  onPressed: (){
+                                    setState(() {
+                                      ref.watch(homeViewModelProvider.notifier).getAllDemandas();
+                                    });
+                                  }, 
+                                  child: Row(
+                                    children: [
+                                      Icon(Icons.refresh, color: Colors.white, size: 20,),
+                                      Spacer(),
+                                      Text("Recarregar", style: TextStyle(color: Colors.white),)
+                                    ],
+                                  )
+                                )
+                              ),
                             ],
                           ),
                         );
@@ -149,12 +171,35 @@ class _DocumentsState extends ConsumerState<Documents>{
                         ? _filteredDemandas
                         : demandas;
                       return Column(
-                        children: displayList.asMap().entries.map((entry) {
+                        children: [ 
+                        ...displayList.asMap().entries.map((entry) {
                           return DemandasViewButton(
                             demanda: entry.value,
                             ref: ref,
                           );
                         }).toList(),
+                          Padding(
+                            padding: EdgeInsets.all(15),
+                            child: TextButton(
+                              style: TextButton.styleFrom(
+                                backgroundColor: Color(0xFF387FB9),
+                                fixedSize: Size(125, 20)
+                              ),
+                              onPressed: (){
+                                setState(() {
+                                  ref.watch(homeViewModelProvider.notifier).getAllDemandas();
+                                });
+                              }, 
+                              child: Row(
+                                children: [
+                                  Icon(Icons.refresh, color: Colors.white, size: 20,),
+                                  Spacer(),
+                                  Text("Recarregar", style: TextStyle(color: Colors.white),)
+                                ],
+                              )
+                            )
+                          ),
+                        ]
                       );
                     },
                     loading: (){

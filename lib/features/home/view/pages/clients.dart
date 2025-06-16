@@ -7,6 +7,7 @@ import 'package:jurai/features/home/providers/requerente_provider.dart';
 import 'package:jurai/features/home/view/pages/profile.dart';
 import 'package:jurai/features/home/view/widgets/nav.dart';
 import 'package:jurai/features/home/view/widgets/requerentes_view_button.dart';
+import 'package:jurai/features/home/viewmodel/home_viewmodel.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class Clients extends ConsumerStatefulWidget {
@@ -142,6 +143,27 @@ class _ClientsState extends ConsumerState<Clients> {
                               'Você não possui requerentes associados!',
                               style: TextStyle(color: Colors.grey, fontSize: 18),
                             ),
+                            Padding(
+                              padding: EdgeInsets.all(15),
+                              child: TextButton(
+                                style: TextButton.styleFrom(
+                                  backgroundColor: Color(0xFF387FB9),
+                                  fixedSize: Size(125, 20)
+                                ),
+                                onPressed: (){
+                                  setState(() {
+                                    ref.watch(homeViewModelProvider.notifier).getAllRequerentes();
+                                  });
+                                }, 
+                                child: Row(
+                                  children: [
+                                    Icon(Icons.refresh, color: Colors.white, size: 20,),
+                                    Spacer(),
+                                    Text("Recarregar", style: TextStyle(color: Colors.white),)
+                                  ],
+                                )
+                              )
+                            )
                           ],
                         ),
                       );
@@ -150,12 +172,35 @@ class _ClientsState extends ConsumerState<Clients> {
                         ? _filteredRequerentes
                         : requerentes;
                     return Column(
-                      children: displayList.asMap().entries.map((entry) {
+                      children: [
+                        ...displayList.asMap().entries.map((entry) {
                         return RequerentesViewButton(
                           requerente: entry.value,
                           ref: ref,
                         );
                       }).toList(),
+                      Padding(
+                        padding: EdgeInsets.all(15),
+                        child: TextButton(
+                          style: TextButton.styleFrom(
+                            backgroundColor: Color(0xFF387FB9),
+                            fixedSize: Size(125, 20)
+                          ),
+                          onPressed: (){
+                            setState(() {
+                              ref.watch(homeViewModelProvider.notifier).getAllRequerentes();
+                            });
+                          }, 
+                          child: Row(
+                            children: [
+                              Icon(Icons.refresh, color: Colors.white, size: 20,),
+                              Spacer(),
+                              Text("Recarregar", style: TextStyle(color: Colors.white),)
+                            ],
+                          )
+                        )
+                        ),
+                      ]
                     );
                   },
                   loading: () {
