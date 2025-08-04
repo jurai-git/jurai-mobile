@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         fontFamily: "MPLUSRounded1c",
+        visualDensity: VisualDensity.compact,
         extensions: const[
           SkeletonizerConfigData.dark(
             effect: ShimmerEffect(baseColor: Color.fromRGBO(31, 30, 36, 1), highlightColor: Color.fromRGBO(54, 51, 63, 0.808)),
