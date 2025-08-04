@@ -73,6 +73,7 @@ class RegisterState extends ConsumerState<Register>{
             staticColorButton = Color.fromRGBO(56, 127, 185, 0.750);
             buttonChild = Text("Criar Conta", style: TextStyle(color: Colors.white, fontSize: 16),);
             isRegisterButtonEnabled = true;
+            setState(() {});
           },
           loading: () {
             isRegisterButtonEnabled = false;
@@ -138,14 +139,17 @@ class RegisterState extends ConsumerState<Register>{
                   CustomTextField(
                     textController: usernameController,
                     type: "username",
+                    enabled: isRegisterButtonEnabled,
                   ),
                   CustomTextField(
                     textController: oabController,
                     type: "oab",
+                    enabled: isRegisterButtonEnabled,
                   ),
                   CustomTextField(
                     textController: emailController,
                     type: "email",
+                    enabled: isRegisterButtonEnabled,
                   ),
                   CustomTextField(
                     textController: passwordController,
@@ -157,6 +161,7 @@ class RegisterState extends ConsumerState<Register>{
                         isHidden = !isHidden;
                       });
                     },
+                    enabled: isRegisterButtonEnabled,
                   ),
                   CustomTextField(
                     textController: confirmPasswordController,
@@ -168,6 +173,7 @@ class RegisterState extends ConsumerState<Register>{
                         isConfirmHidden = !isConfirmHidden;
                       });
                     },
+                    enabled: isRegisterButtonEnabled,
                   ),
                 ],
               ),

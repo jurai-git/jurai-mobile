@@ -70,6 +70,7 @@ class LoginState extends ConsumerState<Login> {
             staticColorButton = Color.fromRGBO(56, 127, 185, 0.750);
             buttonChild = Text("Entrar", style: TextStyle(color: Colors.white, fontSize: 16),);
             isLoginButtonEnabled = true;
+            setState(() {});
           },
           loading: () {
             isLoginButtonEnabled = false;
@@ -133,7 +134,8 @@ class LoginState extends ConsumerState<Login> {
                   children: [
                     CustomTextField(
                       textController: usernameController, 
-                      type: "username"
+                      type: "username",
+                      enabled: isLoginButtonEnabled,
                     ),
                     CustomTextField(
                       textController: passwordController,
@@ -145,6 +147,7 @@ class LoginState extends ConsumerState<Login> {
                           isHidden = !isHidden;
                         });
                       },
+                      enabled: isLoginButtonEnabled,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
