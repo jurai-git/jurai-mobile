@@ -82,7 +82,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-      padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         gradient: LinearGradient(
