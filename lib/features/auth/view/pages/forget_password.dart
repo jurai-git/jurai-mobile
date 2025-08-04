@@ -137,7 +137,7 @@ class _ForgetPasswordState extends ConsumerState<ForgetPassword> {
                           staticColorButton = Color.fromRGBO(31, 71, 104, 0.749);
                           buttonChild = SizedBox(
                             width: 22,
-                            height: 22,
+                            height: 22.5,
                             child: CircularProgressIndicator.adaptive(strokeWidth: 3),
                           );
                         });
