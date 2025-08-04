@@ -21,7 +21,10 @@ class RegisterState extends ConsumerState<Register>{
   final oabController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
+  Color staticColorButton = Color.fromRGBO(56, 127, 185, 0.750);
+  Widget buttonChild = Text("Criar Conta", style: TextStyle(color: Colors.white, fontSize: 16),);
   bool isHidden = true, isConfirmHidden = true;
+  bool isRegisterButtonEnabled = true;
 
   @override
   void dispose() {
@@ -35,7 +38,6 @@ class RegisterState extends ConsumerState<Register>{
 
   @override
   Widget build(BuildContext context) {
-    final isLoading = ref.watch(authViewModelProvider.select((val) => val?.isLoading == true));
 
     ref.listen(
       authViewModelProvider,
@@ -68,8 +70,13 @@ class RegisterState extends ConsumerState<Register>{
                 return CustomAlertDialog(title: title, content: content,);
               },
             );
+            staticColorButton = Color.fromRGBO(56, 127, 185, 0.750);
+            buttonChild = Text("Criar Conta", style: TextStyle(color: Colors.white, fontSize: 16),);
+            isRegisterButtonEnabled = true;
           },
-          loading: () {},
+          loading: () {
+            isRegisterButtonEnabled = false;
+          },
         );
       },
     );
@@ -78,7 +85,7 @@ class RegisterState extends ConsumerState<Register>{
       decoration: BoxDecoration(
         gradient: GradientBg(),
       ),
-      child: isLoading? Center(child: LoadingCircle(),) : Scaffold(
+      child: Scaffold(
         backgroundColor: Colors.transparent,
         body: Center(
           child: SingleChildScrollView(
@@ -169,11 +176,19 @@ class RegisterState extends ConsumerState<Register>{
                 margin: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
-                  color: Color.fromRGBO(56, 127, 185, 0.750),
+                  color: staticColorButton,
                 ),
                 child: ElevatedButton(
-                  onPressed: () async {
+                  onPressed: !isRegisterButtonEnabled ? null : () async {
                     if (_formKey.currentState!.validate()) {
+                      setState(() {
+                        staticColorButton = Color.fromRGBO(31, 71, 104, 0.749);
+                        buttonChild = SizedBox(
+                            width: 22,
+                            height: 22.5,
+                            child: CircularProgressIndicator.adaptive(strokeWidth: 3),
+                          );
+                      });
                       if(confirmPasswordController.text == passwordController.text){
                       await ref
                         .read(authViewModelProvider.notifier)
@@ -201,10 +216,7 @@ class RegisterState extends ConsumerState<Register>{
                     fixedSize: Size.fromWidth(MediaQuery.of(context).size.width),
                     padding: EdgeInsets.symmetric(vertical: 20)
                   ),
-                  child: Text(
-                    "Criar Conta",
-                    style: TextStyle(color: Colors.white, fontSize: 16),
-                  ),
+                  child: buttonChild
                 ),
               ),
               TextButton(
