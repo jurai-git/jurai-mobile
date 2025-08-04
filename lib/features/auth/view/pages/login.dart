@@ -119,20 +119,6 @@ class LoginState extends ConsumerState<Login> {
                   ),
                 ],
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                spacing: 20,
-                children: [
-                  Container(
-                    padding: EdgeInsets.only(bottom: 15),
-                    child: Text(
-                      "Insira suas credenciais para\nefetuar o login",
-                      style: TextStyle(fontSize: 20, color: Colors.white),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ],
-              ),
               Form(
               key: _formKey,
               child: Column(
