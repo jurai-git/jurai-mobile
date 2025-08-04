@@ -32,31 +32,55 @@ class _RequerentesViewButtonState extends State<RequerentesViewButton> {
             });
           },
           style: ElevatedButton.styleFrom(
-            backgroundColor:Color.fromRGBO(43, 41, 50, 50),
+            backgroundColor:Color.fromRGBO(30, 29, 34, 1),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(15)),
+              borderRadius: BorderRadius.all(Radius.circular(12.5)),
             ),
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-            shadowColor: const Color.fromRGBO(255, 255, 255, 0.1),
-            elevation: 5,
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+            //shadowColor: const Color.fromRGBO(255, 255, 255, 0.1),
+            elevation: 2.5,
           ),
           child: Row(
+            mainAxisSize: MainAxisSize.min,
             //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             spacing: 20,
             children: [
               Container(
                 decoration: BoxDecoration(
-                  color: Colors.blue,
+                  color: Color.fromRGBO(60, 10, 10, 0.25),
                   borderRadius: BorderRadius.all(Radius.circular(100)),
                 ),
-                padding: widget.requerente.id_requerente != -1 ? EdgeInsets.all(20) : EdgeInsets.all(30),
-                child: widget.requerente.id_requerente != -1 ? SvgPicture.asset("img/profile.svg") : null,
+                width: 50,
+                height: 50,
+                padding: widget.requerente.id_requerente != -1 ? EdgeInsets.all(10) : EdgeInsets.all(30),
+                child: widget.requerente.id_requerente != -1 ? Center(child: Text(widget.requerente.nome.trim().split(' ').map((l) => l[0]).take(2).join(), style: TextStyle(color: Color.fromRGBO(255, 20, 20, 1), fontSize: 20, fontWeight: FontWeight.bold, letterSpacing: 1.5),)) : null,
               ),
               Flexible(
-                child: FittedBox( 
-                  child:Text(widget.requerente.nome == '' ? "placeholder" : widget.requerente.nome, style: TextStyle(color: Colors.white, fontSize: 25,), overflow: TextOverflow.ellipsis, maxLines: 1,),
-                )
-              )
+                fit: FlexFit.tight,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    FittedBox(
+                      fit: BoxFit.contain,
+                      child: Text(
+                        widget.requerente.nome == '' ? "placeholder" : widget.requerente.nome,
+                        style: const TextStyle(color: Colors.white, fontSize: 25),
+                        overflow: TextOverflow.visible,
+                        maxLines: 1,
+                      ),
+                    ),
+                    FittedBox(
+                      fit: BoxFit.contain,
+                      child: Text(
+                        widget.requerente.email == '' ? "placeholder" : widget.requerente.email,
+                        style: const TextStyle(color: Colors.white60, fontSize: 20),
+                        overflow: TextOverflow.visible,
+                        maxLines: 1,
+                      ),
+                    )
+                  ],
+                ),
+              ),
             ],
           ),
         ),
