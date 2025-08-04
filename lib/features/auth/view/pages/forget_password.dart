@@ -115,7 +115,10 @@ class _ForgetPasswordState extends ConsumerState<ForgetPassword> {
                   ),
                   Text("Recuperação de Senha", style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold), textAlign: TextAlign.center,),
                   SizedBox(height: 20,),
-                  Text("Insira seu email no campo abaixo para começarmos o processo de recuperação de senha", style: TextStyle(color: Colors.white), textAlign: TextAlign.center,),
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 12),
+                    child: Text("Insira seu email no campo abaixo para começarmos o processo de recuperação de senha", style: TextStyle(color: Colors.white, fontSize: 16), textAlign: TextAlign.center,),
+                  ),
                   SizedBox(height: 20,),
                   Form(
                     key: _formKey,
