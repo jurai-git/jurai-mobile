@@ -93,7 +93,7 @@ class RegisterState extends ConsumerState<Register>{
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset('img/jurailogo.png', width: 130, fit: BoxFit.contain,),
-                    Image.asset('img/jurai-name_resized.png', width: 260, fit: BoxFit.contain,),
+                    Image.asset('img/jurai-name_resized.png', width: 230, fit: BoxFit.contain,),
                   ],
                 ),
               ),
@@ -101,7 +101,7 @@ class RegisterState extends ConsumerState<Register>{
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    padding: EdgeInsets.only(bottom: 10),
+                    padding: EdgeInsets.symmetric(vertical: 20),
                     child: Row(
                       children: [
                         Text(
@@ -119,20 +119,6 @@ class RegisterState extends ConsumerState<Register>{
                           textAlign: TextAlign.center,
                         ),
                       ],
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                spacing: 20,
-                children: [
-                  Container(
-                    padding: EdgeInsets.only(bottom: 15),
-                    child: Text(
-                      "Insira suas credenciais para\nefetuar o registro",
-                      style: TextStyle(fontSize: 20, color: Colors.white),
-                      textAlign: TextAlign.center,
                     ),
                   ),
                 ],
