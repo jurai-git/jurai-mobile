@@ -9,6 +9,7 @@ import 'package:jurai/features/home/view/widgets/nav.dart';
 import 'package:jurai/features/home/view/widgets/requerentes_view_button.dart';
 import 'package:jurai/features/home/viewmodel/home_viewmodel.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 
 class Clients extends ConsumerStatefulWidget {
   const Clients({super.key});
@@ -25,6 +26,7 @@ class _ClientsState extends ConsumerState<Clients> {
   bool isLoading = true;
   final TextEditingController _searchController = TextEditingController();
   List<Requerente> _filteredRequerentes = [];
+  String? selectedDropdownValue = "A-Z";
 
   @override
   void initState() {
@@ -115,6 +117,64 @@ class _ClientsState extends ConsumerState<Clients> {
                       icon: Icon(Icons.close, color: Colors.white54,))
                       : null,
                   ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.fromLTRB(25,0,25,10),
+                child: Row(
+                  children: [
+                    Container(
+                       decoration: BoxDecoration(
+                        border: Border.all(color: Color.fromRGBO(177, 177, 177, 0.25)),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Row(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.all(7.5),
+                            decoration: BoxDecoration(
+                              color: Color.fromRGBO(30, 29, 34, 1),
+                              border: BorderDirectional(end: BorderSide(color: Color.fromRGBO(177, 177, 177, 0.25), width: .7)),
+                              borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomLeft: Radius.circular(10)),
+                            ),
+                            child: Text('Ordenar', style: TextStyle(color: Color.fromRGBO(177, 177, 177, .8)),),
+                          ),
+                          Container(
+                            padding: EdgeInsets.only(left: 7.5),
+                            decoration: BoxDecoration(
+                              color: Color.fromRGBO(30, 29, 34, 1),
+                              border: BorderDirectional(start: BorderSide(color: Color.fromRGBO(177, 177, 177, 0.25), width: .7)),
+                              borderRadius: BorderRadius.only(topRight: Radius.circular(10), bottomRight: Radius.circular(10)),
+                            ),
+                            child: DropdownButtonHideUnderline(
+                              child: DropdownButton2<String>(
+                                dropdownStyleData: DropdownStyleData(decoration: BoxDecoration(color: Color.fromRGBO(40, 39, 44, 1),)),
+                                items: <String>['A-Z', 'Z-A'].map((String item) => DropdownMenuItem<String>(
+                                  value: item,
+                                  child: Text(item, style: TextStyle(color: Colors.white, fontSize: 15),),
+                                )).toList(),
+                                value: selectedDropdownValue,
+                                onChanged: (String? value){
+                                  setState(() {
+                                    selectedDropdownValue = value!;
+                                  });
+                                },
+                                buttonStyleData: ButtonStyleData(
+                                  height: 35,
+                                  width: 60,
+                                ),
+                                menuItemStyleData: const MenuItemStyleData(
+                                  height: 40,
+                                ),
+                              )
+                            )
+                          ),
+                        ]
+                      ),
+                    ),
+                    Spacer(),
+                    Text("placeholder", style: TextStyle(color: Colors.white54,),)
+                  ],
                 ),
               ),
               Container(
