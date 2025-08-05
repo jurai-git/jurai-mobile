@@ -27,13 +27,13 @@ class _DemandasViewButtonState extends State<DemandasViewButton> {
             });
           },
           style: ElevatedButton.styleFrom(
-            backgroundColor: Color.fromRGBO(43, 41, 50, 50),
+            backgroundColor: Color.fromRGBO(30, 29, 34, 1),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(15)),
+              borderRadius: BorderRadius.all(Radius.circular(12.5)),
             ),
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-            shadowColor: const Color.fromRGBO(255, 255, 255, 0.1),
-            elevation: 5,
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+            //shadowColor: const Color.fromRGBO(255, 255, 255, 0.1),
+            elevation: 2.5,
           ),
           child: Row(
             //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -41,15 +41,17 @@ class _DemandasViewButtonState extends State<DemandasViewButton> {
             children: [
               Container(
                 decoration: BoxDecoration(
-                  color: Colors.blue,
+                  color: Color.fromRGBO(20, 40, 60, 0.25),
                   borderRadius: BorderRadius.all(Radius.circular(100)),
                 ),
-                padding: widget.demanda.id != -1 ? EdgeInsets.all(20) : EdgeInsets.all(30),
-                child: widget.demanda.id != -1 ? Icon(Icons.description, color: Colors.white,) : null,
+                width: 50,
+                height: 50,
+                padding: widget.demanda.id != -1 ? EdgeInsets.all(10) : EdgeInsets.all(30),
+                child: widget.demanda.id != -1 ? Center(child: Icon(Icons.description, color: Color(0xFF387FB9),)) : null,
               ),
               Flexible(
                 child: FittedBox( 
-                  child: Text(widget.demanda.id != -1 ? widget.demanda.identificacao : "placeholder", style: TextStyle(color: Colors.white, fontSize: 25), overflow: TextOverflow.ellipsis, maxLines: 1,),
+                  child: Text(widget.demanda.id != -1 ? widget.demanda.identificacao : "placeholder", style: TextStyle(color: Colors.white, fontSize: 22), overflow: TextOverflow.ellipsis, maxLines: 1,),
                 )
               )
             ],
