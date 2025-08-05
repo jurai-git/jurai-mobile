@@ -34,12 +34,11 @@ class _ClientsInformationState extends ConsumerState<ClientsInformation> {
                   Container(
                     padding: EdgeInsets.all(60),
                     decoration: BoxDecoration(
-                      color: Colors.blue,
+                      color: Color.fromRGBO(20, 40, 60, 0.25),
                       shape: BoxShape.circle,
-                      border: Border.all(color: Colors.white, width: 3),
                     ),
                     margin: EdgeInsets.only(bottom: 20),
-                    child: SvgPicture.asset("img/profile.svg", width: 65,),
+                    child: Text(widget.requerente.nome.trim().split(' ').map((l) => l[0]).take(2).join(), style: TextStyle(color: Color(0xFF387FB9), fontSize: 55, fontWeight: FontWeight.bold, letterSpacing: 1.5),)
                   ),
 
                   ElevatedButton(
@@ -63,7 +62,7 @@ class _ClientsInformationState extends ConsumerState<ClientsInformation> {
                     ]
                   ),
                   
-                  TopicInformation(topicName: "Nome Completo  ", topicData: widget.requerente.nome, topicImage: "img/profile.svg", first: true,),
+                  TopicInformation(topicName: "Nome Completo", topicData: widget.requerente.nome, topicImage: "img/profile.svg", first: true,),
                   TopicInformation(topicName: "Nome Social", topicData: widget.requerente.nomeSocial!= '' ? widget.requerente.nomeSocial : "Não possui", topicImage: "img/profile.svg"),
                   TopicInformation(topicName: "Email", topicData: widget.requerente.email, topicImage: "img/email.svg",),
                   TopicInformation(topicName: "Gênero", topicData: widget.requerente.genero, topicImage: "img/profile.svg",),

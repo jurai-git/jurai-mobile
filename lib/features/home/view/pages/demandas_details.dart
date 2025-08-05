@@ -32,12 +32,11 @@ class _DemandasDetailsState extends ConsumerState<DemandasDetails> {
                   Container(
                     padding: EdgeInsets.all(60),
                     decoration: BoxDecoration(
-                      color: Colors.blue,
+                      color: Color.fromRGBO(20, 40, 60, 0.25),
                       shape: BoxShape.circle,
-                      border: Border.all(color: Colors.white, width: 3),
                     ),
                     margin: EdgeInsets.only(bottom: 20),
-                    child: Icon(Icons.description, color: Colors.white,)
+                    child: Icon(Icons.description, color: Color(0xFF387FB9), size: 55,)
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
