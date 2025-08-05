@@ -32,7 +32,7 @@ class _RequerentesViewButtonState extends State<RequerentesViewButton> {
             });
           },
           style: ElevatedButton.styleFrom(
-            backgroundColor:Color.fromRGBO(30, 29, 34, 1),
+            backgroundColor: Color.fromRGBO(30, 29, 34, 1),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(12.5)),
             ),
@@ -47,13 +47,13 @@ class _RequerentesViewButtonState extends State<RequerentesViewButton> {
             children: [
               Container(
                 decoration: BoxDecoration(
-                  color: Color.fromRGBO(60, 10, 10, 0.25),
+                  color: Color.fromRGBO(20, 40, 60, 0.25),
                   borderRadius: BorderRadius.all(Radius.circular(100)),
                 ),
                 width: 50,
                 height: 50,
                 padding: widget.requerente.id_requerente != -1 ? EdgeInsets.all(10) : EdgeInsets.all(30),
-                child: widget.requerente.id_requerente != -1 ? Center(child: Text(widget.requerente.nome.trim().split(' ').map((l) => l[0]).take(2).join(), style: TextStyle(color: Color.fromRGBO(255, 20, 20, 1), fontSize: 20, fontWeight: FontWeight.bold, letterSpacing: 1.5),)) : null,
+                child: widget.requerente.id_requerente != -1 ? Center(child: Text(widget.requerente.nome.trim().split(' ').map((l) => l[0]).take(2).join(), style: TextStyle(color: Color(0xFF387FB9), fontSize: 20, fontWeight: FontWeight.bold, letterSpacing: 1.5),)) : null,
               ),
               Flexible(
                 fit: FlexFit.tight,
@@ -64,7 +64,7 @@ class _RequerentesViewButtonState extends State<RequerentesViewButton> {
                       fit: BoxFit.contain,
                       child: Text(
                         widget.requerente.nome == '' ? "placeholder" : widget.requerente.nome,
-                        style: const TextStyle(color: Colors.white, fontSize: 25),
+                        style: TextStyle(color: Colors.white, fontSize: 22),
                         overflow: TextOverflow.visible,
                         maxLines: 1,
                       ),
@@ -73,7 +73,7 @@ class _RequerentesViewButtonState extends State<RequerentesViewButton> {
                       fit: BoxFit.contain,
                       child: Text(
                         widget.requerente.email == '' ? "placeholder" : widget.requerente.email,
-                        style: const TextStyle(color: Colors.white60, fontSize: 20),
+                        style: TextStyle(color: Colors.white60, fontSize: 17),
                         overflow: TextOverflow.visible,
                         maxLines: 1,
                       ),
