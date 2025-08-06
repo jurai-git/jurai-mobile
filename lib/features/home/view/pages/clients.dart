@@ -228,9 +228,23 @@ class _ClientsState extends ConsumerState<Clients> {
                         ),
                       );
                     }
-                    final displayList = _searchController.text.isNotEmpty
+                    var displayList = _searchController.text.isNotEmpty
                         ? _filteredRequerentes
                         : requerentes;
+                    if(selectedDropdownValue == "A-Z"){
+                      setState(() {
+                        
+                      });
+                      displayList.sort((a, b) => a.nome.compareTo(b.nome));
+                      requerentes.sort((a, b) => a.nome.compareTo(b.nome));
+                    }
+                    else if(selectedDropdownValue == "Z-A"){
+                      setState(() {
+                        
+                      });
+                      displayList.sort((a, b) => a.nome.compareTo(b.nome));
+                      displayList = displayList.reversed.toList();
+                    }
                     return Column(
                       children: [
                         ...displayList.asMap().entries.map((entry) {
