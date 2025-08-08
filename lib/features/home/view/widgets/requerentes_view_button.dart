@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:jurai/features/home/models/requerente.dart';
 import 'package:jurai/features/home/providers/recent_acess_provider.dart';
 import 'package:jurai/features/home/view/pages/clients_information.dart';

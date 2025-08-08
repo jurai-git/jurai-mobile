@@ -1,16 +1,12 @@
 import 'dart:io';
-
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:http/http.dart' as http;
 import 'package:jurai/features/auth/view/widgets/custom_alert_dialog.dart';
 import 'package:jurai/features/auth/view/widgets/loading_circle.dart';
-import 'package:jurai/features/home/models/probability.dart';
 import 'package:jurai/features/home/providers/advogado_provider.dart';
-import 'package:jurai/features/home/view/pages/profile.dart';
 import 'package:jurai/features/home/view/pages/result.dart';
 import 'package:jurai/features/home/view/widgets/nav.dart';
 import 'package:jurai/features/home/viewmodel/home_viewmodel.dart';

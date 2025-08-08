@@ -4,7 +4,6 @@ import 'package:jurai/features/home/providers/advogado_provider.dart';
 import 'package:jurai/features/home/providers/chart_data_provider.dart';
 import 'package:jurai/features/home/providers/recent_acess_provider.dart';
 import 'package:jurai/features/home/providers/requerente_provider.dart';
-import 'package:jurai/features/home/providers/demanda_provider.dart';
 import 'package:jurai/features/home/view/widgets/nav.dart';
 import 'package:jurai/features/home/view/widgets/recent_access_requerente.dart';
 import 'package:jurai/features/home/models/chart_data.dart';
@@ -30,9 +29,7 @@ class _UserHomeState extends ConsumerState<UserHome> {
   @override
   Widget build(BuildContext context) {
     final asyncList = ref.watch(recentReqAcessListProvider);
-    final asyncRequerentes = ref.watch(requerenteListProvider);
     final asyncChartData = ref.watch(chartDataProvider);
-    final asyncDemandas = ref.watch(allDemandaListProvider);
     final currentAdvogado = ref.watch(advogadoProvider);
 
     // Trigger chart data fetch when requerentes are loaded

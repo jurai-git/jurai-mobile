@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:jurai/features/auth/models/advogado.dart';
 import 'package:jurai/features/auth/view/pages/homepage.dart';
 import 'package:jurai/features/home/view/pages/change_password.dart';

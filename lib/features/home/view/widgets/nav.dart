@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jurai/features/auth/models/advogado.dart';
-import 'package:jurai/features/home/providers/advogado_provider.dart';
 import 'package:jurai/features/home/view/pages/profile.dart';
 
 class Nav extends ConsumerStatefulWidget {

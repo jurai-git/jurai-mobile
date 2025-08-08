@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jurai/features/home/models/probability.dart';
-import 'package:jurai/features/home/view/pages/analysis.dart';
 import 'package:jurai/features/home/view/pages/navigation.dart';
 import 'package:jurai/features/home/view/widgets/topic_information.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
