@@ -34,7 +34,7 @@ class Profile extends StatelessWidget {
               ),
               ClipOval(
                 child: Image.network(
-                  "http://127.0.0.1:5000/advogado/${advogado!.id.toString()}/pfp",
+                  "https://jurai-server.onrender.com/advogado/${advogado!.id.toString()}/pfp",
                   width: 180, 
                   height: 180, 
                   fit: BoxFit.cover,
