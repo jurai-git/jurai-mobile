@@ -88,7 +88,7 @@ class _ProfileOptionsButtonState extends ConsumerState<ProfileOptionsButton> {
                           backgroundColor: Colors.red,
                           fixedSize: Size(
                             MediaQuery.of(context).size.width - 50,
-                            50,
+                            45,
                           
                           ),
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
@@ -110,7 +110,7 @@ class _ProfileOptionsButtonState extends ConsumerState<ProfileOptionsButton> {
                         style: OutlinedButton.styleFrom(
                           fixedSize: Size(
                             MediaQuery.of(context).size.width - 50,
-                            50,
+                            45,
                           ),
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))
                           ),
