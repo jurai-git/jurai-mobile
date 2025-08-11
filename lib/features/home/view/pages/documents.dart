@@ -220,7 +220,7 @@ class _DocumentsState extends ConsumerState<Documents>{
                         child: ListView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
-                          itemCount: (MediaQuery.of(context).size.height/200).toInt(),
+                          itemCount: (MediaQuery.of(context).size.height/135).toInt(),
                           itemBuilder: (context, index) {
                             return DemandasViewButton(demanda: Demanda.f(), ref: ref);
                           },

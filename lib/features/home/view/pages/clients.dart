@@ -294,7 +294,7 @@ class _ClientsState extends ConsumerState<Clients> {
                       child: ListView.builder(
                         shrinkWrap: true,
                         physics: NeverScrollableScrollPhysics(),
-                        itemCount: (MediaQuery.of(context).size.height / 200).toInt(),
+                        itemCount: (MediaQuery.of(context).size.height / 135).toInt(),
                         itemBuilder: (context, index) {
                           return RequerentesViewButton(
                             requerente: Requerente.f(),
