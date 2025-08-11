@@ -226,7 +226,7 @@ class _UserHomeState extends ConsumerState<UserHome> {
                                 textStyle: TextStyle(color: Colors.white)),
                             series: <CartesianSeries<ChartData, String>>[
                               ColumnSeries<ChartData, String>(
-                                borderRadius: BorderRadius.circular(10),
+                                borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10),),
                                 trackColor: Colors.white,
                                 dataSource: chartData,
                                 xValueMapper: (ChartData data, _) => data.x,
@@ -270,7 +270,7 @@ class _UserHomeState extends ConsumerState<UserHome> {
                           textStyle: TextStyle(color: Colors.white)),
                       series: <CartesianSeries<ChartData, String>>[
                         ColumnSeries<ChartData, String>(
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10),),
                           trackColor: Colors.white,
                           dataSource: [
                             ChartData('Loading', 3),
