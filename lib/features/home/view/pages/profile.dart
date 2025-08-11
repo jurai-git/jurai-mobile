@@ -32,12 +32,15 @@ class Profile extends StatelessWidget {
                 padding: EdgeInsets.fromLTRB(0, 10, 0, 30),
                 child: Image.asset('img/jurai-name.png', scale: 5.5),
               ),
-              ClipOval(
-                child: Image.network(
-                  "https://jurai-server.onrender.com/advogado/${advogado!.id.toString()}/pfp",
-                  width: 150, 
-                  height: 150, 
-                  fit: BoxFit.cover,
+              Container(
+                margin: EdgeInsets.only(bottom: 30),
+                child: ClipOval(
+                  child: Image.network(
+                    "https://jurai-server.onrender.com/advogado/${advogado!.id.toString()}/pfp",
+                    width: 150, 
+                    height: 150, 
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
               ProfileOptionsButton(text: "Informações Pessoais", preffixIcon: Icons.account_circle, destiny: PersonalInformation()),
