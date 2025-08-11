@@ -30,11 +30,7 @@ class ProfileOptionsButton extends ConsumerStatefulWidget {
 class _ProfileOptionsButtonState extends ConsumerState<ProfileOptionsButton> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border(bottom: !widget.isLast ? BorderSide(color: const Color.fromRGBO(255, 255, 255, 0.5), width: 1) : BorderSide.none),
-      ),
-      child: ElevatedButton(
+    return ElevatedButton(
         onPressed: () {
           !widget.quit ? Navigator.push(context, MaterialPageRoute(builder: (context) => widget.destiny))
           :
@@ -133,7 +129,7 @@ class _ProfileOptionsButtonState extends ConsumerState<ProfileOptionsButton> {
           shadowColor: Colors.transparent,
           backgroundColor: Color.fromRGBO(25, 24, 29, 1),
           padding: EdgeInsets.symmetric(horizontal: 25, vertical: 25),
-          shape: LinearBorder(),
+          shape: !widget.isLast ? LinearBorder.bottom(side: BorderSide(color: const Color.fromRGBO(255, 255, 255, .5), width: 1)) : null,
         ),
         child: Row(
           children: [
@@ -149,7 +145,6 @@ class _ProfileOptionsButtonState extends ConsumerState<ProfileOptionsButton> {
             Icon(Icons.navigate_next, color: widget.quit ? Colors.red : Colors.white, size: 30),
           ],
         ),
-      ),
     );
   }
 }

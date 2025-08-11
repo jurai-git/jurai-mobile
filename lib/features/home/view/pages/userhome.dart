@@ -4,6 +4,7 @@ import 'package:jurai/features/home/providers/advogado_provider.dart';
 import 'package:jurai/features/home/providers/chart_data_provider.dart';
 import 'package:jurai/features/home/providers/recent_acess_provider.dart';
 import 'package:jurai/features/home/providers/requerente_provider.dart';
+import 'package:jurai/features/home/view/pages/navigation.dart';
 import 'package:jurai/features/home/view/widgets/nav.dart';
 import 'package:jurai/features/home/view/widgets/recent_access_requerente.dart';
 import 'package:jurai/features/home/models/chart_data.dart';
@@ -47,31 +48,44 @@ class _UserHomeState extends ConsumerState<UserHome> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Nav(advogado: ref.watch(advogadoProvider)),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.fromLTRB(25, 50, 25, 10),
-                    child: Row(
-                      children: [
-                        const Text(
-                          "Olá, ",
-                          style: TextStyle(color: Colors.white, fontSize: 28),
-                        ),
-                        Text(
-                          currentAdvogado?.username ?? "",
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 28,
-                            fontWeight: FontWeight.bold,
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 18, vertical: 15),
+                child: Row(
+                  children: [
+                    IconButton(
+                      onPressed: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CustomBotNavBar(customIndex: 4,),
                           ),
+                        );
+                      }, 
+                      style: IconButton.styleFrom(
+                        shape: CircleBorder()
+                      ),
+                      icon: ClipOval(
+                        child: Image.network(
+                          "https://jurai-server.onrender.com/advogado/${currentAdvogado!.id.toString()}/pfp",
+                          width: 60, 
+                          height: 60, 
+                          fit: BoxFit.cover,
                         ),
+                      )
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Olá", style: TextStyle(color: Colors.white60, fontSize: 16),),
+                        Text(currentAdvogado.username, style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),)
                       ],
                     ),
-                  ),
-                ],
+                    Spacer(),
+                    Image.asset('img/jurailogo.png', width: 55,)
+                  ],
+                ),
               ),
+              /*
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -95,6 +109,7 @@ class _UserHomeState extends ConsumerState<UserHome> {
                   ),
                 ],
               ),
+              */
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -233,6 +248,40 @@ class _UserHomeState extends ConsumerState<UserHome> {
                   ),
                 )
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.only(left: 25, right: 25, top: 35, bottom: 5),
+                    child: Row(
+                      children: [
+                        const Text(
+                          "Ações ",
+                          style: TextStyle(color: Colors.white, fontSize: 26),
+                        ),
+                        const Text(
+                          "Rápidas" ,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 26,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              ElevatedButton(
+                onPressed: (){
+
+                }, 
+                child: Row(
+                  children: [
+                    
+                  ],
+                )
+              )
             ],
           ),
         ),
