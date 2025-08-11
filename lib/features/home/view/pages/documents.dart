@@ -72,7 +72,7 @@ class _DocumentsState extends ConsumerState<Documents>{
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
-                    padding: EdgeInsets.fromLTRB(25, 50, 25, 20),
+                    padding: EdgeInsets.fromLTRB(25, 20, 25, 20),
                     child: Row(
                       children: [
                         Text(
