@@ -186,7 +186,7 @@ class _UserHomeState extends ConsumerState<UserHome> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
-                    padding: const EdgeInsets.only(left: 25, right: 25, top: 35, bottom: 5),
+                    padding: const EdgeInsets.only(left: 25, right: 25, top: 15, bottom: 5),
                     child: Row(
                       children: [
                         const Text(
@@ -238,7 +238,20 @@ class _UserHomeState extends ConsumerState<UserHome> {
                           )
                         : const SizedBox.shrink();
                   },
-                  error: (error, stackTrace) => Text('Error: $error'),
+                  error: (error, stackTrace){
+                    Container(
+                    margin: const EdgeInsets.only(top: 35),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(Icons.sentiment_dissatisfied, size: 80, color: Colors.grey),
+                        const SizedBox(height: 10),
+                        Text("Um erro inesperado ocorreu",
+                            style: TextStyle(color: Colors.grey, fontSize: 18)),
+                        ],
+                      )
+                    );
+                  },
                   loading: () => Skeletonizer(
                     enabled: true,
                     enableSwitchAnimation: true,
