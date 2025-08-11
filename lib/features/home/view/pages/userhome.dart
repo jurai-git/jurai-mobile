@@ -57,13 +57,13 @@ class _UserHomeState extends ConsumerState<UserHome> {
                       children: [
                         const Text(
                           "Olá, ",
-                          style: TextStyle(color: Colors.white, fontSize: 32),
+                          style: TextStyle(color: Colors.white, fontSize: 28),
                         ),
                         Text(
                           currentAdvogado?.username ?? "",
                           style: const TextStyle(
                             color: Colors.white,
-                            fontSize: 32,
+                            fontSize: 28,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -99,18 +99,18 @@ class _UserHomeState extends ConsumerState<UserHome> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
-                    padding: const EdgeInsets.only(left: 25, right: 25, top: 35, bottom: 10),
+                    padding: const EdgeInsets.only(left: 25, right: 25, top: 35, bottom: 5),
                     child: Row(
                       children: [
                         const Text(
                           "Acessos ",
-                          style: TextStyle(color: Colors.white, fontSize: 32),
+                          style: TextStyle(color: Colors.white, fontSize: 26),
                         ),
                         const Text(
                           "Recentes",
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 32,
+                            fontSize: 26,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -120,12 +120,11 @@ class _UserHomeState extends ConsumerState<UserHome> {
                 ],
               ),
               SizedBox(
-                height: 250,
+                height: 150,
                 child: asyncList.when(
                   data: (list) {
                     if (list.isEmpty) {
                       return Container(
-                        margin: const EdgeInsets.only(top: 25),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -137,15 +136,19 @@ class _UserHomeState extends ConsumerState<UserHome> {
                         ),
                       );
                     }
-                    return ListView.builder(
-                      padding: const EdgeInsets.symmetric(horizontal: 25),
-                      scrollDirection: Axis.horizontal,
-                      shrinkWrap: true,
-                      physics: const AlwaysScrollableScrollPhysics(),
-                      itemCount: list.length,
-                      itemBuilder: (BuildContext context, index) {
-                        return RecentAccessRequerente(requerente: list[index]);
-                      },
+                    return Row(
+                      children: [
+                        ListView.builder(
+                          padding: const EdgeInsets.symmetric(horizontal: 25),
+                          scrollDirection: Axis.horizontal,
+                          shrinkWrap: true,
+                          physics: const AlwaysScrollableScrollPhysics(),
+                          itemCount: list.length,
+                          itemBuilder: (BuildContext context, index) {
+                            return RecentAccessRequerente(requerente: list[index]);
+                          },
+                        ),
+                      ],
                     );
                   },
                   error: (error, stackTrace) => Container(
@@ -164,7 +167,7 @@ class _UserHomeState extends ConsumerState<UserHome> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+                padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
                 child: asyncChartData.when(
                   data: (chartData) {
                     return chartData != null && chartData.isNotEmpty
