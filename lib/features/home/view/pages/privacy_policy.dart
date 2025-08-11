@@ -131,10 +131,15 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
                     "Quaisquer disputas relacionadas a este documento serão processadas pela Justiça Federal, em conformidade com a legislação brasileira.",
                   ),
                   const SizedBox(height: 20),
+                  
                 ],
               ),
             ),
           ),
+        bottomNavigationBar: Container(
+          padding: EdgeInsets.all(10),
+          child: Text("A inteligência que facilita o processo | © 2025 JurAI", style: TextStyle(color: Colors.white, fontSize: 15), textAlign: TextAlign.center,),
+        ),
         );
   }
 

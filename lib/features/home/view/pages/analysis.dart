@@ -65,28 +65,33 @@ class _AnalysisState extends ConsumerState<Analysis> {
     return Container(
       color: Color.fromRGBO(25, 24, 29, 1),
       child: isLoading ? Center(child: LoadingCircle()) : Scaffold(
+        appBar: AppBar(
+          title: Text("Análise de Documentos", style: TextStyle(color: Colors.white),),
+          centerTitle: true,
+          iconTheme: IconThemeData(color: Color(0xFF387FB9)),
+          backgroundColor: Colors.transparent,
+        ),
         backgroundColor: Colors.transparent,
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Nav(advogado: ref.watch(advogadoProvider),),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
-                    padding: EdgeInsets.fromLTRB(25, 50, 25, 20),
+                    padding: EdgeInsets.fromLTRB(25, 20, 25, 20),
                     child: Row(
                       children: [
                         Text(
                           "Consulta ",
-                          style: TextStyle(color: Colors.white, fontSize: 32),
+                          style: TextStyle(color: Colors.white, fontSize: 26),
                         ),
                         Text(
                           "Rápida",
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 32,
+                            fontSize: 26,
                             fontWeight: FontWeight.bold,
                           ),
                         ),

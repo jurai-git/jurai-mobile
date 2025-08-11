@@ -57,28 +57,33 @@ class _DocumentsState extends ConsumerState<Documents>{
     return Container(
       color: Color.fromRGBO(25, 24, 29, 1),
       child: Scaffold(
+        appBar: AppBar(
+          title: Text("Lista de Demandas", style: TextStyle(color: Colors.white),),
+          centerTitle: true,
+          iconTheme: IconThemeData(color: Color(0xFF387FB9)),
+          backgroundColor: Colors.transparent,
+        ),
         backgroundColor: Colors.transparent,
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Nav(advogado: ref.watch(advogadoProvider),),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
-                    padding: EdgeInsets.fromLTRB(25, 50, 25, 20),
+                    padding: EdgeInsets.fromLTRB(25, 20, 25, 20),
                     child: Row(
                       children: [
                         Text(
                           "Seus ",
-                          style: TextStyle(color: Colors.white, fontSize: 32),
+                          style: TextStyle(color: Colors.white, fontSize: 26),
                         ),
                         Text(
                           "Documentos",
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 32,
+                            fontSize: 26,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -215,7 +220,7 @@ class _DocumentsState extends ConsumerState<Documents>{
                         child: ListView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
-                          itemCount: (MediaQuery.of(context).size.height/200).toInt(),
+                          itemCount: (MediaQuery.of(context).size.height/135).toInt(),
                           itemBuilder: (context, index) {
                             return DemandasViewButton(demanda: Demanda.f(), ref: ref);
                           },

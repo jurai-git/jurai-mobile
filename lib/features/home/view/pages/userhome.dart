@@ -4,7 +4,9 @@ import 'package:jurai/features/home/providers/advogado_provider.dart';
 import 'package:jurai/features/home/providers/chart_data_provider.dart';
 import 'package:jurai/features/home/providers/recent_acess_provider.dart';
 import 'package:jurai/features/home/providers/requerente_provider.dart';
+import 'package:jurai/features/home/view/pages/navigation.dart';
 import 'package:jurai/features/home/view/widgets/nav.dart';
+import 'package:jurai/features/home/view/widgets/quick_acess_button.dart';
 import 'package:jurai/features/home/view/widgets/recent_access_requerente.dart';
 import 'package:jurai/features/home/models/chart_data.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -47,31 +49,44 @@ class _UserHomeState extends ConsumerState<UserHome> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Nav(advogado: ref.watch(advogadoProvider)),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.fromLTRB(25, 50, 25, 10),
-                    child: Row(
-                      children: [
-                        const Text(
-                          "Olá, ",
-                          style: TextStyle(color: Colors.white, fontSize: 28),
-                        ),
-                        Text(
-                          currentAdvogado?.username ?? "",
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 28,
-                            fontWeight: FontWeight.bold,
+              Container(
+                padding: EdgeInsets.fromLTRB(18, 30, 18, 10),
+                child: Row(
+                  children: [
+                    IconButton(
+                      onPressed: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => CustomBotNavBar(customIndex: 4,),
                           ),
+                        );
+                      }, 
+                      style: IconButton.styleFrom(
+                        shape: CircleBorder()
+                      ),
+                      icon: ClipOval(
+                        child: Image.network(
+                          "https://jurai-server.onrender.com/advogado/${currentAdvogado!.id.toString()}/pfp",
+                          width: 60, 
+                          height: 60, 
+                          fit: BoxFit.cover,
                         ),
+                      )
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Olá", style: TextStyle(color: Colors.white60, fontSize: 16),),
+                        Text(currentAdvogado.username, style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),)
                       ],
                     ),
-                  ),
-                ],
+                    Spacer(),
+                    Image.asset('img/jurailogo.png', width: 55,)
+                  ],
+                ),
               ),
+              /*
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -95,11 +110,12 @@ class _UserHomeState extends ConsumerState<UserHome> {
                   ),
                 ],
               ),
+              */
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
-                    padding: const EdgeInsets.only(left: 25, right: 25, top: 35, bottom: 5),
+                    padding: const EdgeInsets.only(left: 25, right: 25, top: 0, bottom: 5),
                     child: Row(
                       children: [
                         const Text(
@@ -166,6 +182,30 @@ class _UserHomeState extends ConsumerState<UserHome> {
                   loading: () => null,
                 ),
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.only(left: 25, right: 25, top: 15, bottom: 5),
+                    child: Row(
+                      children: [
+                        const Text(
+                          "Demandas por ",
+                          style: TextStyle(color: Colors.white, fontSize: 26),
+                        ),
+                        const Text(
+                          "Requerentes" ,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 26,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
                 child: asyncChartData.when(
@@ -183,10 +223,10 @@ class _UserHomeState extends ConsumerState<UserHome> {
                             ),
                             tooltipBehavior: _tooltip,
                             title: const ChartTitle(
-                                text: 'Demandas por Requerente',
                                 textStyle: TextStyle(color: Colors.white)),
                             series: <CartesianSeries<ChartData, String>>[
                               ColumnSeries<ChartData, String>(
+                                borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10),),
                                 trackColor: Colors.white,
                                 dataSource: chartData,
                                 xValueMapper: (ChartData data, _) => data.x,
@@ -198,7 +238,20 @@ class _UserHomeState extends ConsumerState<UserHome> {
                           )
                         : const SizedBox.shrink();
                   },
-                  error: (error, stackTrace) => Text('Error: $error'),
+                  error: (error, stackTrace){
+                    Container(
+                    margin: const EdgeInsets.only(top: 35),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(Icons.sentiment_dissatisfied, size: 80, color: Colors.grey),
+                        const SizedBox(height: 10),
+                        Text("Um erro inesperado ocorreu",
+                            style: TextStyle(color: Colors.grey, fontSize: 18)),
+                        ],
+                      )
+                    );
+                  },
                   loading: () => Skeletonizer(
                     enabled: true,
                     enableSwitchAnimation: true,
@@ -214,10 +267,10 @@ class _UserHomeState extends ConsumerState<UserHome> {
                       ),
                       tooltipBehavior: _tooltip,
                       title: const ChartTitle(
-                          text: 'Demandas per Requerente',
                           textStyle: TextStyle(color: Colors.white)),
                       series: <CartesianSeries<ChartData, String>>[
                         ColumnSeries<ChartData, String>(
+                          borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10),),
                           trackColor: Colors.white,
                           dataSource: [
                             ChartData('Loading', 3),
@@ -233,6 +286,43 @@ class _UserHomeState extends ConsumerState<UserHome> {
                   ),
                 )
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.only(left: 25, right: 25, top: 35, bottom: 5),
+                    child: Row(
+                      children: [
+                        const Text(
+                          "Ações ",
+                          style: TextStyle(color: Colors.white, fontSize: 26),
+                        ),
+                        const Text(
+                          "Rápidas" ,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 26,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 25),
+                child: Column(
+                  children: [
+                    QuickAcessButton(botNavBarIndex: 3, urlImage: "img/quick_search.png", primaryText: "Análise de Documentos", secondaryText: "Analise suas demandas rapidamente e receba os resultados da IA do JurAI"),
+                    SizedBox(height: 10,),
+                    QuickAcessButton(botNavBarIndex: 1, urlImage: "img/quick_client.png", primaryText: "Busca de Requerentes", secondaryText: "Filtre, busque e acesse as informações dos seus respectivos requerentes"),
+                    SizedBox(height: 10,),
+                    QuickAcessButton(botNavBarIndex: 4, urlImage: "img/quick_settings.png", primaryText: "Página de Configurações", secondaryText: "Acesse as informações da sua conta e configure o sistema do seu jeito"),
+                    SizedBox(height: 10,),
+                  ],
+                ),
+              )
             ],
           ),
         ),

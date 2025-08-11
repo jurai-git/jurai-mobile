@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:jurai/features/auth/models/advogado.dart';
+import 'package:jurai/features/home/providers/advogado_provider.dart';
 import 'package:jurai/features/home/view/pages/analysis.dart';
 import 'package:jurai/features/home/view/pages/clients.dart';
 import 'package:jurai/features/home/view/pages/devs.dart';
 import 'package:jurai/features/home/view/pages/documents.dart';
+import 'package:jurai/features/home/view/pages/profile.dart';
 import 'package:jurai/features/home/view/pages/userhome.dart';
 
-class CustomBotNavBar extends StatefulWidget {
+class CustomBotNavBar extends ConsumerStatefulWidget {
   final int? customIndex;
   const CustomBotNavBar({super.key, this.customIndex});
 
   @override
-  State<CustomBotNavBar> createState() => CheckState();
+  ConsumerState<CustomBotNavBar> createState() => CheckState();
 }
 
-class CheckState extends State<CustomBotNavBar> {
+class CheckState extends ConsumerState<CustomBotNavBar> {
   late int selectedIndex;
-  static const List<Widget> pages = <Widget>[UserHome(), Clients(), Documents(), Analysis(), Devs()];
 
   @override
   void initState() {
@@ -29,14 +32,14 @@ class CheckState extends State<CustomBotNavBar> {
       color: Color.fromRGBO(25, 24, 29, 1),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        body: Center(child: pages.elementAt(selectedIndex)),
+        body: Center(child: [UserHome(), Clients(), Documents(), Analysis(), Profile(advogado: ref.watch(advogadoProvider))].elementAt(selectedIndex)),
         bottomNavigationBar: BottomNavigationBar(
           showSelectedLabels: false,
           showUnselectedLabels: false,
           backgroundColor: Color.fromRGBO(25, 24, 29, 1),
           type: BottomNavigationBarType.fixed,
           selectedItemColor: Color(0xFF387FB9),
-          selectedFontSize: 20,
+          selectedFontSize: 15,
           unselectedItemColor: Colors.white,
           currentIndex: selectedIndex,
           onTap: (value) {
@@ -46,23 +49,23 @@ class CheckState extends State<CustomBotNavBar> {
           },
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.home, size: 35),
+              icon: Icon(Icons.home, size: 30),
               label: "",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person_outline, size: 35),
+              icon: Icon(Icons.person_outline, size: 30),
               label: "",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.description, size: 35),
+              icon: Icon(Icons.description, size: 30),
               label: "",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.search, size: 35),
+              icon: Icon(Icons.search, size: 30),
               label: "",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.code, size: 35),
+              icon: Icon(Icons.settings, size: 30),
               label: "",
             ),
           ],

@@ -51,7 +51,7 @@ class _RequerentesViewButtonState extends State<RequerentesViewButton> {
                 width: 50,
                 height: 50,
                 padding: widget.requerente.id_requerente != -1 ? EdgeInsets.all(10) : EdgeInsets.all(30),
-                child: widget.requerente.id_requerente != -1 ? Center(child: Text(widget.requerente.nome.trim().split(' ').map((l) => l[0]).take(2).join(), style: TextStyle(color: Color(0xFF387FB9), fontSize: 20, fontWeight: FontWeight.bold, letterSpacing: 1.5),)) : null,
+                child: widget.requerente.id_requerente != -1 ? Center(child: Text(widget.requerente.nome.trim().split(' ').map((l) => l[0]).take(2).join(), style: TextStyle(color: Color.fromRGBO(56, 127, 185, 1), fontSize: 20, fontWeight: FontWeight.bold, letterSpacing: 1.5),)) : null,
               ),
               Flexible(
                 fit: FlexFit.tight,

@@ -20,29 +20,29 @@ class _DevsState extends ConsumerState<Devs>{
     return Container(
       color: Color.fromRGBO(25, 24, 29, 1),
       child: Scaffold(
+        appBar: AppBar(title: Text("Desenvolvedores", style: TextStyle(color: Colors.white)), centerTitle: true, iconTheme: IconThemeData(color: Color(0xFF387FB9)), backgroundColor: Colors.transparent),
         backgroundColor: Colors.transparent,
         body: SingleChildScrollView( 
         child: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Nav(advogado: ref.watch(advogadoProvider),),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
-                    padding: EdgeInsets.fromLTRB(25, 50, 25, 20),
+                    padding: EdgeInsets.fromLTRB(25, 20, 25, 20),
                     child: Row(
                       children: [
                         Text(
                           "Sobre ",
-                          style: TextStyle(color: Colors.white, fontSize: 32),
+                          style: TextStyle(color: Colors.white, fontSize: 26),
                         ),
                         Text(
                           "Nós",
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 32,
+                            fontSize: 26,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -59,7 +59,7 @@ class _DevsState extends ConsumerState<Devs>{
                     padding: EdgeInsets.fromLTRB(25, 0, 25, 20),
                     child: Text(
                       "O JurAI surgiu da necessidade de advogados em adquirir mais otimização nos seus escritórios de advocacia, tendo em vista que o trabalho diário de analisar inúmeros documentos processuais é um processo lento e exaustivo para os mesmos. Tendo em vista isso, o JurAI surge dessa necessidade para melhorar o desempenho do advogado, deixando a parte complexa para nosso produto, e a parte racional para o advogado, visando um bom trabalho e uma boa elaboração de documentos processuais",
-                      style: TextStyle(color: Colors.white, fontSize: 20),
+                      style: TextStyle(color: Colors.white, fontSize: 18),
                       softWrap: true,
                       overflow: TextOverflow.clip,
                     ),
