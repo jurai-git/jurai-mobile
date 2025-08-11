@@ -77,13 +77,13 @@ class _DocumentsState extends ConsumerState<Documents>{
                       children: [
                         Text(
                           "Seus ",
-                          style: TextStyle(color: Colors.white, fontSize: 32),
+                          style: TextStyle(color: Colors.white, fontSize: 26),
                         ),
                         Text(
                           "Documentos",
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 32,
+                            fontSize: 26,
                             fontWeight: FontWeight.bold,
                           ),
                         ),

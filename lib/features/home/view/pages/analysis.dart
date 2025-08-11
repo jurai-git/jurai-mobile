@@ -85,13 +85,13 @@ class _AnalysisState extends ConsumerState<Analysis> {
                       children: [
                         Text(
                           "Consulta ",
-                          style: TextStyle(color: Colors.white, fontSize: 32),
+                          style: TextStyle(color: Colors.white, fontSize: 26),
                         ),
                         Text(
                           "Rápida",
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 32,
+                            fontSize: 26,
                             fontWeight: FontWeight.bold,
                           ),
                         ),

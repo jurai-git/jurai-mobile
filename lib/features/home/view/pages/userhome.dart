@@ -50,7 +50,7 @@ class _UserHomeState extends ConsumerState<UserHome> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 18, vertical: 15),
+                padding: EdgeInsets.fromLTRB(18, 30, 18, 10),
                 child: Row(
                   children: [
                     IconButton(
