@@ -57,12 +57,17 @@ class _DocumentsState extends ConsumerState<Documents>{
     return Container(
       color: Color.fromRGBO(25, 24, 29, 1),
       child: Scaffold(
+        appBar: AppBar(
+          title: Text("Lista de Demandas", style: TextStyle(color: Colors.white),),
+          centerTitle: true,
+          iconTheme: IconThemeData(color: Color(0xFF387FB9)),
+          backgroundColor: Colors.transparent,
+        ),
         backgroundColor: Colors.transparent,
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Nav(advogado: ref.watch(advogadoProvider),),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
