@@ -6,6 +6,7 @@ import 'package:jurai/features/home/providers/recent_acess_provider.dart';
 import 'package:jurai/features/home/providers/requerente_provider.dart';
 import 'package:jurai/features/home/view/pages/navigation.dart';
 import 'package:jurai/features/home/view/widgets/nav.dart';
+import 'package:jurai/features/home/view/widgets/quick_acess_button.dart';
 import 'package:jurai/features/home/view/widgets/recent_access_requerente.dart';
 import 'package:jurai/features/home/models/chart_data.dart';
 import 'package:skeletonizer/skeletonizer.dart';
@@ -114,7 +115,7 @@ class _UserHomeState extends ConsumerState<UserHome> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
-                    padding: const EdgeInsets.only(left: 25, right: 25, top: 35, bottom: 5),
+                    padding: const EdgeInsets.only(left: 25, right: 25, top: 0, bottom: 5),
                     child: Row(
                       children: [
                         const Text(
@@ -181,6 +182,30 @@ class _UserHomeState extends ConsumerState<UserHome> {
                   loading: () => null,
                 ),
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.only(left: 25, right: 25, top: 35, bottom: 5),
+                    child: Row(
+                      children: [
+                        const Text(
+                          "Demandas por ",
+                          style: TextStyle(color: Colors.white, fontSize: 26),
+                        ),
+                        const Text(
+                          "Requerentes" ,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 26,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
                 child: asyncChartData.when(
@@ -198,10 +223,10 @@ class _UserHomeState extends ConsumerState<UserHome> {
                             ),
                             tooltipBehavior: _tooltip,
                             title: const ChartTitle(
-                                text: 'Demandas por Requerente',
                                 textStyle: TextStyle(color: Colors.white)),
                             series: <CartesianSeries<ChartData, String>>[
                               ColumnSeries<ChartData, String>(
+                                borderRadius: BorderRadius.circular(10),
                                 trackColor: Colors.white,
                                 dataSource: chartData,
                                 xValueMapper: (ChartData data, _) => data.x,
@@ -229,10 +254,10 @@ class _UserHomeState extends ConsumerState<UserHome> {
                       ),
                       tooltipBehavior: _tooltip,
                       title: const ChartTitle(
-                          text: 'Demandas per Requerente',
                           textStyle: TextStyle(color: Colors.white)),
                       series: <CartesianSeries<ChartData, String>>[
                         ColumnSeries<ChartData, String>(
+                          borderRadius: BorderRadius.circular(10),
                           trackColor: Colors.white,
                           dataSource: [
                             ChartData('Loading', 3),
@@ -272,15 +297,18 @@ class _UserHomeState extends ConsumerState<UserHome> {
                   ),
                 ],
               ),
-              ElevatedButton(
-                onPressed: (){
-
-                }, 
-                child: Row(
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 25),
+                child: Column(
                   children: [
-                    
+                    QuickAcessButton(botNavBarIndex: 3, urlImage: "img/quick_search.png", primaryText: "Análise de Documentos", secondaryText: "Analise suas demandas rapidamente e receba os resultados da IA do JurAI"),
+                    SizedBox(height: 10,),
+                    QuickAcessButton(botNavBarIndex: 1, urlImage: "img/quick_client.png", primaryText: "Busca de Requerentes", secondaryText: "Filtre, busque e acesse as informações dos seus respectivos requerentes"),
+                    SizedBox(height: 10,),
+                    QuickAcessButton(botNavBarIndex: 4, urlImage: "img/quick_settings.png", primaryText: "Página de Configurações", secondaryText: "Acesse as informações da sua conta e configure o sistema do seu jeito"),
+                    SizedBox(height: 10,),
                   ],
-                )
+                ),
               )
             ],
           ),
