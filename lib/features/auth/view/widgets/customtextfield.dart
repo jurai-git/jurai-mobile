@@ -97,7 +97,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         obscureText: widget.obscureText,
         validator: _validator,
         style: TextStyle(color: Colors.white),
-        textAlignVertical: widget.showSuffix ? TextAlignVertical(y: -.1) : null,
+        textAlignVertical: widget.showSuffix ? TextAlignVertical(y: -.5) : null,
         decoration: InputDecoration(
           hintText: _hintText,
           hintStyle: TextStyle(color: Colors.grey),
