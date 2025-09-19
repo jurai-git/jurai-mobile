@@ -85,11 +85,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       padding: EdgeInsets.symmetric(vertical: 5, horizontal: 16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        gradient: LinearGradient(
-          begin: Alignment(0, 0),
-          end: Alignment(1, 1),
-          colors: [Color(0x3E387FB9), Color(0x3E2B2932)],
-        ),
+        color: Color(0x3E387FB9)
       ),
       child: TextFormField(
         enabled: widget.enabled,
@@ -101,13 +97,16 @@ class _CustomTextFieldState extends State<CustomTextField> {
         obscureText: widget.obscureText,
         validator: _validator,
         style: TextStyle(color: Colors.white),
-        textAlignVertical: widget.showSuffix ? TextAlignVertical(y: -.5) : null,
+        textAlignVertical: widget.showSuffix ? TextAlignVertical(y: -.1) : null,
         decoration: InputDecoration(
           hintText: _hintText,
           hintStyle: TextStyle(color: Colors.grey),
           errorStyle: TextStyle(color: Color(0xFFD32F2F), fontWeight: FontWeight.bold),
-          prefixIcon: SvgPicture.asset(_iconPath),
-          prefixIconConstraints: BoxConstraints(maxWidth: 20, maxHeight: 20),
+          prefixIcon: Padding(
+            padding: EdgeInsets.only(right: 10),
+            child: SvgPicture.asset(_iconPath),
+          ),
+          prefixIconConstraints: BoxConstraints(maxWidth: 35, maxHeight: 35),
           border: InputBorder.none,
           fillColor: Colors.transparent,
           suffixIcon: widget.showSuffix
