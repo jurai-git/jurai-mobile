@@ -24,7 +24,7 @@ class AuthRemoteRepository {
   }) async{
     try{
       final response = await http.post(
-        Uri.parse("https://jurai-server.onrender.com/advogado"),
+        Uri.parse("http://127.0.0.1:5001/advogado"),
         headers: {'Content-Type': 'application/json',},
         body: jsonEncode({
           'username': username,
@@ -51,7 +51,7 @@ class AuthRemoteRepository {
   }) async{
     try{
       final response = await http.post(
-        Uri.parse("https://jurai-server.onrender.com/advogado/auth"),
+        Uri.parse("http://127.0.0.1:5001/advogado/auth"),
         headers: {'Content-Type': 'application/json',},
         body: jsonEncode({
           'username': username,
@@ -76,7 +76,7 @@ class AuthRemoteRepository {
   }) async{
     try{
       final response = await http.post(
-        Uri.parse("https://jurai-server.onrender.com/advogado/request-reset/${email}"),
+        Uri.parse("http://127.0.0.1:5001/advogado/request-reset/${email}"),
         headers: {'Content-Type': 'application/json',},
       );
       final resBodyMap = jsonDecode(response.body) as Map<String, dynamic>;

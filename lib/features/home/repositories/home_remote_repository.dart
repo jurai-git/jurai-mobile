@@ -23,7 +23,7 @@ class HomeRemoteRepository {
       String? token = await tokenService.getToken();
       
       final res = await http
-        .get(Uri.parse("https://jurai-server.onrender.com/advogado/requerentes"), headers: {
+        .get(Uri.parse("http://127.0.0.1:5001/advogado/requerentes"), headers: {
           'Content-Type': 'application/json',
           'Authorization': token != null ? 'Bearer $token' : ''
         });
@@ -53,7 +53,7 @@ class HomeRemoteRepository {
       String? token = await tokenService.getToken();
       
       final res = await http
-        .get(Uri.parse("https://jurai-server.onrender.com/advogado/demandas"), headers: {
+        .get(Uri.parse("http://127.0.0.1:5001/advogado/demandas"), headers: {
           'Content-Type': 'application/json',
           'Authorization': token != null ? 'Bearer $token' : ''
         });
@@ -84,7 +84,7 @@ class HomeRemoteRepository {
       String? token = await tokenService.getToken();
       
       final res = await http.get(
-        Uri.parse("https://jurai-server.onrender.com/advogado/requerente/${id_requerente.toString()}/demandas"), 
+        Uri.parse("http://127.0.0.1:5001/advogado/requerente/${id_requerente.toString()}/demandas"), 
         headers: {
           'Content-Type': 'application/json',
           'Authorization': token != null ? 'Bearer $token' : ''
@@ -118,7 +118,7 @@ class HomeRemoteRepository {
       String? token = await tokenService.getToken();
       
       final res = await http.post(
-        Uri.parse("https://jurai-server.onrender.com/ai/probability"), 
+        Uri.parse("http://127.0.0.1:5001/ai/probability"), 
         headers: {
           'Content-Type': 'application/json',
           'Authorization': token != null ? 'Bearer $token' : ''

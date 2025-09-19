@@ -71,7 +71,7 @@ class _ClientsState extends ConsumerState<Clients> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Row(
+              /*Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
@@ -94,7 +94,7 @@ class _ClientsState extends ConsumerState<Clients> {
                     ),
                   ),
                 ],
-              ),
+              ),*/
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 25),
                 margin: EdgeInsets.only(bottom: 20),

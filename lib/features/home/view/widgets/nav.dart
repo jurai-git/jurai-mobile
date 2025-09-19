@@ -38,7 +38,7 @@ class _NavState extends ConsumerState<Nav> {
             ),
             icon: ClipOval(
               child: Image.network(
-                "https://jurai-server.onrender.com/advogado/${widget.advogado!.id.toString()}/pfp",
+                "http://127.0.0.1:5001/advogado/${widget.advogado!.id.toString()}/pfp",
                 width: 45, 
                 height: 45, 
                 fit: BoxFit.cover,

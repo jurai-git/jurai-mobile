@@ -68,7 +68,7 @@ class _DocumentsState extends ConsumerState<Documents>{
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Row(
+              /*Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
@@ -91,7 +91,7 @@ class _DocumentsState extends ConsumerState<Documents>{
                     ),
                   ),
                 ],
-              ),
+              ),*/
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 25),
                 margin: EdgeInsets.only(bottom: 20),
