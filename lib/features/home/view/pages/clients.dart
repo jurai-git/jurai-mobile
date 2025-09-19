@@ -175,8 +175,8 @@ class _ClientsState extends ConsumerState<Clients> {
                         ]
                       ),
                     ),
-                    Spacer(),
-                    Text("placeholder", style: TextStyle(color: Colors.white54,),)
+                    //Spacer(),
+                    //Text("placeholder", style: TextStyle(color: Colors.white54,),)
                   ],
                 ),
               ),
