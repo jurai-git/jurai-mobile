@@ -66,7 +66,7 @@ class _ChangePasswordState extends ConsumerState<ChangePassword> {
         gradient: GradientBg(),
       ),
       child: Scaffold(
-        backgroundColor: Color.fromRGBO(25, 24, 29, 1)  ,
+        backgroundColor: Colors.transparent  ,
         body: Center(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 12),
