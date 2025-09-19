@@ -76,7 +76,7 @@ class _AnalysisState extends ConsumerState<Analysis> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Row(
+              /*Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Container(
@@ -99,7 +99,7 @@ class _AnalysisState extends ConsumerState<Analysis> {
                     ),
                   ),
                 ],
-              ),
+              ),*/
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 30),
                 width: MediaQuery.of(context).size.width,
@@ -180,12 +180,12 @@ class _RenderPdfState extends State<RenderPdf> {
           ),
         ),
         Container(
-          height: 300,
+          height: MediaQuery.of(context).size.height - 400,
           margin: EdgeInsets.symmetric(horizontal: 25),
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             color: Color(0x772B2932),
-            borderRadius: BorderRadius.circular(50),
+            borderRadius: BorderRadius.circular(35),
           ),
           child: ElevatedButton(
             style: btnStyle,
@@ -291,6 +291,8 @@ class RenderEment extends ConsumerStatefulWidget {
 class _RenderEmentState extends ConsumerState<RenderEment>{
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TextEditingController _ementController = TextEditingController();
+  Color buttonBgColor = Color.fromARGB(255, 29, 28, 34);
+  bool isButtonEnabled = false;
 
   @override
   Widget build(BuildContext context) {
@@ -306,12 +308,12 @@ class _RenderEmentState extends ConsumerState<RenderEment>{
           ),
         ),
         Container(
-          height: 300,
+          height: MediaQuery.of(context).size.height - 400,
           margin: EdgeInsets.symmetric(horizontal: 25),
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             color: Color(0x772B2932),
-            borderRadius: BorderRadius.circular(50),
+            borderRadius: BorderRadius.circular(35),
           ),
           child: Form(
             key: _formKey,
@@ -324,6 +326,19 @@ class _RenderEmentState extends ConsumerState<RenderEment>{
                 hintText: "Digite aqui...",
                 border: InputBorder.none,
               ),
+              onChanged: (value) {
+                setState(() {
+                  
+                });
+                if(value.isNotEmpty){
+                  buttonBgColor = Color.fromRGBO(56, 127, 185, 0.750);
+                  isButtonEnabled = true;
+                }
+                else{
+                  buttonBgColor = Color.fromARGB(255, 29, 28, 34);
+                  isButtonEnabled = false;
+                }
+              },
               validator: (value) {
                 if (value == null || value.trim().isEmpty) {
                   return null;
@@ -337,20 +352,20 @@ class _RenderEmentState extends ConsumerState<RenderEment>{
           margin: EdgeInsets.symmetric(horizontal: 25, vertical: 40),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            color: Color.fromARGB(255, 29, 28, 34),
+            color: buttonBgColor,
           ),
           child: ElevatedButton(
-            onPressed: () async {
+            onPressed: isButtonEnabled ? () async {
                 if(_formKey.currentState!.validate()){
                   await ref
                     .read(homeViewModelProvider.notifier)
                       .getProbability(text: _ementController.text);
                 }
-            },
+            } : null,
             style: ElevatedButton.styleFrom(
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
               shadowColor: Colors.transparent,
-              backgroundColor: _ementController.text.isEmpty ? Colors.transparent : Color.fromRGBO(56, 127, 185, 0.750),
+              backgroundColor: Colors.transparent,
               fixedSize: Size.fromWidth(MediaQuery.of(context).size.width),
               padding: EdgeInsets.symmetric(vertical: 20)
             ),
