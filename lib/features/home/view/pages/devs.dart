@@ -85,8 +85,8 @@ class CarouselWithSnap extends StatelessWidget {
   final List<ProfileCard> imgList = [
     ProfileCard(profileName: "Wendel Frota", profilePictureUrl: "https://avatars.githubusercontent.com/u/132313694?v=4", profileRole: "AI Developer"),
     ProfileCard(profileName: "Mateus Daroz", profilePictureUrl: "https://avatars.githubusercontent.com/u/143561347?v=4", profileRole: "Mobile Developer"),
-    ProfileCard(profileName: "Lucas Bachega", profilePictureUrl: "https://media.licdn.com/dms/image/v2/D4D03AQGAZKqNA_krAQ/profile-displayphoto-shrink_800_800/B4DZbHEaC5G4Ac-/0/1747096543981?e=1754524800&v=beta&t=-jgeuE-i3PUdhBw4MpYK4RaKQP0-oqYqkSHjRQerh8Y", profileRole: "Web Developer"),
-    ProfileCard(profileName: "Miguel Vale", profilePictureUrl: "https://media.licdn.com/dms/image/v2/D4D03AQGt8uCAOgyx-A/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1715478655603?e=1754524800&v=beta&t=BIN0LTib-yKrR_j_acRFgJstW8R5kVRnvUcwGCBadDM", profileRole: "Desktop Developer"),
+    ProfileCard(profileName: "Lucas Bachega", profilePictureUrl: "https://media.licdn.com/dms/image/v2/D4E03AQE58WFLJXpbWw/profile-displayphoto-crop_800_800/B4EZkQWEw.IkAU-/0/1756915849531?e=1761177600&v=beta&t=K_PY7QXR7kiN2IXw2nt9Xs8DFjC3SDns3dqoENCpPgc", profileRole: "Web Developer"),
+    ProfileCard(profileName: "Miguel Vale", profilePictureUrl: "https://media.licdn.com/dms/image/v2/D4D03AQEZx5CcO6ln-Q/profile-displayphoto-crop_800_800/B4DZjO1dqcH0AU-/0/1755816779517?e=1761177600&v=beta&t=axSSLkCMdHiJLzgFCGroYl1jqri6SIr1bJYJoCaTXJY", profileRole: "Desktop Developer"),
   ];
 
   @override
