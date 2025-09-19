@@ -55,7 +55,7 @@ class _UserHomeState extends ConsumerState<UserHome> {
                   children: [
                     IconButton(
                       onPressed: (){
-                        Navigator.push(
+                        Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                             builder: (context) => CustomBotNavBar(customIndex: 4,),
