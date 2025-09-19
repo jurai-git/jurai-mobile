@@ -129,7 +129,7 @@ class _ProfileOptionsButtonState extends ConsumerState<ProfileOptionsButton> {
           shadowColor: Colors.transparent,
           backgroundColor: Color.fromRGBO(25, 24, 29, 1),
           padding: EdgeInsets.symmetric(horizontal: 25, vertical: 25),
-          shape: !widget.isLast ? LinearBorder.bottom(side: BorderSide(color: const Color.fromRGBO(255, 255, 255, .5), width: 1)) : null,
+          //shape: !widget.isLast ? LinearBorder.bottom(side: BorderSide(color: const Color.fromRGBO(255, 255, 255, .5), width: 1)) : null,
         ),
         child: Row(
           children: [
@@ -141,8 +141,8 @@ class _ProfileOptionsButtonState extends ConsumerState<ProfileOptionsButton> {
                 style: TextStyle(color: widget.quit ? Colors.red : Colors.white, fontSize: 18),
               ),
             ),
-            Spacer(),
-            Icon(Icons.navigate_next, color: widget.quit ? Colors.red : Colors.white, size: 30),
+            //Spacer(),
+            //Icon(Icons.navigate_next, color: widget.quit ? Colors.red : Colors.white, size: 30),
           ],
         ),
     );

@@ -5,7 +5,7 @@ import 'package:flutter_svg/svg.dart';
 class TopicInformation extends StatelessWidget {
   final String topicName;
   final String topicData;
-  final String topicImage;
+  final String? topicImage;
   final bool first;
   final int? maxLines;
   final TextInputType kbType;
@@ -31,16 +31,16 @@ class TopicInformation extends StatelessWidget {
         style: const TextStyle(color: Colors.white),
         enabled: false,
         decoration: InputDecoration(
-          prefixIcon: Container(
+          prefixIcon: topicImage != null ? Container(
             margin: EdgeInsets.fromLTRB(10, 0, 5, 0),
             child: SvgPicture.asset(
-              topicImage,
+              topicImage!,
               width: 20,
               height: 20,
               fit: BoxFit.contain,
               colorFilter: ColorFilter.mode(Color(0xFF387FB9), BlendMode.srcIn),
             ),
-          ),
+          ) : null,
           prefixIconConstraints: const BoxConstraints(
             minWidth: 20,
             minHeight: 20,
