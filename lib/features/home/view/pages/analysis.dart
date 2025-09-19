@@ -30,7 +30,7 @@ class _AnalysisState extends ConsumerState<Analysis> {
       (_, next) {
         next?.when(
           data: (data) {
-            Navigator.push(
+            Navigator.pushReplacement(
               context,
               MaterialPageRoute(
                 builder: (context) => Result(probability: data,),
